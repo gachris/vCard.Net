@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net461;net462;net47;net471;net472;net48;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Authors>gachris</Authors>
+		<RepositoryUrl>https://github.com/gachris/vCard.Net/tree/master/vCard.Net</RepositoryUrl>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>vCard.Net_SignAssembly_Key.snk</AssemblyOriginatorKeyFile>
+		<PackageProjectUrl>https://github.com/gachris/vCard.Net</PackageProjectUrl>
+		<Copyright>Copyright © 2022.</Copyright>
+		<Description>Package for accessing vCards</Description>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.0-alpha</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="vCard.Net_SignAssembly_Key.snk" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NodaTime" Version="3.0.0" />
+	</ItemGroup>
+
+</Project>

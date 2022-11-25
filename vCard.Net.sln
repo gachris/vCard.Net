@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33027.239
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vCard.Net.Tests", "vCard.Net.Tests\vCard.Net.Tests.csproj", "{5A657C7D-1D1C-48EC-85F5-1B02419EF427}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vCard.Net", "vCard.Net\vCard.Net.csproj", "{93CD82A5-F72D-456B-AA4E-32E10ED6B558}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A657C7D-1D1C-48EC-85F5-1B02419EF427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A657C7D-1D1C-48EC-85F5-1B02419EF427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A657C7D-1D1C-48EC-85F5-1B02419EF427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A657C7D-1D1C-48EC-85F5-1B02419EF427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93CD82A5-F72D-456B-AA4E-32E10ED6B558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CD82A5-F72D-456B-AA4E-32E10ED6B558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CD82A5-F72D-456B-AA4E-32E10ED6B558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CD82A5-F72D-456B-AA4E-32E10ED6B558}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3550B93F-B3A8-421D-B31C-2E30F30E7D44}
+	EndGlobalSection
+EndGlobal
