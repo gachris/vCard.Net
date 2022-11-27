@@ -199,9 +199,9 @@ namespace vCard.Net.CardComponents
             set => Properties.Set("ROLE", value);
         }
 
-        /// <summary>
-        /// The logo of the vCard.
-        /// </summary>
+        ///// <summary>
+        ///// The logo of the vCard.
+        ///// </summary>
         //public virtual Logo Logo
         //{
         //    get => Properties.Get<Logo>("LOGO");

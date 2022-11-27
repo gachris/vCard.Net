@@ -35,6 +35,17 @@ namespace vCard.Net.CardComponents
 
         public override int GetHashCode() => Uid?.GetHashCode() ?? base.GetHashCode();
 
+        /// <summary>
+        /// A value that uniquely identifies the vCard.
+        /// </summary>
+        /// <remarks>
+        ///     This value is optional.  The string must be any string
+        ///     that can be used to uniquely identify the Person.  The
+        ///     usage of the field is determined by the software.  Typical
+        ///     possibilities for a unique string include a URL, a GUID,
+        ///     or an LDAP directory path.  However, there is no particular
+        ///     standard dictated by the Person specification.
+        /// </remarks>
         public virtual string Uid
         {
             get => Properties.Get<string>("UID");

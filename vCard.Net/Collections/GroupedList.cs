@@ -107,7 +107,17 @@ namespace vCard.Net.Collections
 
         public virtual IEnumerable<TItem> Values() => _dictionary.Values.SelectMany(i => i);
 
-        public virtual IEnumerable<TItem> AllOf(TGroup group) => _dictionary.ContainsKey(@group) ? _dictionary[@group] : (IEnumerable<TItem>)Array.Empty<TItem>();
+        public virtual IEnumerable<TItem> AllOf(TGroup group)
+        {
+            if (_dictionary.ContainsKey(@group))
+            {
+                return _dictionary[@group];
+            }
+            else
+            {
+                return Array.Empty<TItem>();
+            }
+        }
 
         public virtual bool Remove(TItem obj)
         {
