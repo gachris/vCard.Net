@@ -40,11 +40,11 @@ namespace vCard.Net.CardComponents
         /// </summary>
         /// <remarks>
         ///     This value is optional.  The string must be any string
-        ///     that can be used to uniquely identify the Person.  The
+        ///     that can be used to uniquely identify the vCard.  The
         ///     usage of the field is determined by the software.  Typical
         ///     possibilities for a unique string include a URL, a GUID,
         ///     or an LDAP directory path.  However, there is no particular
-        ///     standard dictated by the Person specification.
+        ///     standard dictated by the vCard specification.
         /// </remarks>
         public virtual string Uid
         {
