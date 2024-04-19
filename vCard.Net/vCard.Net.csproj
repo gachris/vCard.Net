@@ -13,7 +13,7 @@
 		<Description>Package for accessing vCards</Description>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Version>1.0.2</Version>
-		<NoWarn>1701;1702;1591</NoWarn>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

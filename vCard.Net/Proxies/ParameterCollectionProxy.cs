@@ -4,72 +4,91 @@ using System.Linq;
 using vCard.Net.Collections;
 using vCard.Net.Collections.Proxies;
 
-namespace vCard.Net.Proxies
+namespace vCard.Net.Proxies;
+
+/// <summary>
+/// Represents a proxy class for a collection of vCard parameters.
+/// </summary>
+public class ParameterCollectionProxy : GroupedCollectionProxy<string, vCardParameter, vCardParameter>, IParameterCollection
 {
-    public class ParameterCollectionProxy : GroupedCollectionProxy<string, CardParameter, CardParameter>, IParameterCollection
+    /// <summary>
+    /// Gets the underlying list of parameters.
+    /// </summary>
+    protected GroupedValueList<string, vCardParameter, vCardParameter, string> Parameters
+        => RealObject as GroupedValueList<string, vCardParameter, vCardParameter, string>;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ParameterCollectionProxy"/> class.
+    /// </summary>
+    /// <param name="realObject">The real collection object to proxy.</param>
+    public ParameterCollectionProxy(IGroupedList<string, vCardParameter> realObject) : base(realObject) { }
+
+    /// <inheritdoc/>
+    public virtual void SetParent(IvCardObject parent)
     {
-        protected GroupedValueList<string, CardParameter, CardParameter, string> Parameters
-            => RealObject as GroupedValueList<string, CardParameter, CardParameter, string>;
-
-        public ParameterCollectionProxy(IGroupedList<string, CardParameter> realObject) : base(realObject) { }
-
-        public virtual void SetParent(ICardObject parent)
+        foreach (var parameter in this)
         {
-            foreach (var parameter in this)
-            {
-                parameter.Parent = parent;
-            }
+            parameter.Parent = parent;
         }
+    }
 
-        public virtual void Add(string name, string value) => RealObject.Add(new CardParameter(name, value));
+    /// <inheritdoc/>
+    public virtual void Add(string name, string value) => RealObject.Add(new vCardParameter(name, value));
 
-        public virtual string Get(string name)
+    /// <inheritdoc/>
+    public virtual string Get(string name)
+    {
+        var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
+
+        return parameter?.Value;
+    }
+
+    /// <inheritdoc/>
+    public virtual IList<string> GetMany(string name) => new GroupedValueListProxy<string, vCardParameter, vCardParameter, string, string>(Parameters, name);
+
+    /// <inheritdoc/>
+    public virtual void Set(string name, string value)
+    {
+        var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
+
+        if (parameter == null)
         {
-            var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
-
-            return parameter?.Value;
+            RealObject.Add(new vCardParameter(name, value));
         }
-
-        public virtual IList<string> GetMany(string name) => new GroupedValueListProxy<string, CardParameter, CardParameter, string, string>(Parameters, name);
-
-        public virtual void Set(string name, string value)
+        else
         {
-            var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
-
-            if (parameter == null)
-            {
-                RealObject.Add(new CardParameter(name, value));
-            }
-            else
-            {
-                parameter.SetValue(value);
-            }
+            parameter.SetValue(value);
         }
+    }
 
-        public virtual void Set(string name, IEnumerable<string> values)
+    /// <inheritdoc/>
+    public virtual void Set(string name, IEnumerable<string> values)
+    {
+        var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
+
+        if (parameter == null)
         {
-            var parameter = RealObject.FirstOrDefault(o => string.Equals(o.Name, name, StringComparison.Ordinal));
-
-            if (parameter == null)
-            {
-                RealObject.Add(new CardParameter(name, values));
-            }
-            else
-            {
-                parameter.SetValue(values);
-            }
+            RealObject.Add(new vCardParameter(name, values));
         }
-
-        public virtual int IndexOf(CardParameter obj) => 0;
-
-        public virtual void Insert(int index, CardParameter item) { }
-
-        public virtual void RemoveAt(int index) { }
-
-        public virtual CardParameter this[int index]
+        else
         {
-            get => Parameters[index];
-            set { }
+            parameter.SetValue(values);
         }
+    }
+
+    /// <inheritdoc/>
+    public virtual int IndexOf(vCardParameter obj) => 0;
+
+    /// <inheritdoc/>
+    public virtual void Insert(int index, vCardParameter item) { }
+
+    /// <inheritdoc/>
+    public virtual void RemoveAt(int index) { }
+
+    /// <inheritdoc/>
+    public virtual vCardParameter this[int index]
+    {
+        get => Parameters[index];
+        set { }
     }
 }

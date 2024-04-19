@@ -1,49 +1,54 @@
 ﻿using System.IO;
 using vCard.Net.Serialization.DataTypes;
 
-namespace vCard.Net.DataTypes
+namespace vCard.Net.DataTypes;
+
+/// <summary>
+/// Represents the Client PID map (CLIENTPIDMAP) property of a vCard object.
+/// </summary>
+/// <remarks>
+/// This property class parses the <see cref="Uri"/> property to allow access to its individual property ID and URI parts.
+/// This property is only valid for use with the vCard 4.0 specification.
+/// </remarks>
+public class ClientPidMap : EncodableDataType
 {
     /// <summary>
-    /// This class is used to represent the client PID map (CLIENTPIDMAP) property of a vCard object
+    /// Gets or sets the property ID number.
     /// </summary>
-    /// <remarks>
-    /// This property class parses the <see cref="Uri"/> property
-    /// to allow access to its individual property ID and URI parts. This property is
-    /// only valid for use with the vCard 4.0 specification.
-    /// </remarks>
-    public class ClientPidMap : EncodableDataType
+    public int Id { get; set; }
+
+    /// <summary>
+    /// Gets or sets the URI.
+    /// </summary>
+    public string Uri { get; set; }
+
+    /// <summary>
+    /// Gets the versions of the vCard specification supported by this property.
+    /// </summary>
+    /// <value>
+    /// Only supported by the vCard 4.0 specification.
+    /// </value>
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ClientPidMap"/> class.
+    /// </summary>
+    public ClientPidMap()
     {
-        /// <summary>
-        /// This is used to establish the specification versions supported by the PDI object
-        /// </summary>
-        /// <value>
-        /// Only supported by the vCard 4.0 specification
-        /// </value>
-        public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
+    }
 
-        /// <summary>
-        /// This is used to get or set the property ID number
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        /// This is used to get or set the URI
-        /// </summary>
-        public string Uri { get; set; }
-
-        public ClientPidMap()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ClientPidMap"/> class with the specified value.
+    /// </summary>
+    /// <param name="value">The value of the client PID map.</param>
+    public ClientPidMap(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
         {
+            return;
         }
 
-        public ClientPidMap(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return;
-            }
-
-            var serializer = new ClientPidMapSerializer();
-            CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
-        }
+        var serializer = new ClientPidMapSerializer();
+        CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
     }
 }
