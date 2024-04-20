@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
+using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 
@@ -39,42 +41,42 @@ public class NameSerializer : StringSerializer
             return null;
         }
 
-        vCardVersion specificationVersions = name.Version;
-        string[] array = new string[5];
-        int num = 0;
-        if (!string.IsNullOrWhiteSpace(name.FamilyName))
+        var version = vCardVersion.vCard21;
+        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
         {
-            num = 1;
-            array[0] = specificationVersions == vCardVersion.vCard21 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
+            version = component.Version;
         }
 
-        if (!string.IsNullOrWhiteSpace(name.GivenName))
+        var array = new string[5];
+
+        if (name.FamilyName != null && name.FamilyName.Length > 0)
         {
-            num = 2;
-            array[1] = specificationVersions == vCardVersion.vCard21 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
+            array[0] = version == vCardVersion.vCard21 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
         }
 
-        if (!string.IsNullOrWhiteSpace(name.AdditionalNames))
+        if (name.GivenName != null && name.GivenName.Length > 0)
         {
-            num = 3;
-            array[2] = specificationVersions == vCardVersion.vCard21
+            array[1] = version == vCardVersion.vCard21 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
+        }
+
+        if (name.AdditionalNames != null && name.AdditionalNames.Length > 0)
+        {
+            array[2] = version == vCardVersion.vCard21
                 ? name.AdditionalNames.RestrictedEscape()
                 : name.AdditionalNames.Escape();
         }
 
-        if (!string.IsNullOrWhiteSpace(name.NamePrefix))
+        if (name.NamePrefix != null && name.NamePrefix.Length > 0)
         {
-            num = 4;
-            array[3] = specificationVersions == vCardVersion.vCard21 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
+            array[3] = version == vCardVersion.vCard21 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
         }
 
-        if (!string.IsNullOrWhiteSpace(name.NameSuffix))
+        if (name.NameSuffix != null && name.NameSuffix.Length > 0)
         {
-            num = 5;
-            array[4] = specificationVersions == vCardVersion.vCard21 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
+            array[4] = version == vCardVersion.vCard21 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
         }
 
-        return num == 0 ? Encode(name, "Unknown") : Encode(name, string.Join(";", array, 0, num));
+        return Encode(name, string.Join(";", array));
     }
 
     /// <summary>
@@ -102,13 +104,10 @@ public class NameSerializer : StringSerializer
             return null;
         }
 
-        string text2 = (name.NameSuffix = null);
-        string text4 = (name.NamePrefix = text2);
-        string text6 = (name.AdditionalNames = text4);
-        string text9 = (name.FamilyName = (name.GivenName = text6));
         if (value.Length > 0)
         {
-            string[] array = _reSplit.Split(value);
+            var array = _reSplit.Split(value);
+
             if (array.Length != 0)
             {
                 name.FamilyName = array[0].Unescape();

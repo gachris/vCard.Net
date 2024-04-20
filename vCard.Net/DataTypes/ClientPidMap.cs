@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using vCard.Net.Serialization.DataTypes;
 
 namespace vCard.Net.DataTypes;
@@ -50,5 +51,33 @@ public class ClientPidMap : EncodableDataType
 
         var serializer = new ClientPidMapSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="ClientPidMap"/> object is equal to another <see cref="ClientPidMap"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="ClientPidMap"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(ClientPidMap other)
+    {
+        return Id == other.Id && string.Equals(Uri, other.Uri, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((ClientPidMap)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + Id.GetHashCode();
+            hashCode = hashCode * 23 + (Uri != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Uri) : 0);
+            return hashCode;
+        }
     }
 }

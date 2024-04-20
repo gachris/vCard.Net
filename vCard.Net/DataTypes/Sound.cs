@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using vCard.Net.Serialization.DataTypes;
 
 namespace vCard.Net.DataTypes;
@@ -10,7 +11,10 @@ public class Sound : EncodableDataType
 {
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
+    /// </summary>  
+    /// <value>
+    /// Supports all specifications.
+    /// </value>
     public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 
     /// <summary>
@@ -38,5 +42,32 @@ public class Sound : EncodableDataType
 
         var serializer = new SoundSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="Sound"/> object is equal to another <see cref="Sound"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Sound"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Sound other)
+    {
+        return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Sound)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
+            return hashCode;
+        }
     }
 }

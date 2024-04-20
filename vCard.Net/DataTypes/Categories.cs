@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.IO;
 using vCard.Net.Serialization.DataTypes;
 
@@ -20,7 +21,10 @@ public class Categories : EncodableDataType
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
     /// </summary>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard30 | SpecificationVersions.vCard40;
+    /// <value>
+    /// Supports all specifications.
+    /// </value>
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 
     /// <summary>
     /// Gets the collection of categories.
@@ -83,5 +87,44 @@ public class Categories : EncodableDataType
 
         var serializer = new CategoriesSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="Categories"/> object is equal to another <see cref="Categories"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Categories"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Categories other)
+    {
+        if (_categories.Count != other._categories.Count)
+            return false;
+
+        for (var i = 0; i < _categories.Count; i++)
+        {
+            if (!string.Equals(_categories[i], other._categories[i], StringComparison.OrdinalIgnoreCase))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Categories)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            var hashCode = 17;
+            foreach (var category in _categories)
+            {
+                hashCode = hashCode * 23 + (category != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(category) : 0);
+            }
+            return hashCode;
+        }
     }
 }

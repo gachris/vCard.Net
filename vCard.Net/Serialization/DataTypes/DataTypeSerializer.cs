@@ -26,7 +26,7 @@ public abstract class DataTypeSerializer : SerializerBase
     protected virtual IvCardDataType CreateAndAssociate()
     {
         // Create an instance of the object
-        if (!(Activator.CreateInstance(TargetType) is IvCardDataType dt))
+        if (Activator.CreateInstance(TargetType) is not IvCardDataType dt)
         {
             return null;
         }

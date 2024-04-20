@@ -25,7 +25,10 @@ public class vCardPropertyList : GroupedValueList<string, IvCardProperty, vCardP
         ItemAdded += vCardPropertyList_ItemAdded;
     }
 
-    private void vCardPropertyList_ItemAdded(object sender, ObjectEventArgs<IvCardProperty, int> e) => e.First.Parent = _mParent;
+    private void vCardPropertyList_ItemAdded(object sender, ObjectEventArgs<IvCardProperty, int> e)
+    {
+        e.First.Parent = _mParent;
+    }
 
     /// <summary>
     /// Gets the first vCard property with the specified name.

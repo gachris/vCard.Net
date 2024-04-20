@@ -365,42 +365,41 @@ public class vCard : UniqueComponent, IvCard
     /// <returns><c>true</c> if the specified vCard is equal to the current vCard; otherwise, <c>false</c>.</returns>
     protected bool Equals(vCard other)
     {
-        var result = string.Equals(Uid, other.Uid, StringComparison.OrdinalIgnoreCase)
-        && Equals(Source, other.Source)
-        && Equals(Kind, other.Kind)
-        && Equals(N, other.N)
-        && string.Equals(FormattedName, other.FormattedName, StringComparison.OrdinalIgnoreCase)
-        && string.Equals(Nickname, other.Nickname, StringComparison.OrdinalIgnoreCase)
-        && Equals(Birthdate, other.Birthdate)
-        && Equals(Photo, other.Photo)
-        && Equals(Anniversary, other.Anniversary)
-        && Equals(Gender, other.Gender)
-        && CollectionHelpers.Equals(Addresses, other.Addresses)
-        && CollectionHelpers.Equals(PhoneNumbers, other.PhoneNumbers)
-        && CollectionHelpers.Equals(EmailAddresses, other.EmailAddresses)
-        && CollectionHelpers.Equals(IMPPs, other.IMPPs)
-        && CollectionHelpers.Equals(Languages, other.Languages)
-        && Equals(TimeZone, other.TimeZone)
-        && Equals(GeographicPosition, other.GeographicPosition)
-        && string.Equals(Title, other.Title, StringComparison.OrdinalIgnoreCase)
-        && string.Equals(Role, other.Role, StringComparison.OrdinalIgnoreCase)
-        && Equals(Logo, other.Logo)
-        && Equals(Organization, other.Organization)
-        && CollectionHelpers.Equals(Members, other.Members)
-        && CollectionHelpers.Equals(RelatedCollection, other.RelatedCollection)
-        && Equals(Categories, other.Categories)
-        && CollectionHelpers.Equals(Notes, other.Notes)
-        && string.Equals(ProductId, other.ProductId, StringComparison.OrdinalIgnoreCase)
-        && Equals(RevisionDate, other.RevisionDate)
-        && Equals(Sound, other.Sound)
-        && Equals(Key, other.Key);
-        return result;
+        return string.Equals(Uid, other.Uid, StringComparison.OrdinalIgnoreCase)
+               && Equals(Source, other.Source)
+               && Equals(Kind, other.Kind)
+               && Equals(N, other.N)
+               && string.Equals(FormattedName, other.FormattedName, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(Nickname, other.Nickname, StringComparison.OrdinalIgnoreCase)
+               && Equals(Birthdate, other.Birthdate)
+               && Equals(Photo, other.Photo)
+               && Equals(Anniversary, other.Anniversary)
+               && Equals(Gender, other.Gender)
+               && CollectionHelpers.Equals(Addresses, other.Addresses)
+               && CollectionHelpers.Equals(PhoneNumbers, other.PhoneNumbers)
+               && CollectionHelpers.Equals(EmailAddresses, other.EmailAddresses)
+               && CollectionHelpers.Equals(IMPPs, other.IMPPs)
+               && CollectionHelpers.Equals(Languages, other.Languages)
+               && Equals(TimeZone, other.TimeZone)
+               && Equals(GeographicPosition, other.GeographicPosition)
+               && string.Equals(Title, other.Title, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(Role, other.Role, StringComparison.OrdinalIgnoreCase)
+               && Equals(Logo, other.Logo)
+               && Equals(Organization, other.Organization)
+               && CollectionHelpers.Equals(Members, other.Members)
+               && CollectionHelpers.Equals(RelatedCollection, other.RelatedCollection)
+               && Equals(Categories, other.Categories)
+               && CollectionHelpers.Equals(Notes, other.Notes)
+               && string.Equals(ProductId, other.ProductId, StringComparison.OrdinalIgnoreCase)
+               && Equals(RevisionDate, other.RevisionDate)
+               && Equals(Sound, other.Sound)
+               && Equals(Key, other.Key);
     }
 
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return obj is null ? false : ReferenceEquals(this, obj) ? true : obj.GetType() == GetType() && Equals((vCard)obj);
+        return obj is not null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((vCard)obj));
     }
 
     /// <inheritdoc/>
@@ -408,35 +407,35 @@ public class vCard : UniqueComponent, IvCard
     {
         unchecked
         {
-            var hashCode = Uid.GetHashCode();
-            hashCode = hashCode * 397 ^ (Source?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Kind?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (N?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (FormattedName?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Nickname?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Birthdate?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Photo?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Anniversary?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Gender?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(Addresses);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(PhoneNumbers);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(EmailAddresses);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(IMPPs);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(Languages);
-            hashCode = hashCode * 397 ^ (TimeZone?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (GeographicPosition?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Title?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Role?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Logo?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Organization?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(Members);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(RelatedCollection);
-            hashCode = hashCode * 397 ^ (Categories?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ CollectionHelpers.GetHashCode(Notes);
-            hashCode = hashCode * 397 ^ (ProductId?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (RevisionDate?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Sound?.GetHashCode() ?? 0);
-            hashCode = hashCode * 397 ^ (Key?.GetHashCode() ?? 0);
+            var hashCode = Uid != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Uid) : 0;
+            hashCode = (hashCode * 397) ^ (Source != null ? Source.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Kind != null ? Kind.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (N != null ? N.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (FormattedName != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(FormattedName) : 0);
+            hashCode = (hashCode * 397) ^ (Nickname != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Nickname) : 0);
+            hashCode = (hashCode * 397) ^ (Birthdate != null ? Birthdate.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Photo != null ? Photo.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Anniversary != null ? Anniversary.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Gender != null ? Gender.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Addresses);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(PhoneNumbers);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(EmailAddresses);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(IMPPs);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Languages);
+            hashCode = (hashCode * 397) ^ (TimeZone != null ? TimeZone.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (GeographicPosition != null ? GeographicPosition.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Title != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Title) : 0);
+            hashCode = (hashCode * 397) ^ (Role != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Role) : 0);
+            hashCode = (hashCode * 397) ^ (Logo != null ? Logo.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Organization != null ? Organization.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Members);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(RelatedCollection);
+            hashCode = (hashCode * 397) ^ (Categories != null ? Categories.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Notes);
+            hashCode = (hashCode * 397) ^ (ProductId != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(ProductId) : 0);
+            hashCode = (hashCode * 397) ^ (RevisionDate != null ? RevisionDate.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Sound != null ? Sound.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Key != null ? Key.GetHashCode() : 0);
             return hashCode;
         }
     }

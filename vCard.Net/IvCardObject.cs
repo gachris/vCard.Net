@@ -1,5 +1,4 @@
 ﻿using vCard.Net.Collections;
-using vCard.Net.DataTypes;
 
 namespace vCard.Net;
 
@@ -8,11 +7,6 @@ namespace vCard.Net;
 /// </summary>
 public interface IvCardObject : IGroupedObject<string>, ILoadable, ICopyable, IServiceProvider
 {
-    /// <summary>
-    /// Gets or sets the version of the vCard.
-    /// </summary>
-    vCardVersion Version { get; set; }
-
     /// <summary>
     /// Gets or sets the name of the vCard object.
     /// </summary>

@@ -20,6 +20,14 @@ public class Organization : EncodableDataType
     private readonly StringCollection _units;
 
     /// <summary>
+    /// Gets the versions of the vCard specification supported by this property.
+    /// </summary>  
+    /// <value>
+    /// Supports all specifications.
+    /// </value>
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
+
+    /// <summary>
     /// Gets or sets the organization name.
     /// </summary>
     public string Name { get; set; }
@@ -102,5 +110,34 @@ public class Organization : EncodableDataType
 
         var serializer = new OrganizationSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+   
+    /// <summary>
+    /// Determines whether the current <see cref="Organization"/> object is equal to another <see cref="Organization"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Organization"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Organization other)
+    {
+        return string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase) &&
+               Units.Cast<string>().SequenceEqual(other.Units.Cast<string>(), StringComparer.OrdinalIgnoreCase);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Organization)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hash = 17;
+            hash = hash * 23 + (Name != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Name) : 0);
+            hash = hash * 23 + Units.Cast<string>().Aggregate(0, (current, unit) => current * 31 + StringComparer.OrdinalIgnoreCase.GetHashCode(unit));
+            return hash;
+        }
     }
 }

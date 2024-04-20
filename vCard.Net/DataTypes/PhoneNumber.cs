@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using vCard.Net.Serialization.DataTypes;
+using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
 
@@ -88,5 +90,36 @@ public class PhoneNumber : EncodableDataType
 
         var serializer = new PhoneNumberSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="PhoneNumber"/> object is equal to another <see cref="PhoneNumber"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="PhoneNumber"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(PhoneNumber other)
+    {
+        return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
+               && CollectionHelpers.Equals(Types, other.Types)
+               && Equals(PreferredOrder, other.PreferredOrder);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((PhoneNumber)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
+            hashCode = (hashCode * 23) ^ CollectionHelpers.GetHashCode(Types);
+            hashCode = (hashCode * 23) ^ PreferredOrder.GetHashCode();
+            return hashCode;
+        }
     }
 }

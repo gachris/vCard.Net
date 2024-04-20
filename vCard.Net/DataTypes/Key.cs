@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using vCard.Net.Serialization.DataTypes;
+using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
 
@@ -14,7 +16,7 @@ namespace vCard.Net.DataTypes;
 public class Key : EncodableDataType
 {
     /// <summary>
-    /// Gets the specification versions supported by the Key object.
+    /// Gets the versions of the vCard specification supported by this property.
     /// </summary>
     /// <value>
     /// Supports all vCard specifications.
@@ -68,5 +70,34 @@ public class Key : EncodableDataType
 
         var serializer = new KeySerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="Key"/> object is equal to another <see cref="Key"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Key"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Key other)
+    {
+        return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
+               && CollectionHelpers.Equals(KeyType, other.KeyType);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Key)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
+            hashCode = (hashCode * 23) ^ CollectionHelpers.GetHashCode(KeyType);
+            return hashCode;
+        }
     }
 }

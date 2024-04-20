@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using vCard.Net.Serialization.DataTypes;
-using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
 
@@ -16,11 +15,12 @@ namespace vCard.Net.DataTypes;
 /// </remarks>
 public class Address : EncodableDataType
 {
-    private static readonly Regex _reSplitSemiColon = new Regex("(?:^[;])|(?<=(?:[^\\\\]))[;]");
-
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
+    /// </summary>  
+    /// <value>
+    /// Supports all specifications.
+    /// </value>
     public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 
     /// <summary>
@@ -43,12 +43,7 @@ public class Address : EncodableDataType
         get
         {
             var preferredOrder = Parameters.Get("PREF");
-            if (short.TryParse(preferredOrder, out short result))
-            {
-                return result;
-            }
-
-            return short.MinValue;
+            return short.TryParse(preferredOrder, out short result) ? result : short.MinValue;
         }
         set
         {
@@ -108,7 +103,7 @@ public class Address : EncodableDataType
     public virtual string Country { get; set; }
 
     /// <summary>
-    /// Gets or sets the address value, parsing and concatenating the components when requested.
+    /// Gets the address value, parsing and concatenating the components when requested.
     /// </summary>
     /// <value>
     /// The component parts are escaped as needed.
@@ -117,94 +112,51 @@ public class Address : EncodableDataType
     {
         get
         {
-            vCardVersion specificationVersions = Version;
             string[] array = new string[8];
             int num = 0;
             if (POBox != null && POBox.Length > 0)
             {
                 num = 1;
-                array[0] = specificationVersions == vCardVersion.vCard21 ? POBox.RestrictedEscape() : POBox.Escape();
+                array[0] = POBox;
             }
 
             if (ExtendedAddress != null && ExtendedAddress.Length > 0)
             {
                 num = 2;
-                array[1] = specificationVersions == vCardVersion.vCard21 ? ExtendedAddress.RestrictedEscape() : ExtendedAddress.Escape();
+                array[1] = ExtendedAddress;
             }
 
             if (StreetAddress != null && StreetAddress.Length > 0)
             {
                 num = 3;
-                array[2] = specificationVersions == vCardVersion.vCard21 ? StreetAddress.RestrictedEscape() : StreetAddress.Escape();
+                array[2] = StreetAddress;
             }
 
             if (Locality != null && Locality.Length > 0)
             {
                 num = 4;
-                array[3] = specificationVersions == vCardVersion.vCard21 ? Locality.RestrictedEscape() : Locality.Escape();
+                array[3] = Locality;
             }
 
             if (Region != null && Region.Length > 0)
             {
                 num = 5;
-                array[4] = specificationVersions == vCardVersion.vCard21 ? Region.RestrictedEscape() : Region.Escape();
+                array[4] = Region;
             }
 
             if (PostalCode != null && PostalCode.Length > 0)
             {
                 num = 6;
-                array[5] = specificationVersions == vCardVersion.vCard21 ? PostalCode.RestrictedEscape() : PostalCode.Escape();
+                array[5] = PostalCode;
             }
 
             if (Country != null && Country.Length > 0)
             {
                 num = 7;
-                array[6] = specificationVersions == vCardVersion.vCard21 ? Country.RestrictedEscape() : Country.Escape();
+                array[6] = Country;
             }
 
             return num == 0 ? null : string.Join(";", array, 0, num);
-        }
-        set
-        {
-            if (value != null && value.Length > 0)
-            {
-                var array = _reSplitSemiColon.Split(value);
-
-                if (array.Length != 0)
-                {
-                    POBox = array[0].Unescape();
-                }
-
-                if (array.Length > 1)
-                {
-                    ExtendedAddress = array[1].Unescape();
-                }
-
-                if (array.Length > 2)
-                {
-                    StreetAddress = array[2].Unescape();
-                }
-
-                if (array.Length > 3)
-                {
-                    Locality = array[3].Unescape();
-                }
-
-                if (array.Length > 4)
-                {
-                    Region = array[4].Unescape();
-                }
-
-                if (array.Length > 5)
-                {
-                    PostalCode = array[5].Unescape();
-                }
-
-                if (array.Length > 6)
-                {
-                    Country = array[6].Unescape();
-                }
-            }
         }
     }
 
@@ -228,5 +180,44 @@ public class Address : EncodableDataType
 
         var serializer = new AddressSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="Address"/> object is equal to another <see cref="Address"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Address"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Address other)
+    {
+        return string.Equals(POBox, other.POBox, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(ExtendedAddress, other.ExtendedAddress, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(StreetAddress, other.StreetAddress, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(Locality, other.Locality, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(Region, other.Region, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(PostalCode, other.PostalCode, StringComparison.OrdinalIgnoreCase)
+               && string.Equals(Country, other.Country, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Address)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + (POBox != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(POBox) : 0);
+            hashCode = hashCode * 23 + (ExtendedAddress != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(ExtendedAddress) : 0);
+            hashCode = hashCode * 23 + (StreetAddress != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(StreetAddress) : 0);
+            hashCode = hashCode * 23 + (Locality != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Locality) : 0);
+            hashCode = hashCode * 23 + (Region != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Region) : 0);
+            hashCode = hashCode * 23 + (PostalCode != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(PostalCode) : 0);
+            hashCode = hashCode * 23 + (Country != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Country) : 0);
+            return hashCode;
+        }
     }
 }

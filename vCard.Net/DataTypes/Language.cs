@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using vCard.Net.Serialization.DataTypes;
+using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
 
@@ -12,6 +14,9 @@ public class Language : EncodableDataType
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
     /// </summary>
+    /// <value>
+    /// Only supported by the vCard 4.0 specification.
+    /// </value>
     public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
 
     /// <summary>
@@ -88,5 +93,36 @@ public class Language : EncodableDataType
 
         var serializer = new LanguageSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
+
+    /// <summary>
+    /// Determines whether the current <see cref="Language"/> object is equal to another <see cref="Language"/> object.
+    /// </summary>
+    /// <param name="other">The <see cref="Language"/> object to compare with the current object.</param>
+    /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
+    protected bool Equals(Language other)
+    {
+        return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
+               && CollectionHelpers.Equals(Types, other.Types)
+               && Equals(PreferredOrder, other.PreferredOrder);
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
+    {
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Language)obj));
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            var hashCode = 17;
+            hashCode = hashCode * 23 + (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
+            hashCode = (hashCode * 23) ^ CollectionHelpers.GetHashCode(Types);
+            hashCode = (hashCode * 23) ^ PreferredOrder.GetHashCode();
+            return hashCode;
+        }
     }
 }

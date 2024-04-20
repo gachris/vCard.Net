@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using vCard.Net.CardComponents;
+using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization;
 
@@ -26,26 +28,27 @@ public class ParameterSerializer : SerializerBase
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (!(obj is vCardParameter p))
+        if (obj is not vCardParameter parameter)
         {
             return null;
         }
 
+        var version = vCardVersion.vCard21;
+
+        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        {
+            version = component.Version;
+        }
+
         var builder = new StringBuilder();
-        builder.Append(p.Name + "=");
+        builder.Append(parameter.Name + "=");
+
+        var separator = version is vCardVersion.vCard21 ? ";" : ",";
 
         // "Section 3.2:  Property parameter values MUST NOT contain the DQUOTE character."
         // Therefore, let's strip any double quotes from the value.
-        var values = string.Join(",", p.Values).Replace("\"", string.Empty);
+        var values = string.Join(separator, parameter.Values).Replace("\"", string.Empty);
 
-        // TODO: Should remove the following method?
-
-        // Surround the parameter value with double quotes, if the value
-        // contains any problematic characters.
-        //if (values.IndexOfAny([';', ':', ',']) >= 0)
-        //{
-        //    values = "\"" + values + "\"";
-        //}
         builder.Append(values);
         return builder.ToString();
     }

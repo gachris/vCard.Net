@@ -8,6 +8,11 @@ namespace vCard.Net.DataTypes;
 public interface IvCardDataType : IvCardParameterCollectionContainer, ICopyable, IServiceProvider
 {
     /// <summary>
+    /// Gets or sets the value type of the vCard data type.
+    /// </summary>
+    string ValueType { get; set; }
+
+    /// <summary>
     /// Gets the value type of the vCard data type.
     /// </summary>
     /// <returns>The type of the value.</returns>

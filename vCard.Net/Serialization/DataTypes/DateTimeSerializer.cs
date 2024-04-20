@@ -61,15 +61,6 @@ public class DateTimeSerializer : EncodableDataTypeSerializer
 
         DateTime.SpecifyKind(dt.Value, kind);
 
-        // FIXME: what if DATE is the default value type for this?
-        // Also, what if the DATE-TIME value type is specified on something
-        // where DATE-TIME is the default value type?  It should be removed
-        // during serialization, as it's redundant...
-        if (!dt.HasTime)
-        {
-            dt.SetValueType("DATE");
-        }
-
         var value = new StringBuilder();
         value.Append($"{dt.Year:0000}-{dt.Month:00}-{dt.Day:00}");
         if (dt.HasTime)

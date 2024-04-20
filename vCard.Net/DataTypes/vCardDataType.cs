@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+using vCard.Net.CardComponents;
 using vCard.Net.Proxies;
 
 namespace vCard.Net.DataTypes;
@@ -22,14 +23,6 @@ public abstract class vCardDataType : IvCardDataType
     /// All objects derived from this class must implement this to indicate the specification versions with which they can be used.
     /// </summary>
     public abstract SpecificationVersions VersionsSupported { get; }
-    
-    /// <summary>
-    /// Gets the vCard version associated with the object.
-    /// </summary>
-    /// <remarks>
-    /// If no associated object is set, the default version is vCard 2.1.
-    /// </remarks>
-    public virtual vCardVersion Version => AssociatedObject?.Version ?? vCardVersion.vCard21;
     
     /// <summary>
     /// Initializes a new instance of the <see cref="vCardDataType"/> class.
@@ -61,6 +54,13 @@ public abstract class vCardDataType : IvCardDataType
     /// Method called after deserialization is complete.
     /// </summary>
     protected virtual void OnDeserialized(StreamingContext context) { }
+
+    /// <inheritdoc/>
+    public virtual string ValueType
+    {
+        get => _proxy.Get("VALUE");
+        set => SetValueType(value);
+    }
 
     /// <inheritdoc/>
     public virtual Type GetValueType()
@@ -116,12 +116,13 @@ public abstract class vCardDataType : IvCardDataType
             }
 
             _associatedObject = value;
+
             if (_associatedObject != null)
             {
                 _proxy.SetParent(_associatedObject);
-                if (_associatedObject is IvCardParameterCollectionContainer)
+                if (_associatedObject is IvCardParameterCollectionContainer container)
                 {
-                    _proxy.SetProxiedObject(((IvCardParameterCollectionContainer)_associatedObject).Parameters);
+                    _proxy.SetProxiedObject(container.Parameters);
                 }
             }
             else

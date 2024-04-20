@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
@@ -37,13 +38,19 @@ public class GeographicPositionSerializer : StringSerializer
             return null;
         }
 
+        var version = vCardVersion.vCard21;
+        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        {
+            version = component.Version;
+        }
+
         string text = string.Empty;
-        if (geographicPosition.Version == vCardVersion.vCard40 && geographicPosition.IncludeGeoUriPrefix)
+        if (version == vCardVersion.vCard40 && geographicPosition.IncludeGeoUriPrefix)
         {
             text = "geo:";
         }
 
-        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, (geographicPosition.Version == vCardVersion.vCard30 || geographicPosition.Version == vCardVersion.vCard40) ? ";" : ",", geographicPosition.Longitude);
+        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, (version == vCardVersion.vCard30 || version == vCardVersion.vCard40) ? ";" : ",", geographicPosition.Longitude);
 
         return Encode(geographicPosition, value);
     }

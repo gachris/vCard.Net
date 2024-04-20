@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.Serialization;
 using vCard.Net.Collections;
-using vCard.Net.DataTypes;
 
 namespace vCard.Net;
 
@@ -13,11 +12,6 @@ public class vCardObject : vCardObjectBase, IvCardObject
     private IvCardObjectList<IvCardObject> _children;
     private ServiceProvider _serviceProvider;
 
-    /// <summary>
-    /// Gets or sets the vCard version associated with this object.
-    /// </summary>
-    public vCardVersion Version { get; set; }
-   
     /// <summary>
     /// Initializes a new instance of the <see cref="vCardObject"/> class.
     /// </summary>
@@ -59,7 +53,7 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// </summary>
     [OnDeserialized]
     internal void DeserializedInternal(StreamingContext context) => OnDeserialized(context);
-    
+
     /// <summary>
     /// Initializes necessary components during deserialization.
     /// </summary>
@@ -79,7 +73,7 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// Determines whether the current vCard object is equal to another vCard object.
     /// </summary>
     protected bool Equals(vCardObject other) => string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase);
-   
+
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {

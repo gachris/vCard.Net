@@ -27,25 +27,24 @@ public class vCardSerializerTests
         using var stream = new MemoryStream(bytes);
         var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(new StreamReader(stream, Encoding.UTF8)).First();
 
-        //// Assert
-        //Assert.Equal(vCard, vCardFromData);
-        //Assert.Equal(vCard.Kind, vCardFromData.Kind);
+        // Assert
+        Assert.True(vCard.Equals(vCardFromData));
     }
 
     private static CardComponents.vCard CreateCard()
     {
         var vCard = new CardComponents.vCard
         {
-            Uid = "b6d294b1-6187-4abb-b2ca-abe7842e6103",
             Version = vCardVersion.vCard40,
+            Uid = "b6d294b1-6187-4abb-b2ca-abe7842e6103",
             Source = new Source() { Value = new Uri("https://www.example.com/source") },
             Kind = new Kind { CardKind = KindType.Individual },
             N = new Name { FamilyName = "Smith", GivenName = "John" },
             FormattedName = "John Smith",
             Nickname = "Johnny",
-            Birthdate = new vCardDateTime(1980, 1, 1) { HasTime = false },
-            Photo = new Photo { Value = "https://www.example.com/photo.jpg" },
-            Anniversary = new vCardDateTime(2005, 5, 5) { HasTime = false },
+            Birthdate = new vCardDateTime(1980, 1, 1) { HasTime = false, TzId = TimeZoneInfo.Utc.Id },
+            Photo = new Photo() { Value = "https://www.example.com/photo.jpg", ValueType = "URI" },
+            Anniversary = new vCardDateTime(2005, 5, 5) { HasTime = false, TzId = TimeZoneInfo.Utc.Id },
             Gender = new Gender() { Sex = 'M' },
             Addresses = new List<Address>
             {
@@ -84,8 +83,8 @@ public class vCardSerializerTests
             {
                 new IMPP
                 {
-                    Types =new List<string> { "skype" },
-                    Value = "john.smith"
+                    Types =new List<string> { "home" },
+                    Value = "skype:john.smith"
                 }
             },
             Urls = new List<Url>
@@ -104,7 +103,7 @@ public class vCardSerializerTests
             },
             Title = "CEO",
             Role = "Manager",
-            Logo = new Logo { Value = "https://www.example.com/logo.png" },
+            Logo = new Logo { Value = "https://www.example.com/logo.png", ValueType = "URI" },
             Organization = new Organization { Name = "Example Company", UnitsString = "Marketing Department" },
             Members = new List<string> { "john.smith@example.com" },
             RelatedCollection = new List<Related>
@@ -118,8 +117,8 @@ public class vCardSerializerTests
             Categories = new Categories { CategoriesString = "Family, Friends" },
             Notes = new List<string> { "This is a note about John Smith." },
             ProductId = "MyVCardGenerator",
-            RevisionDate = new vCardDateTime(2024, 4, 20, 12, 0, 0),
-            Sound = new Sound { Value = "https://www.example.com/sound.mp3" },
+            RevisionDate = new vCardDateTime(2024, 4, 20, 12, 0, 0) { TzId = TimeZoneInfo.Utc.Id },
+            Sound = new Sound { Value = "https://www.example.com/sound.mp3", ValueType = "URI" },
             Key = new Key { KeyType = "PGP", Value = "http://example.com/key.pgp" }
         };
 
