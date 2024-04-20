@@ -154,7 +154,7 @@ public interface IvCard
     /// <summary>
     /// Gets or sets a collection of <see cref="Related" /> objects for the vCard.
     /// </summary>
-    IList<Related> RelatedCollection { get; set; }
+    IList<Related> RelatedObjects { get; set; }
 
     #endregion
 

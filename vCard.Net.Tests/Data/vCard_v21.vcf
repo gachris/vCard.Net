@@ -1,0 +1,24 @@
+BEGIN:VCARD
+VERSION:2.1
+ADR;TYPE=WORK:;;123 Main Street;Anytown;NY;12345;USA
+BDAY:19800101
+CATEGORIES:Family,Friends
+EMAIL;INTERNET:john.smith@example.com
+FN:John Smith
+GEO:37.386013,-122.082932
+KEY;TYPE=PGP:http://example.com/key.pgp
+LOGO;TYPE=URL:https://www.example.com/logo.png
+N:Smith;John
+ORG:Example Company;Marketing Department
+PHOTO;VALUE=URL:https://www.example.com/photo.jpg
+REV:20240420T120000Z
+ROLE:Manager
+SOUND;VALUE=URI:https://www.example.com/sound.mp3
+SOURCE:https://www.example.com/source
+TEL;TYPE=WORK;VOICE:+123456789
+TEL;TYPE=CELL:+123456790
+TITLE:CEO
+TZ:-0500
+UID:b6d294b1-6187-4abb-b2ca-abe7842e6103
+URL:https://www.example.com/john_smith
+END:VCARD

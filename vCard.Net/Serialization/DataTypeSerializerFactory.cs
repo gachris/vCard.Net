@@ -101,6 +101,10 @@ public class DataTypeSerializerFactory : ISerializerFactory
             {
                 s = new UrlSerializer(ctx);
             }
+            else if (typeof(Xml).IsAssignableFrom(objectType))
+            {
+                s = new XmlSerializer(ctx);
+            }
             // Default to a string serializer, which simply calls
             // ToString() on the value to serialize it.
             else

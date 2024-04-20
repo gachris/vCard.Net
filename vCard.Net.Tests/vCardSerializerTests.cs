@@ -7,11 +7,13 @@ namespace vCard.Net.Tests;
 public class vCardSerializerTests
 {
     [Theory]
-    [InlineDataEx("Data/vCard_1.vcf")]
-    public void SerializeToString(string vCardData)
+    [InlineDataEx("Data/vCard_v21.vcf", vCardVersion.vCard21)]
+    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard30)]
+    [InlineDataEx("Data/vCard_v40.vcf", vCardVersion.vCard40)]
+    public void SerializeToString(string vCardData, vCardVersion vCardVersion)
     {
         var serializer = new ComponentSerializer();
-        var vCard = CreateCard();
+        var vCard = CreateCard(vCardVersion);
         var vCardAsString = serializer.SerializeToString(vCard).Trim();
 
         // Assert
@@ -19,10 +21,12 @@ public class vCardSerializerTests
     }
 
     [Theory]
-    [InlineDataEx("Data/vCard_1.vcf")]
-    public void Deserialize(string vCardData)
+    [InlineDataEx("Data/vCard_v21.vcf", vCardVersion.vCard21)]
+    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard30)]
+    [InlineDataEx("Data/vCard_v40.vcf", vCardVersion.vCard40)]
+    public void Deserialize(string vCardData, vCardVersion vCardVersion)
     {
-        var vCard = CreateCard();
+        var vCard = CreateCard(vCardVersion);
         var bytes = Encoding.UTF8.GetBytes(vCardData);
         using var stream = new MemoryStream(bytes);
         var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(new StreamReader(stream, Encoding.UTF8)).First();
@@ -31,11 +35,11 @@ public class vCardSerializerTests
         Assert.True(vCard.Equals(vCardFromData));
     }
 
-    private static CardComponents.vCard CreateCard()
+    private static CardComponents.vCard CreateCard(vCardVersion vCardVersion)
     {
         var vCard = new CardComponents.vCard
         {
-            Version = vCardVersion.vCard40,
+            Version = vCardVersion,
             Uid = "b6d294b1-6187-4abb-b2ca-abe7842e6103",
             Source = new Source() { Value = new Uri("https://www.example.com/source") },
             Kind = new Kind { CardKind = KindType.Individual },
@@ -106,7 +110,7 @@ public class vCardSerializerTests
             Logo = new Logo { Value = "https://www.example.com/logo.png", ValueType = "URI" },
             Organization = new Organization { Name = "Example Company", UnitsString = "Marketing Department" },
             Members = new List<string> { "john.smith@example.com" },
-            RelatedCollection = new List<Related>
+            RelatedObjects = new List<Related>
             {
                 new Related
                 {

@@ -9,6 +9,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Data\vCard_v21.vcf" />
+	  <None Remove="Data\vCard_v30.vcf" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -26,7 +31,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Data\vCard_1.vcf" />
+		<EmbeddedResource Include="Data\vCard_v21.vcf" />
+		<EmbeddedResource Include="Data\vCard_v30.vcf" />
+		<EmbeddedResource Include="Data\vCard_v40.vcf" />
 	</ItemGroup>
 
 </Project>

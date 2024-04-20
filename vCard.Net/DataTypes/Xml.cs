@@ -5,55 +5,55 @@ using vCard.Net.Serialization.DataTypes;
 namespace vCard.Net.DataTypes;
 
 /// <summary>
-/// Represents the Photo (PHOTO) property of a vCard.
+/// Represents the Xml (XML) property of a vCard.
 /// </summary>
 /// <remarks>
 /// This property class parses the <see cref="Value"/> property
 /// and allows access to the component organization name and unit parts.
 /// </remarks>
-public class Photo : EncodableDataType
+public class Xml : EncodableDataType
 {
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>  
+    /// </summary>
     /// <value>
-    /// Supports all specifications.
+    /// Only supported by the vCard 4.0 specification.
     /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
 
     /// <summary>
-    /// Gets or sets the value of the photo.
+    /// Gets or sets the value of the xml.
     /// </summary>
     public virtual string Value { get; set; }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Photo"/> class.
+    /// Initializes a new instance of the <see cref="Xml"/> class.
     /// </summary>
-    public Photo()
+    public Xml()
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Photo"/> class with the specified value.
+    /// Initializes a new instance of the <see cref="Xml"/> class with the specified value.
     /// </summary>
     /// <param name="value">The photo value.</param>
-    public Photo(string value)
+    public Xml(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return;
         }
 
-        var serializer = new PhotoSerializer();
+        var serializer = new XmlSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
     }
 
     /// <summary>
-    /// Determines whether the current <see cref="Photo"/> object is equal to another <see cref="Photo"/> object.
+    /// Determines whether the current <see cref="Xml"/> object is equal to another <see cref="Xml"/> object.
     /// </summary>
-    /// <param name="other">The <see cref="Photo"/> object to compare with the current object.</param>
+    /// <param name="other">The <see cref="Xml"/> object to compare with the current object.</param>
     /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
-    protected bool Equals(Photo other)
+    protected bool Equals(Xml other)
     {
         return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
     }
@@ -61,7 +61,7 @@ public class Photo : EncodableDataType
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Photo)obj));
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Xml)obj));
     }
 
     /// <inheritdoc/>

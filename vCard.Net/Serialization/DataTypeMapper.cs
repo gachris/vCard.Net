@@ -99,6 +99,7 @@ internal class DataTypeMapper
         #region Security Properties
 
         AddPropertyMapping("KEY", typeof(Key), false);
+        AddPropertyMapping("XML", typeof(Xml), false);
 
         #endregion
     }

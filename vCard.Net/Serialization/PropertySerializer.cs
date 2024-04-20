@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 
@@ -33,6 +34,13 @@ public class PropertySerializer : SerializerBase
         if (prop?.Values == null || !prop.Values.Any())
         {
             return null;
+        }
+
+        var version = vCardVersion.vCard21;
+
+        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        {
+            version = component.Version;
         }
 
         // Push this object on the serialization context.
@@ -81,7 +89,7 @@ public class PropertySerializer : SerializerBase
                     // Serialize each parameter
                     // Separate parameters with semicolons
                     sb.Append(";");
-                    sb.Append(string.Join(";", parameterList.Select(param => parameterSerializer.SerializeToString(param))));
+                    sb.Append(string.Join(";", parameterList.Select(parameterSerializer.SerializeToString)));
                 }
             }
             sb.Append(":");
