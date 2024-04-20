@@ -69,8 +69,8 @@ internal class DataTypeMapper
         AddPropertyMapping("TEL", typeof(PhoneNumber), true);
         AddPropertyMapping("EMAIL", typeof(EmailAddress), true);
         AddPropertyMapping("IMPP", typeof(IMPP), true);
-        AddPropertyMapping("URL", typeof(Url), false);
-        AddPropertyMapping("LANG", typeof(Language), false);
+        AddPropertyMapping("URL", typeof(Url), true);
+        AddPropertyMapping("LANG", typeof(Language), true);
 
         #endregion
 

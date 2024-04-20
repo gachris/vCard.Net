@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using vCard.Net.DataTypes;
 
 namespace vCard.Net.CardComponents;
@@ -204,5 +203,4 @@ public interface IvCard
     #region Calendar Properties
 
     #endregion
-
 }

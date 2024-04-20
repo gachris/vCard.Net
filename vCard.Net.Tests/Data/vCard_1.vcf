@@ -1,0 +1,34 @@
+BEGIN:VCARD
+VERSION:4.0
+ADR;TYPE=work:;;123 Main Street;Anytown;NY;12345;USA
+ANNIVERSARY:2005-05-05
+BDAY:1980-01-01
+CATEGORIES:Family,Friends
+EMAIL:john.smith@example.com
+FN:John Smith
+GENDER:M
+GEO:37.386013;-122.082932
+IMPP:skype:john.smith
+KEY;TYPE=PGP:http://example.com/key.pgp
+KIND:individual
+LANG:en
+LOGO;VALUE=uri:https://www.example.com/logo.png
+MEMBER:john.smith@example.com
+N:Smith;John;;;
+NICKNAME:Johnny
+NOTE:This is a note about John Smith.
+ORG:Example Company;Marketing Department
+PHOTO;VALUE=uri:https://www.example.com/photo.jpg
+PRODID:MyVCardGenerator
+RELATED;TYPE=friend:john.doe@example.com
+REV:2024-04-20T12:00:00Z
+ROLE:Manager
+SOURCE:https://www.example.com/source
+SOUND;VALUE=uri:https://www.example.com/sound.mp3
+TEL;TYPE=cell:+123456790
+TEL;TYPE=work,voice:+123456789
+TITLE:CEO
+TZ:America/New_York
+UID:b6d294b1-6187-4abb-b2ca-abe7842e6103
+URL:https://www.example.com/john_smith
+END:VCARD

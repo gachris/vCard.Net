@@ -158,8 +158,8 @@ public class vCard : UniqueComponent, IvCard
     /// </summary>
     public virtual IList<Url> Urls
     {
-        get => Properties.GetMany<Url>("Url");
-        set => Properties.Set("Url", value);
+        get => Properties.GetMany<Url>("URL");
+        set => Properties.Set("URL", value);
     }
 
     /// <summary>

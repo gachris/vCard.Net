@@ -30,7 +30,7 @@ public class PhotoSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        throw new NotImplementedException();
+        return obj is not Photo photo ? null : Encode(photo, photo.Value);
     }
 
     /// <summary>
@@ -40,7 +40,27 @@ public class PhotoSerializer : EncodableDataTypeSerializer
     /// <returns>The deserialized <see cref="Photo"/> object.</returns>
     public Photo Deserialize(string value)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return null;
+        }
+
+        if (CreateAndAssociate() is not Photo photo)
+        {
+            return null;
+        }
+
+        // Decode the value, if necessary!
+        value = Decode(photo, value);
+
+        if (value is null)
+        {
+            return null;
+        }
+
+        photo.Value = value;
+
+        return photo;
     }
 
     /// <inheritdoc/>
