@@ -17,5 +17,5 @@ public class EncodableDataType : vCardDataType, IEncodableDataType
     /// <summary>
     /// Gets the versions of the vCard specification supported by this data type.
     /// </summary>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
+    public virtual SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 }

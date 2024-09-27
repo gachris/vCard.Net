@@ -17,7 +17,7 @@ public class IMPP : EncodableDataType
     /// <value>
     /// Only supported by the vCard 3.0 and vCard 4.0 specification.
     /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard30 | SpecificationVersions.vCard40;
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0;
 
     /// <summary>
     /// Gets or sets the list of social profile types associated with this IMPP property.

@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.Serialization;
-using vCard.Net.CardComponents;
 using vCard.Net.Proxies;
 
 namespace vCard.Net.DataTypes;
@@ -19,11 +18,6 @@ public abstract class vCardDataType : IvCardDataType
     private ServiceProvider _serviceProvider;
     private IvCardObject _associatedObject;
 
-    /// <summary>
-    /// All objects derived from this class must implement this to indicate the specification versions with which they can be used.
-    /// </summary>
-    public abstract SpecificationVersions VersionsSupported { get; }
-    
     /// <summary>
     /// Initializes a new instance of the <see cref="vCardDataType"/> class.
     /// </summary>

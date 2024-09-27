@@ -50,7 +50,7 @@ internal class DataTypeMapper
 
         #region Identification Properties
 
-        AddPropertyMapping("N", typeof(Name), false);
+        AddPropertyMapping("N", typeof(StructuredName), false);
         AddPropertyMapping("PHOTO", typeof(Photo), false);
         AddPropertyMapping("BDAY", typeof(IDateTime), false);
         AddPropertyMapping("ANNIVERSARY", typeof(IDateTime), false);
@@ -61,13 +61,14 @@ internal class DataTypeMapper
         #region Delivery Addressing Properties
 
         AddPropertyMapping("ADR", typeof(Address), true);
+        AddPropertyMapping("LABEL", typeof(Label), true);
 
         #endregion
 
         #region Communications Properties
 
-        AddPropertyMapping("TEL", typeof(PhoneNumber), true);
-        AddPropertyMapping("EMAIL", typeof(EmailAddress), true);
+        AddPropertyMapping("TEL", typeof(Telephone), true);
+        AddPropertyMapping("EMAIL", typeof(Email), true);
         AddPropertyMapping("IMPP", typeof(IMPP), true);
         AddPropertyMapping("URL", typeof(Url), true);
         AddPropertyMapping("LANG", typeof(Language), true);

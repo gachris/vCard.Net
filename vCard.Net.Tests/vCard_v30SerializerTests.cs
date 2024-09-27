@@ -4,12 +4,10 @@ using vCard.Net.Serialization;
 
 namespace vCard.Net.Tests;
 
-public class vCardSerializerTests
+public class vCard_v30SerializerTests
 {
     [Theory]
-    [InlineDataEx("Data/vCard_v21.vcf", vCardVersion.vCard21)]
-    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard30)]
-    [InlineDataEx("Data/vCard_v40.vcf", vCardVersion.vCard40)]
+    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard3_0)]
     public void SerializeToString(string vCardData, vCardVersion vCardVersion)
     {
         var serializer = new ComponentSerializer();
@@ -21,9 +19,7 @@ public class vCardSerializerTests
     }
 
     [Theory]
-    [InlineDataEx("Data/vCard_v21.vcf", vCardVersion.vCard21)]
-    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard30)]
-    [InlineDataEx("Data/vCard_v40.vcf", vCardVersion.vCard40)]
+    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard3_0)]
     public void Deserialize(string vCardData, vCardVersion vCardVersion)
     {
         var vCard = CreateCard(vCardVersion);
@@ -43,12 +39,11 @@ public class vCardSerializerTests
             Uid = "b6d294b1-6187-4abb-b2ca-abe7842e6103",
             Source = new Source() { Value = new Uri("https://www.example.com/source") },
             Kind = new Kind { CardKind = KindType.Individual },
-            N = new Name { FamilyName = "Smith", GivenName = "John" },
+            N = new StructuredName { FamilyName = "Smith", GivenName = "John" },
             FormattedName = "John Smith",
             Nickname = "Johnny",
-            Birthdate = new vCardDateTime(1980, 1, 1) { HasTime = false, TzId = TimeZoneInfo.Utc.Id },
+            Birthdate = new vCardDateTime(1980, 1, 1) { HasTime = false },
             Photo = new Photo() { Value = "https://www.example.com/photo.jpg", ValueType = "URI" },
-            Anniversary = new vCardDateTime(2005, 5, 5) { HasTime = false, TzId = TimeZoneInfo.Utc.Id },
             Gender = new Gender() { Sex = 'M' },
             Addresses = new List<Address>
             {
@@ -62,28 +57,28 @@ public class vCardSerializerTests
                     Country = "USA"
                 }
             },
-            PhoneNumbers = new List<PhoneNumber>
+            Telephones = new List<Telephone>
             {
-                new PhoneNumber
+                new Telephone
                 {
                     Value = "+123456789",
                     Types = new List<string>(){ "work", "voice" }
                 },
-                new PhoneNumber
+                new Telephone
                 {
                     Value = "+123456790",
                     Types = new List<string>(){ "cell" }
                 }
             },
-            EmailAddresses = new List<EmailAddress>
+            Emails = new List<Email>
             {
-                new EmailAddress
+                new Email
                 {
                     Value = "john.smith@example.com",
                     Types = new List<string>(){ "work" }
                 }
             },
-            IMPPs = new List<IMPP>
+            InstantMessagingProtocols = new List<IMPP>
             {
                 new IMPP
                 {
@@ -99,17 +94,17 @@ public class vCardSerializerTests
             {
                 new Language { Value = "en" }
             },
-            TimeZone = "America/New_York",
+            TimeZone = "-0500",
             GeographicPosition = new GeographicPosition
             {
                 Latitude = 37.386013,
-                Longitude = -122.082932
+                Longitude = -122.082932,
+                IncludeGeoUriPrefix = false
             },
             Title = "CEO",
             Role = "Manager",
             Logo = new Logo { Value = "https://www.example.com/logo.png", ValueType = "URI" },
             Organization = new Organization { Name = "Example Company", UnitsString = "Marketing Department" },
-            Members = new List<string> { "john.smith@example.com" },
             RelatedObjects = new List<Related>
             {
                 new Related
@@ -119,7 +114,7 @@ public class vCardSerializerTests
                 }
             },
             Categories = new Categories { CategoriesString = "Family, Friends" },
-            Notes = new List<string> { "This is a note about John Smith." },
+            Note = "This is a note about John Smith.",
             ProductId = "MyVCardGenerator",
             RevisionDate = new vCardDateTime(2024, 4, 20, 12, 0, 0) { TzId = TimeZoneInfo.Utc.Id },
             Sound = new Sound { Value = "https://www.example.com/sound.mp3", ValueType = "URI" },

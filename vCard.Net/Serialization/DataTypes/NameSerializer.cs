@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using System.Text.RegularExpressions;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
@@ -9,7 +8,7 @@ using vCard.Net.Utility;
 namespace vCard.Net.Serialization.DataTypes;
 
 /// <summary>
-/// Serializer for <see cref="Name"/> objects.
+/// Serializer for <see cref="StructuredName"/> objects.
 /// </summary>
 public class NameSerializer : StringSerializer
 {
@@ -31,17 +30,17 @@ public class NameSerializer : StringSerializer
     }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(Name);
+    public override Type TargetType => typeof(StructuredName);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (obj is not Name name)
+        if (obj is not StructuredName name)
         {
             return null;
         }
 
-        var version = vCardVersion.vCard21;
+        var version = vCardVersion.vCard2_1;
         if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
         {
             version = component.Version;
@@ -51,47 +50,47 @@ public class NameSerializer : StringSerializer
 
         if (name.FamilyName != null && name.FamilyName.Length > 0)
         {
-            array[0] = version == vCardVersion.vCard21 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
+            array[0] = version == vCardVersion.vCard2_1 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
         }
 
         if (name.GivenName != null && name.GivenName.Length > 0)
         {
-            array[1] = version == vCardVersion.vCard21 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
+            array[1] = version == vCardVersion.vCard2_1 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
         }
 
         if (name.AdditionalNames != null && name.AdditionalNames.Length > 0)
         {
-            array[2] = version == vCardVersion.vCard21
+            array[2] = version == vCardVersion.vCard2_1
                 ? name.AdditionalNames.RestrictedEscape()
                 : name.AdditionalNames.Escape();
         }
 
         if (name.NamePrefix != null && name.NamePrefix.Length > 0)
         {
-            array[3] = version == vCardVersion.vCard21 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
+            array[3] = version == vCardVersion.vCard2_1 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
         }
 
         if (name.NameSuffix != null && name.NameSuffix.Length > 0)
         {
-            array[4] = version == vCardVersion.vCard21 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
+            array[4] = version == vCardVersion.vCard2_1 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
         }
 
         return Encode(name, string.Join(";", array));
     }
 
     /// <summary>
-    /// Deserializes a string representation of a <see cref="Name"/>.
+    /// Deserializes a string representation of a <see cref="StructuredName"/>.
     /// </summary>
-    /// <param name="value">The string representation of the <see cref="Name"/>.</param>
-    /// <returns>The deserialized <see cref="Name"/>.</returns>
-    public Name Deserialize(string value)
+    /// <param name="value">The string representation of the <see cref="StructuredName"/>.</param>
+    /// <returns>The deserialized <see cref="StructuredName"/>.</returns>
+    public StructuredName Deserialize(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return null;
         }
 
-        if (CreateAndAssociate() is not Name name)
+        if (CreateAndAssociate() is not StructuredName name)
         {
             return null;
         }

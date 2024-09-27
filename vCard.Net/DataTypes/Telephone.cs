@@ -7,23 +7,17 @@ using vCard.Net.Utility;
 namespace vCard.Net.DataTypes;
 
 /// <summary>
-/// Represents the E-mail address (EMAIL) property of a vCard object.
+/// Represents a telephone in a vCard.
 /// </summary>
-/// <remarks>
-/// This property is valid for use with all vCard specification objects.
-/// </remarks>
-public class EmailAddress : EncodableDataType
+public class Telephone : EncodableDataType
 {
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
     /// </summary>
-    /// <value>
-    /// Supports all specifications.
-    /// </value>
     public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 
     /// <summary>
-    /// Gets or sets the list of types associated with this email address.
+    /// Gets or sets the list of types associated with this telephone.
     /// </summary>
     public virtual IList<string> Types
     {
@@ -32,7 +26,7 @@ public class EmailAddress : EncodableDataType
     }
 
     /// <summary>
-    /// Gets or sets the preferred order for this email address (vCard 4.0 only).
+    /// Gets or sets the preferred order for this telephone (vCard 4.0 only).
     /// </summary>
     /// <value>
     /// Zero if not set or the preferred usage order between 1 and 100.
@@ -72,38 +66,38 @@ public class EmailAddress : EncodableDataType
     }
 
     /// <summary>
-    /// Gets or sets the value of the email address.
+    /// Gets or sets the value of the telephone.
     /// </summary>
     public string Value { get; set; }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EmailAddress"/> class.
+    /// Initializes a new instance of the <see cref="Telephone"/> class.
     /// </summary>
-    public EmailAddress()
+    public Telephone()
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EmailAddress"/> class with the specified value.
+    /// Initializes a new instance of the <see cref="Telephone"/> class with the specified value.
     /// </summary>
-    /// <param name="value">The email address value.</param>
-    public EmailAddress(string value)
+    /// <param name="value">The telephone value.</param>
+    public Telephone(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return;
         }
 
-        var serializer = new EmailAddressSerializer();
+        var serializer = new TelephoneSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
     }
 
     /// <summary>
-    /// Determines whether the current <see cref="EmailAddress"/> object is equal to another <see cref="EmailAddress"/> object.
+    /// Determines whether the current <see cref="Telephone"/> object is equal to another <see cref="Telephone"/> object.
     /// </summary>
-    /// <param name="other">The <see cref="EmailAddress"/> object to compare with the current object.</param>
+    /// <param name="other">The <see cref="Telephone"/> object to compare with the current object.</param>
     /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
-    protected bool Equals(EmailAddress other)
+    protected bool Equals(Telephone other)
     {
         return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
                && CollectionHelpers.Equals(Types, other.Types)
@@ -113,7 +107,7 @@ public class EmailAddress : EncodableDataType
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((EmailAddress)obj));
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Telephone)obj));
     }
 
     /// <inheritdoc/>

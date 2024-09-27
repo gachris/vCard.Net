@@ -25,7 +25,7 @@ public class Related : EncodableDataType
     /// <value>
     /// Only supported by the vCard 4.0 specification.
     /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
 
     /// <summary>
     /// Gets or sets the types associated with the related object.

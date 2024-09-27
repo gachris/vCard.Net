@@ -1,34 +1,42 @@
 BEGIN:VCARD
 VERSION:4.0
-ADR;TYPE=work:;;123 Main Street;Anytown;NY;12345;USA
-ANNIVERSARY:2005-05-05
-BDAY:1980-01-01
-CATEGORIES:Family,Friends
-EMAIL;TYPE=work:john.smith@example.com
-FN:John Smith
-GENDER:M
-GEO:geo:37.386013;-122.082932
-IMPP;TYPE=home:skype:john.smith
-KEY;TYPE=PGP:http://example.com/key.pgp
 KIND:individual
-LANG:en
-LOGO;VALUE=URI:https://www.example.com/logo.png
-MEMBER:john.smith@example.com
-N:Smith;John;;;
+N:Doe;John;;Mr;PhD
+FN:John Doe
 NICKNAME:Johnny
-NOTE:This is a note about John Smith.
-ORG:Example Company;Marketing Department
-PHOTO;VALUE=URI:https://www.example.com/photo.jpg
-PRODID:MyVCardGenerator
-RELATED;TYPE=friend:john.doe@example.com
-REV:2024-04-20T12:00:00Z
-ROLE:Manager
-SOUND;VALUE=URI:https://www.example.com/sound.mp3
-SOURCE:https://www.example.com/source
-TEL;TYPE=work,voice:+123456789
-TEL;TYPE=cell:+123456790
-TITLE:CEO
+PHOTO;MEDIATYPE=image/jpeg:http://www.johndoe.com/photo.jpg
+BDAY:1980-01-01
+ANNIVERSARY:2010-06-15
+GENDER:M
+BIRTHPLACE:City, Country
+DEATHPLACE:City, Country
+DEATHDATE:2070-12-31
+ADR;TYPE=work;LABEL="1234 Company St\nCity, State 12345\nUSA":;;1234 Company St;City;State;12345;USA
+TEL;TYPE=work,voice;VALUE=uri:tel:+1-234-567-8900
+TEL;TYPE=home,voice;VALUE=uri:tel:+1-234-567-8901
+EMAIL:johndoe@example.com
+IMPP;X-SERVICE-TYPE=Skype:skype:johndoe
+LANG;PREF=1:en
 TZ:America/New_York
-UID:b6d294b1-6187-4abb-b2ca-abe7842e6103
-URL:https://www.example.com/john_smith
+GEO:geo:37.7749,-122.4194
+TITLE:Software Engineer
+ROLE:Lead Developer
+LOGO;MEDIATYPE=image/jpeg:http://www.johndoe.com/logo.jpg
+ORG:Company Inc.;Software Division
+NOTE:This is a detailed example of vCard 4.0 with extended properties.
+SOURCE:http://example.com/johndoe.vcf
+REV:20230901T120000Z
+URL:http://www.johndoe.com
+UID:urn:uuid:12345678-9abc-def0-1234-56789abcdef0
+KEY;TYPE=pgp:http://www.johndoe.com/pgpkey.asc
+CATEGORIES:Friends,Colleagues
+EXPERTISE:Python Programming, AI Development
+HOBBY:Hiking, Photography
+INTEREST:Art, Technology
+RELATED;TYPE=sibling:urn:uuid:98765432-1abc-def0-1234-56789abcdef0
+CLIENTPIDMAP:2;urn:uuid:12345678-9abc-def0-1234-56789abcdef0
+MEMBER:urn:uuid:12345678-9abc-def0-1234-56789abcdef1
+SOUND;MEDIATYPE=audio/wav:http://www.johndoe.com/name.wav
+PRODID:-//John Doe Corporation//vCard 4.0//EN
+XML:<extended-info><social-profile>http://twitter.com/johndoe</social-profile></extended-info>
 END:VCARD

@@ -29,7 +29,7 @@ public class ClientPidMap : EncodableDataType
     /// <value>
     /// Only supported by the vCard 4.0 specification.
     /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard40;
+    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ClientPidMap"/> class.

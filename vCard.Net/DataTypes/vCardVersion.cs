@@ -8,15 +8,15 @@ public enum vCardVersion
     /// <summary>
     /// Version 2.1 of the card format.
     /// </summary>
-    vCard21,
+    vCard2_1,
 
     /// <summary>
     /// Version 3.0 of the card format.
     /// </summary>
-    vCard30,
+    vCard3_0,
 
     /// <summary>
     /// Version 4.0 of the card format.
     /// </summary>
-    vCard40
+    vCard4_0
 }

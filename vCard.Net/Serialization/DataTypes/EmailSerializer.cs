@@ -1,61 +1,60 @@
 ﻿using System;
 using System.IO;
 using vCard.Net.DataTypes;
-using vCard.Net.Utility;
 
 namespace vCard.Net.Serialization.DataTypes;
 
 /// <summary>
 /// Serializer for vCard email address data types.
 /// </summary>
-public class EmailAddressSerializer : EncodableDataTypeSerializer
+public class EmailSerializer : EncodableDataTypeSerializer
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="EmailAddressSerializer"/> class.
+    /// Initializes a new instance of the <see cref="EmailSerializer"/> class.
     /// </summary>
-    public EmailAddressSerializer() { }
+    public EmailSerializer() { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EmailAddressSerializer"/> class with the specified serialization context.
+    /// Initializes a new instance of the <see cref="EmailSerializer"/> class with the specified serialization context.
     /// </summary>
     /// <param name="ctx">The serialization context.</param>
-    public EmailAddressSerializer(SerializationContext ctx) : base(ctx)
+    public EmailSerializer(SerializationContext ctx) : base(ctx)
     {
     }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(EmailAddress);
+    public override Type TargetType => typeof(Email);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not EmailAddress emailAddress ? null : Encode(emailAddress, emailAddress.Value);
+        return obj is not Email email ? null : Encode(email, email.Value);
     }
 
     /// <inheritdoc/>
-    public EmailAddress Deserialize(string value)
+    public Email Deserialize(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return null;
         }
 
-        if (CreateAndAssociate() is not EmailAddress emailAddress)
+        if (CreateAndAssociate() is not Email email)
         {
             return null;
         }
 
         // Decode the value, if necessary!
-        value = Decode(emailAddress, value);
+        value = Decode(email, value);
 
         if (value is null)
         {
             return null;
         }
 
-        emailAddress.Value = value;
+        email.Value = value;
 
-        return emailAddress;
+        return email;
     }
 
     /// <inheritdoc/>

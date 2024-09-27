@@ -29,13 +29,17 @@ public class DataTypeSerializerFactory : ISerializerFactory
             {
                 s = new AddressSerializer(ctx);
             }
+            else if (typeof(Label).IsAssignableFrom(objectType))
+            {
+                s = new LabelSerializer(ctx);
+            }
             else if (typeof(Categories).IsAssignableFrom(objectType))
             {
                 s = new CategoriesSerializer(ctx);
             }
-            else if (typeof(EmailAddress).IsAssignableFrom(objectType))
+            else if (typeof(Email).IsAssignableFrom(objectType))
             {
-                s = new EmailAddressSerializer(ctx);
+                s = new EmailSerializer(ctx);
             }
             else if (typeof(Gender).IsAssignableFrom(objectType))
             {
@@ -63,9 +67,9 @@ public class DataTypeSerializerFactory : ISerializerFactory
             }
             else if (typeof(Logo).IsAssignableFrom(objectType))
             {
-                s = new PhotoSerializer(ctx);
+                s = new LogoSerializer(ctx);
             }
-            else if (typeof(Name).IsAssignableFrom(objectType))
+            else if (typeof(StructuredName).IsAssignableFrom(objectType))
             {
                 s = new NameSerializer(ctx);
             }
@@ -93,9 +97,9 @@ public class DataTypeSerializerFactory : ISerializerFactory
             {
                 s = new SourceSerializer(ctx);
             }
-            else if (typeof(PhoneNumber).IsAssignableFrom(objectType))
+            else if (typeof(Telephone).IsAssignableFrom(objectType))
             {
-                s = new PhoneNumberSerializer(ctx);
+                s = new TelephoneSerializer(ctx);
             }
             else if (typeof(Url).IsAssignableFrom(objectType))
             {

@@ -132,7 +132,12 @@ public static class EncodingUtils
     /// </remarks>
     public static string Unescape(this string unescapeText)
     {
-        if (unescapeText == null || unescapeText.Length == 0 || unescapeText.IndexOf('\\') == -1)
+        if (unescapeText == null || unescapeText.Length == 0)
+        {
+            return null;
+        }
+
+        if (unescapeText.IndexOf('\\') == -1)
         {
             return unescapeText;
         }

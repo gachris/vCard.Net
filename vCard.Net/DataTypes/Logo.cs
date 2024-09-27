@@ -1,4 +1,7 @@
-﻿namespace vCard.Net.DataTypes;
+﻿using System.IO;
+using vCard.Net.Serialization.DataTypes;
+
+namespace vCard.Net.DataTypes;
 
 /// <summary>
 /// Represents the Logo (LOGO) property of a vCard.
@@ -16,4 +19,26 @@ public class Logo : Photo
     /// Supports all vCard specifications.
     /// </value>
     public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Logo"/> class.
+    /// </summary>
+    public Logo()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Logo"/> class with the specified value.
+    /// </summary>
+    /// <param name="value">The logo value.</param>
+    public Logo(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return;
+        }
+
+        var serializer = new LogoSerializer();
+        CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
+    }
 }

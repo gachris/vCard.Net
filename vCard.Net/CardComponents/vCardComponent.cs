@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using vCard.Net.DataTypes;
+using vCard.Net.Serialization;
 
 namespace vCard.Net.CardComponents;
 
@@ -19,7 +20,11 @@ public class vCardComponent : vCardObject, IvCardComponent
     /// <summary>
     /// Gets or sets the vCard version associated with this object.
     /// </summary>
-    public vCardVersion Version { get; set; }
+    public virtual vCardVersion Version
+    {
+        get => Properties.Get<string>("VERSION").FromVersionString();
+        set => Properties.Set("VERSION", value.ToVersionString());
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="vCardComponent"/> class.

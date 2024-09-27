@@ -12,7 +12,7 @@ namespace vCard.Net.DataTypes;
 /// and allows access to the component name parts. It is based on the semantics of
 /// the X.520 individual name attributes.
 /// </remarks>
-public class Name : EncodableDataType
+public class StructuredName : EncodableDataType
 {
     /// <summary>
     /// Gets the versions of the vCard specification supported by this property.
@@ -146,17 +146,17 @@ public class Name : EncodableDataType
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Name"/> class.
+    /// Initializes a new instance of the <see cref="StructuredName"/> class.
     /// </summary>
-    public Name()
+    public StructuredName()
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Name"/> class with the specified value.
+    /// Initializes a new instance of the <see cref="StructuredName"/> class with the specified value.
     /// </summary>
     /// <param name="value">The name value.</param>
-    public Name(string value)
+    public StructuredName(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -168,11 +168,11 @@ public class Name : EncodableDataType
     }
 
     /// <summary>
-    /// Determines whether the current <see cref="Name"/> object is equal to another <see cref="Name"/> object.
+    /// Determines whether the current <see cref="StructuredName"/> object is equal to another <see cref="StructuredName"/> object.
     /// </summary>
-    /// <param name="other">The <see cref="Name"/> object to compare with the current object.</param>
+    /// <param name="other">The <see cref="StructuredName"/> object to compare with the current object.</param>
     /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
-    protected bool Equals(Name other)
+    protected bool Equals(StructuredName other)
     {
         return string.Equals(FamilyName, other.FamilyName, StringComparison.OrdinalIgnoreCase)
                && string.Equals(GivenName, other.GivenName, StringComparison.OrdinalIgnoreCase)
@@ -184,7 +184,7 @@ public class Name : EncodableDataType
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Name)obj));
+        return obj != null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((StructuredName)obj));
     }
 
     /// <inheritdoc/>

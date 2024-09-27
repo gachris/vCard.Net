@@ -19,78 +19,28 @@ namespace vCard.Net.CardComponents;
 public class vCard : UniqueComponent, IvCard
 {
     /// <summary>
-    /// Gets or sets a collection of <see cref="Address" /> objects for the vCard.
+    /// Gets or sets the kind of the vCard.
     /// </summary>
-    public virtual IList<Address> Addresses
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual Kind Kind
     {
-        get => Properties.GetMany<Address>("ADR");
-        set => Properties.Set("ADR", value);
-    }
-
-    //
-    // AGENT
-    //
-
-    /// <summary>
-    /// Gets or sets the anniversary of the vCard.
-    /// </summary>
-    public virtual IDateTime Anniversary
-    {
-        get => Properties.Get<IDateTime>("ANNIVERSARY");
-        set => Properties.Set("ANNIVERSARY", value);
+        get => Properties.Get<Kind>("KIND");
+        set => Properties.Set("KIND", value);
     }
 
     /// <summary>
-    /// Gets or sets the birthdate of the vCard.
+    /// Gets or sets the structured name of the vCard.
     /// </summary>
-    public virtual IDateTime Birthdate
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual StructuredName N
     {
-        get => Properties.Get<IDateTime>("BDAY");
-        set => Properties.Set("BDAY", value);
+        get => Properties.Get<StructuredName>("N");
+        set => Properties.Set("N", value);
     }
-
-    //
-    // CALADRURI
-    //
-
-    //
-    // CALURI
-    //
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="DataTypes.Categories" /> objects for the vCard.
-    /// </summary>
-    public virtual Categories Categories
-    {
-        get => Properties.Get<Categories>("CATEGORIES");
-        set => Properties.Set("CATEGORIES", value);
-    }
-
-    //
-    // CLASS
-    //
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="ClientPidMap" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<ClientPidMap> ClientPidMaps
-    {
-        get => Properties.GetMany<ClientPidMap>("CLIENTPIDMAP");
-        set => Properties.Set("CLIENTPIDMAP", value);
-    }
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="EmailAddress" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<EmailAddress> EmailAddresses
-    {
-        get => Properties.GetMany<EmailAddress>("EMAIL");
-        set => Properties.Set("EMAIL", value);
-    }
-
-    //
-    // FBURL
-    //
 
     /// <summary>
     /// Gets or sets the formatted name of the vCard.
@@ -98,6 +48,7 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// This property allows the name of the vCard to be written in a manner specific to his or her culture.
     /// The formatted name is not required to strictly correspond with the family name, given name, etc.
+    /// <para>Supported in: vCard 2.1, 3.0, 4.0</para>
     /// </remarks>
     public virtual string FormattedName
     {
@@ -106,101 +57,11 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets the gender of the vCard.
-    /// </summary>
-    public virtual Gender Gender
-    {
-        get => Properties.Get<Gender>("GENDER");
-        set => Properties.Set("GENDER", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the geographic position of the vCard.
-    /// </summary>
-    public virtual GeographicPosition GeographicPosition
-    {
-        get => Properties.Get<GeographicPosition>("GEO");
-        set => Properties.Set("GEO", value);
-    }
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="IMPP" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<IMPP> IMPPs
-    {
-        get => Properties.GetMany<IMPP>("IMPP");
-        set => Properties.Set("IMPP", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the key of the vCard.
-    /// </summary>
-    public virtual Key Key
-    {
-        get => Properties.Get<Key>("KEY");
-        set => Properties.Set("KEY", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the kind of the vCard.
-    /// </summary>
-    public virtual Kind Kind
-    {
-        get => Properties.Get<Kind>("KIND");
-        set => Properties.Set("KIND", value);
-    }
-
-    //
-    // LABEL
-    //
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="Language" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<Language> Languages
-    {
-        get => Properties.GetMany<Language>("LANG");
-        set => Properties.Set("LANG", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the logo of the vCard.
-    /// </summary>
-    public virtual Logo Logo
-    {
-        get => Properties.Get<Logo>("LOGO");
-        set => Properties.Set("LOGO", value);
-    }
-
-    //
-    // MAILER
-    //
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="string" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<string> Members
-    {
-        get => Properties.GetMany<string>("MEMBER");
-        set => Properties.Set("MEMBER", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the name of the vCard.
-    /// </summary>
-    public virtual Name N
-    {
-        get => Properties.Get<Name>("N");
-        set => Properties.Set("N", value);
-    }
-
-    //
-    // NAME
-    //
-
-    /// <summary>
     /// Gets or sets the nickname of the vCard.
     /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
     public virtual string Nickname
     {
         get => Properties.Get<string>("NICKNAME");
@@ -208,26 +69,11 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets a collection of <see cref="string" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<string> Notes
-    {
-        get => Properties.GetMany<string>("NOTE");
-        set => Properties.Set("NOTE", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the organization of the vCard.
-    /// </summary>
-    public virtual Organization Organization
-    {
-        get => Properties.Get<Organization>("ORG");
-        set => Properties.Set("ORG", value);
-    }
-
-    /// <summary>
     /// Gets or sets the photo of the vCard.
     /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
     public virtual Photo Photo
     {
         get => Properties.Get<Photo>("PHOTO");
@@ -235,25 +81,243 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets the name of the product that generated the vCard.
+    /// Gets or sets the birthdate of the vCard.
     /// </summary>
-    public virtual string ProductId
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual IDateTime Birthdate
     {
-        get => Properties.Get<string>("PRODID");
-        set => Properties.Set("PRODID", value);
+        get => Properties.Get<IDateTime>("BDAY");
+        set => Properties.Set("BDAY", value);
     }
 
-    //
-    // PROFILE
-    //
+    /// <summary>
+    /// Gets or sets the anniversary of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual IDateTime Anniversary
+    {
+        get => Properties.Get<IDateTime>("ANNIVERSARY");
+        set => Properties.Set("ANNIVERSARY", value);
+    }
 
     /// <summary>
-    /// Gets or sets a collection of <see cref="Related" /> objects for the vCard.
+    /// Gets or sets the gender of the vCard.
     /// </summary>
-    public virtual IList<Related> RelatedObjects
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual Gender Gender
     {
-        get => Properties.GetMany<Related>("RELATED");
-        set => Properties.Set("RELATED", value);
+        get => Properties.Get<Gender>("GENDER");
+        set => Properties.Set("GENDER", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the birth place of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string BirthPlace
+    {
+        get => Properties.Get<string>("BIRTHPLACE");
+        set => Properties.Set("BIRTHPLACE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the death place of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string DeathPlace
+    {
+        get => Properties.Get<string>("DEATHPLACE");
+        set => Properties.Set("DEATHPLACE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the death date of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string DeathDate
+    {
+        get => Properties.Get<string>("DEATHDATE");
+        set => Properties.Set("DEATHDATE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="Address" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual IList<Address> Addresses
+    {
+        get => Properties.GetMany<Address>("ADR");
+        set => Properties.Set("ADR", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the label of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual IList<Label> Labels
+    {
+        get => Properties.GetMany<Label>("LABEL");
+        set => Properties.Set("LABEL", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="Telephone" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual IList<Telephone> Telephones
+    {
+        get => Properties.GetMany<Telephone>("TEL");
+        set => Properties.Set("TEL", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="Email" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual IList<Email> Emails
+    {
+        get => Properties.GetMany<Email>("EMAIL");
+        set => Properties.Set("EMAIL", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="IMPP" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual IList<IMPP> InstantMessagingProtocols
+    {
+        get => Properties.GetMany<IMPP>("IMPP");
+        set => Properties.Set("IMPP", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="Language" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual IList<Language> Languages
+    {
+        get => Properties.GetMany<Language>("LANG");
+        set => Properties.Set("LANG", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the time zone of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual string TimeZone
+    {
+        get => Properties.Get<string>("TZ");
+        set => Properties.Set("TZ", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the geographic position of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual GeographicPosition GeographicPosition
+    {
+        get => Properties.Get<GeographicPosition>("GEO");
+        set => Properties.Set("GEO", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the job title of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual string Title
+    {
+        get => Properties.Get<string>("TITLE");
+        set => Properties.Set("TITLE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the role of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual string Role
+    {
+        get => Properties.Get<string>("ROLE");
+        set => Properties.Set("ROLE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the logo of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual Logo Logo
+    {
+        get => Properties.Get<Logo>("LOGO");
+        set => Properties.Set("LOGO", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the organization of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual Organization Organization
+    {
+        get => Properties.Get<Organization>("ORG");
+        set => Properties.Set("ORG", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the note of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual string Note
+    {
+        get => Properties.Get<string>("NOTE");
+        set => Properties.Set("NOTE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the source of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual Source Source
+    {
+        get => Properties.Get<Source>("SOURCE");
+        set => Properties.Set("SOURCE", value);
     }
 
     /// <summary>
@@ -262,7 +326,8 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// The revision date is not automatically updated by the vCard when modifying properties.
     /// It is up to the developer to change the revision date as needed.
-    /// </remarks>
+    /// <para>Supported in: vCard 2.1, 3.0, 4.0</para>
+    /// </remarks> 
     public virtual IDateTime RevisionDate
     {
         get => Properties.Get<IDateTime>("REV");
@@ -270,66 +335,11 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets the role of the vCard.
-    /// </summary>
-    public virtual string Role
-    {
-        get => Properties.Get<string>("ROLE");
-        set => Properties.Set("ROLE", value);
-    }
-
-    //
-    // SORT-STRING
-    //
-
-    /// <summary>
-    /// Gets or sets the sound of the vCard.
-    /// </summary>
-    public virtual Sound Sound
-    {
-        get => Properties.Get<Sound>("SOUND");
-        set => Properties.Set("SOUND", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the source of the vCard.
-    /// </summary>
-    public virtual Source Source
-    {
-        get => Properties.Get<Source>("SOURCE");
-        set => Properties.Set("SOURCE", value);
-    }
-
-    /// <summary>
-    /// Gets or sets a collection of <see cref="PhoneNumber" /> objects for the vCard.
-    /// </summary>
-    public virtual IList<PhoneNumber> PhoneNumbers
-    {
-        get => Properties.GetMany<PhoneNumber>("TEL");
-        set => Properties.Set("TEL", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the job title of the vCard.
-    /// </summary>
-    public virtual string Title
-    {
-        get => Properties.Get<string>("TITLE");
-        set => Properties.Set("TITLE", value);
-    }
-
-    /// <summary>
-    /// Gets or sets the time zone of the vCard.
-    /// </summary>
-    public virtual string TimeZone
-    {
-        get => Properties.Get<string>("TZ");
-        set => Properties.Set("TZ", value);
-    }
-
-    /// <summary>
     /// Gets or sets a collection of <see cref="Url" /> objects for the vCard.
     /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
     public virtual IList<Url> Urls
     {
         get => Properties.GetMany<Url>("URL");
@@ -337,12 +347,159 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets the Xml of the vCard.
+    /// Gets or sets the key of the vCard.
     /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual Key Key
+    {
+        get => Properties.Get<Key>("KEY");
+        set => Properties.Set("KEY", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the mailer of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual string Mailer
+    {
+        get => Properties.Get<string>("MAILER");
+        set => Properties.Set("MAILER", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="DataTypes.Categories" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual Categories Categories
+    {
+        get => Properties.Get<Categories>("CATEGORIES");
+        set => Properties.Set("CATEGORIES", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the expertise of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string Expertise
+    {
+        get => Properties.Get<string>("EXPERTISE");
+        set => Properties.Set("EXPERTISE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the hobby of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string Hobby
+    {
+        get => Properties.Get<string>("HOBBY");
+        set => Properties.Set("HOBBY", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the interest of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual string Interest
+    {
+        get => Properties.Get<string>("INTEREST");
+        set => Properties.Set("INTEREST", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="Related" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual IList<Related> RelatedObjects
+    {
+        get => Properties.GetMany<Related>("RELATED");
+        set => Properties.Set("RELATED", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="ClientPidMap" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual IList<ClientPidMap> ClientPidMaps
+    {
+        get => Properties.GetMany<ClientPidMap>("CLIENTPIDMAP");
+        set => Properties.Set("CLIENTPIDMAP", value);
+    }
+
+    /// <summary>
+    /// Gets or sets a collection of <see cref="string" /> objects for the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual IList<string> Members
+    {
+        get => Properties.GetMany<string>("MEMBER");
+        set => Properties.Set("MEMBER", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the sound of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
+    public virtual Sound Sound
+    {
+        get => Properties.Get<Sound>("SOUND");
+        set => Properties.Set("SOUND", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the name of the product that generated the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual string ProductId
+    {
+        get => Properties.Get<string>("PRODID");
+        set => Properties.Set("PRODID", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the XML of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 4.0
+    /// </remarks>
     public virtual Xml Xml
     {
         get => Properties.Get<Xml>("XML");
         set => Properties.Set("XML", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the agent of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 2.1, 3.0, 4.0
+    /// </remarks>
+    public virtual vCard Agent
+    {
+        get => Properties.Get<vCard>("AGENT");
+        set => Properties.Set("AGENT", value);
     }
 
     /// <summary>
@@ -388,35 +545,44 @@ public class vCard : UniqueComponent, IvCard
     protected bool Equals(vCard other)
     {
         return string.Equals(Uid, other.Uid, StringComparison.OrdinalIgnoreCase)
-               && Equals(Source, other.Source)
-               && Equals(Kind, other.Kind)
-               && Equals(N, other.N)
-               && string.Equals(FormattedName, other.FormattedName, StringComparison.OrdinalIgnoreCase)
-               && string.Equals(Nickname, other.Nickname, StringComparison.OrdinalIgnoreCase)
-               && Equals(Birthdate, other.Birthdate)
-               && Equals(Photo, other.Photo)
-               && Equals(Anniversary, other.Anniversary)
-               && Equals(Gender, other.Gender)
-               && CollectionHelpers.Equals(Addresses, other.Addresses)
-               && CollectionHelpers.Equals(PhoneNumbers, other.PhoneNumbers)
-               && CollectionHelpers.Equals(EmailAddresses, other.EmailAddresses)
-               && CollectionHelpers.Equals(IMPPs, other.IMPPs)
-               && CollectionHelpers.Equals(Languages, other.Languages)
-               && Equals(TimeZone, other.TimeZone)
-               && Equals(GeographicPosition, other.GeographicPosition)
-               && string.Equals(Title, other.Title, StringComparison.OrdinalIgnoreCase)
-               && string.Equals(Role, other.Role, StringComparison.OrdinalIgnoreCase)
-               && Equals(Logo, other.Logo)
-               && Equals(Organization, other.Organization)
-               && CollectionHelpers.Equals(Members, other.Members)
-               && CollectionHelpers.Equals(RelatedObjects, other.RelatedObjects)
-               && Equals(Categories, other.Categories)
-               && CollectionHelpers.Equals(Notes, other.Notes)
-               && string.Equals(ProductId, other.ProductId, StringComparison.OrdinalIgnoreCase)
-               && Equals(RevisionDate, other.RevisionDate)
-               && Equals(Sound, other.Sound)
-               && Equals(Key, other.Key)
-               && Equals(Xml, other.Xml);
+                 && Equals(Source, other.Source)
+                 && Equals(Kind, other.Kind)
+                 && Equals(N, other.N)
+                 && string.Equals(FormattedName, other.FormattedName, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(Nickname, other.Nickname, StringComparison.OrdinalIgnoreCase)
+                 && Equals(Birthdate, other.Birthdate)
+                 && Equals(Photo, other.Photo)
+                 && Equals(Anniversary, other.Anniversary)
+                 && Equals(Gender, other.Gender)
+                 && string.Equals(BirthPlace, other.BirthPlace, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(DeathPlace, other.DeathPlace, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(DeathDate, other.DeathDate, StringComparison.OrdinalIgnoreCase)
+                 && CollectionHelpers.Equals(Addresses, other.Addresses)
+                 && Equals(Labels, other.Labels)
+                 && CollectionHelpers.Equals(Telephones, other.Telephones)
+                 && CollectionHelpers.Equals(Emails, other.Emails)
+                 && CollectionHelpers.Equals(InstantMessagingProtocols, other.InstantMessagingProtocols)
+                 && CollectionHelpers.Equals(Languages, other.Languages)
+                 && string.Equals(TimeZone, other.TimeZone, StringComparison.OrdinalIgnoreCase)
+                 && Equals(GeographicPosition, other.GeographicPosition)
+                 && string.Equals(Title, other.Title, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(Role, other.Role, StringComparison.OrdinalIgnoreCase)
+                 && Equals(Logo, other.Logo)
+                 && Equals(Organization, other.Organization)
+                 && string.Equals(Note, other.Note, StringComparison.OrdinalIgnoreCase)
+                 && CollectionHelpers.Equals(Members, other.Members)
+                 && CollectionHelpers.Equals(RelatedObjects, other.RelatedObjects)
+                 && Equals(Categories, other.Categories)
+                 && string.Equals(ProductId, other.ProductId, StringComparison.OrdinalIgnoreCase)
+                 && Equals(RevisionDate, other.RevisionDate)
+                 && Equals(Sound, other.Sound)
+                 && Equals(Key, other.Key)
+                 && Equals(Xml, other.Xml)
+                 && Equals(Agent, other.Agent)
+                 && string.Equals(Mailer, other.Mailer, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(Expertise, other.Expertise, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(Hobby, other.Hobby, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(Interest, other.Interest, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <inheritdoc/>
@@ -440,12 +606,16 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ (Photo != null ? Photo.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Anniversary != null ? Anniversary.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Gender != null ? Gender.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (BirthPlace != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(BirthPlace) : 0);
+            hashCode = (hashCode * 397) ^ (DeathPlace != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(DeathPlace) : 0);
+            hashCode = (hashCode * 397) ^ (DeathDate != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(DeathDate) : 0);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Addresses);
-            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(PhoneNumbers);
-            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(EmailAddresses);
-            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(IMPPs);
+            hashCode = (hashCode * 397) ^ (Labels != null ? Labels.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Telephones);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Emails);
+            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(InstantMessagingProtocols);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Languages);
-            hashCode = (hashCode * 397) ^ (TimeZone != null ? TimeZone.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (TimeZone != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(TimeZone) : 0);
             hashCode = (hashCode * 397) ^ (GeographicPosition != null ? GeographicPosition.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Title != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Title) : 0);
             hashCode = (hashCode * 397) ^ (Role != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Role) : 0);
@@ -454,12 +624,18 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Members);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(RelatedObjects);
             hashCode = (hashCode * 397) ^ (Categories != null ? Categories.GetHashCode() : 0);
-            hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Notes);
+            hashCode = (hashCode * 397) ^ (Note != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Note) : 0);
             hashCode = (hashCode * 397) ^ (ProductId != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(ProductId) : 0);
             hashCode = (hashCode * 397) ^ (RevisionDate != null ? RevisionDate.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Sound != null ? Sound.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Key != null ? Key.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Xml != null ? Xml.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Agent != null ? Agent.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Mailer != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Mailer) : 0);
+            hashCode = (hashCode * 397) ^ (Expertise != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Expertise) : 0);
+            hashCode = (hashCode * 397) ^ (Hobby != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Hobby) : 0);
+            hashCode = (hashCode * 397) ^ (Interest != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Interest) : 0);
+           
             return hashCode;
         }
     }

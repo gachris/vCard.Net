@@ -33,7 +33,7 @@ public class ParameterSerializer : SerializerBase
             return null;
         }
 
-        var version = vCardVersion.vCard21;
+        var version = vCardVersion.vCard2_1;
 
         if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
         {
@@ -43,7 +43,7 @@ public class ParameterSerializer : SerializerBase
         var builder = new StringBuilder();
         builder.Append(parameter.Name + "=");
 
-        var separator = version is vCardVersion.vCard21 ? ";" : ",";
+        var separator = version is vCardVersion.vCard2_1 ? ";" : ",";
 
         // "Section 3.2:  Property parameter values MUST NOT contain the DQUOTE character."
         // Therefore, let's strip any double quotes from the value.

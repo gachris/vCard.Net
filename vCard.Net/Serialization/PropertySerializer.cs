@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 
@@ -34,13 +33,6 @@ public class PropertySerializer : SerializerBase
         if (prop?.Values == null || !prop.Values.Any())
         {
             return null;
-        }
-
-        var version = vCardVersion.vCard21;
-
-        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
-        {
-            version = component.Version;
         }
 
         // Push this object on the serialization context.
