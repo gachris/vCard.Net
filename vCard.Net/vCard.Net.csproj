@@ -21,6 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="EWSoftware.PDI" Version="2023.1.2" />
+		<PackageReference Include="EWSoftware.PDI.Data" Version="2023.1.2" />
 		<PackageReference Include="NodaTime" Version="3.0.0" />
 	</ItemGroup>
 
