@@ -5,24 +5,24 @@ namespace vCard.Net.Tests;
 
 public sealed class InlineDataExAttribute : DataAttribute
 {
-    private readonly object?[] _args;
+    private readonly object[] _args;
 
-    public InlineDataExAttribute(params object?[] args)
+    public InlineDataExAttribute(params object[] args)
     {
         _args = args;
     }
 
-    public override IEnumerable<object?[]> GetData(MethodInfo testMethod)
+    public override IEnumerable<object[]> GetData(MethodInfo testMethod)
     {
-        var result = new object?[_args.Length];
+        var result = new object[_args.Length];
         for (var index = 0; index < _args.Length; index++)
         {
             result[index] = ReadManifestData(_args[index]);
         }
-        return new[] { result };
+        return [result];
     }
 
-    public static object? ReadManifestData(object? value)
+    public static object ReadManifestData(object value)
     {
         if (value is string textValue)
         {
