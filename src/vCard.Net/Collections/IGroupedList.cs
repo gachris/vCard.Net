@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace vCard.Net.Collections;
 
 /// <summary>

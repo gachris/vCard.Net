@@ -1,9 +1,5 @@
 using NodaTime;
 using NodaTime.TimeZones;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using vCard.Net.DataTypes;
 
 namespace vCard.Net.Utility;

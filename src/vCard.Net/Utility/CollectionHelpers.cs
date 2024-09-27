@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace vCard.Net.Utility;
+﻿namespace vCard.Net.Utility;
 
 /// <summary>
 /// A collection of helper methods for working with collections.

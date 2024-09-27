@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections;
 using System.Text.RegularExpressions;
 using vCard.Net.DataTypes;
 
@@ -27,7 +23,7 @@ public class StringSerializer : EncodableDataTypeSerializer
     }
 
     internal static readonly Regex SingleBackslashMatch = new Regex(@"(?<!\\)\\(?!\\)", RegexOptions.Compiled);
-    
+
     /// <summary>
     /// Unescapes the specified string by replacing escape sequences with their original characters.
     /// </summary>
@@ -99,8 +95,7 @@ public class StringSerializer : EncodableDataTypeSerializer
             values.AddRange(from object child in (IEnumerable)obj select child.ToString());
         }
 
-        var co = SerializationContext.Peek() as IvCardObject;
-        if (co != null)
+        if (SerializationContext.Peek() is IvCardObject co)
         {
             // Encode the string as needed.
             var dt = new EncodableDataType

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net;
+﻿namespace vCard.Net;
 
 /// <summary>
 /// Provides functionality for tracking the loading status of an object.

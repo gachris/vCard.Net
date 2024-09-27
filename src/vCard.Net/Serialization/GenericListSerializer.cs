@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections;
 using System.Reflection;
 
 namespace vCard.Net.Serialization;
@@ -36,8 +33,7 @@ public class GenericListSerializer : SerializerBase
     /// <inheritdoc/>
     public override object Deserialize(TextReader tr)
     {
-        var p = SerializationContext.Peek() as IvCardProperty;
-        if (p == null)
+        if (SerializationContext.Peek() is not IvCardProperty p)
         {
             return null;
         }
@@ -51,8 +47,7 @@ public class GenericListSerializer : SerializerBase
 
         // Get a serializer for the inner type
         var sf = GetService<ISerializerFactory>();
-        var stringSerializer = sf.Build(_innerType, SerializationContext) as IStringSerializer;
-        if (stringSerializer == null)
+        if (sf.Build(_innerType, SerializationContext) is not IStringSerializer stringSerializer)
         {
             return null;
         }
@@ -69,8 +64,7 @@ public class GenericListSerializer : SerializerBase
         }
 
         // Determine if the returned object is an IList<ObjectType>, rather than just an ObjectType.
-        var add = objToAdd as IList;
-        if (add != null)
+        if (objToAdd is IList add)
         {
             //Deserialization returned an IList<ObjectType>, instead of an ObjectType.  So enumerate through the items in the list and add
             //them individually to our list.

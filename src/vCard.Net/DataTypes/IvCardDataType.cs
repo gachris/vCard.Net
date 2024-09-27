@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.DataTypes;
+﻿namespace vCard.Net.DataTypes;
 
 /// <summary>
 /// Represents a vCard data type.

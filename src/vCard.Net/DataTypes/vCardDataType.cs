@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 using vCard.Net.Proxies;
 
@@ -62,35 +61,22 @@ public abstract class vCardDataType : IvCardDataType
         // See RFC 5545 Section 3.2.20.
         if (_proxy != null && _proxy.ContainsKey("VALUE"))
         {
-            switch (_proxy.Get("VALUE"))
+            return _proxy.Get("VALUE") switch
             {
-                case "BINARY":
-                    return typeof(byte[]);
-                case "BOOLEAN":
-                    return typeof(bool);
-                case "CAL-ADDRESS":
-                    return typeof(Uri);
-                case "DATE":
-                    return typeof(IDateTime);
-                case "DATE-AND-OR-TIME":
-                    return typeof(IDateTime);
-                case "DATE-TIME":
-                    return typeof(IDateTime);
-                case "FLOAT":
-                    return typeof(double);
-                case "DURATION":
-                    return typeof(TimeSpan);
-                case "INTEGER":
-                    return typeof(int);
-                case "TEXT":
-                    return typeof(string);
-                case "TIME":
-                    throw new NotImplementedException();// FIXME: implement ISO.8601.2004
-                case "URI":
-                    return typeof(Uri);
-                default:
-                    return null;
-            }
+                "BINARY" => typeof(byte[]),
+                "BOOLEAN" => typeof(bool),
+                "CAL-ADDRESS" => typeof(Uri),
+                "DATE" => typeof(IDateTime),
+                "DATE-AND-OR-TIME" => typeof(IDateTime),
+                "DATE-TIME" => typeof(IDateTime),
+                "FLOAT" => typeof(double),
+                "DURATION" => typeof(TimeSpan),
+                "INTEGER" => typeof(int),
+                "TEXT" => typeof(string),
+                "TIME" => throw new NotImplementedException(),// FIXME: implement ISO.8601.2004
+                "URI" => typeof(Uri),
+                _ => null,
+            };
         }
         return null;
     }
@@ -137,7 +123,7 @@ public abstract class vCardDataType : IvCardDataType
     /// <inheritdoc/>
     public virtual void CopyFrom(ICopyable obj)
     {
-        if (!(obj is IvCardDataType))
+        if (obj is not IvCardDataType)
         {
             return;
         }

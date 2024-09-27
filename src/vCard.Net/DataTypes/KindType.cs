@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.DataTypes;
+﻿namespace vCard.Net.DataTypes;
 
 /// <summary>
 /// This enumerated type defines the various vCard kinds for the <see cref="Kind"/> class

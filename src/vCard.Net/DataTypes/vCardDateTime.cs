@@ -1,6 +1,4 @@
 using NodaTime;
-using System;
-using System.IO;
 using vCard.Net.Serialization.DataTypes;
 using vCard.Net.Utility;
 

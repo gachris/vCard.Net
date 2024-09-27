@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace vCard.Net.Serialization;
+﻿namespace vCard.Net.Serialization;
 
 /// <summary>
 /// Interface for serializers that work with string representations.

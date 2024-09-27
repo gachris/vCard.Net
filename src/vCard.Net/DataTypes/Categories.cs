@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.IO;
+﻿using System.Collections.Specialized;
 using vCard.Net.Serialization.DataTypes;
 
 namespace vCard.Net.DataTypes;

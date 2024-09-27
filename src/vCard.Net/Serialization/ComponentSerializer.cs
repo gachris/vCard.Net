@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
@@ -82,7 +78,7 @@ public class ComponentSerializer : SerializerBase
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (!(obj is IvCardComponent c))
+        if (obj is not IvCardComponent c)
         {
             return null;
         }

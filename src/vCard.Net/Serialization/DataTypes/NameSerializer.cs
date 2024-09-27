@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;

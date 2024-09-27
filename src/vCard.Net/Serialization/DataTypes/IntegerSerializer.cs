@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using vCard.Net.DataTypes;
+﻿using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
 
@@ -30,8 +28,7 @@ public class IntegerSerializer : EncodableDataTypeSerializer
         {
             var i = Convert.ToInt32(integer);
 
-            var obj = SerializationContext.Peek() as IvCardObject;
-            if (obj != null)
+            if (SerializationContext.Peek() is IvCardObject obj)
             {
                 // Encode the value as needed.
                 var dt = new EncodableDataType
@@ -55,8 +52,7 @@ public class IntegerSerializer : EncodableDataTypeSerializer
 
         try
         {
-            var obj = SerializationContext.Peek() as IvCardObject;
-            if (obj != null)
+            if (SerializationContext.Peek() is IvCardObject obj)
             {
                 // Decode the value, if necessary!
                 var dt = new EncodableDataType

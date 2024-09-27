@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace vCard.Net.Collections;
+﻿namespace vCard.Net.Collections;
 
 /// <summary>
 /// Represents a multi-linked list.

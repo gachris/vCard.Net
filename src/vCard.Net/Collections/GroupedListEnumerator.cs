@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 namespace vCard.Net.Collections;
 
@@ -12,7 +11,7 @@ public class GroupedListEnumerator<TType> : IEnumerator<TType>
     private readonly IList<IMultiLinkedList<TType>> _lists;
     private IEnumerator<IMultiLinkedList<TType>> _listsEnumerator;
     private IEnumerator<TType> _listEnumerator;
-   
+
     /// <summary>
     /// Initializes a new instance of the <see cref="GroupedListEnumerator{TType}"/> class with the specified list of multi-linked lists.
     /// </summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net;
+﻿namespace vCard.Net;
 
 /// <summary>
 /// Base class for vCard objects providing copy and load functionality.

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
@@ -35,7 +33,7 @@ public class CategoriesSerializer : StringSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (!(obj is Categories categories))
+        if (obj is not Categories categories)
         {
             return null;
         }
@@ -69,7 +67,7 @@ public class CategoriesSerializer : StringSerializer
             return null;
         }
 
-        if (!(CreateAndAssociate() is Categories categories))
+        if (CreateAndAssociate() is not Categories categories)
         {
             return null;
         }

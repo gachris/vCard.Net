@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.Serialization;
+﻿namespace vCard.Net.Serialization;
 
 /// <summary>
 /// Interface for serializer factories.

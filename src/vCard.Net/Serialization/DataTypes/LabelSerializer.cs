@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using vCard.Net.CardComponents;
+﻿using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 

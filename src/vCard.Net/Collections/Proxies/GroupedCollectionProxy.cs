@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace vCard.Net.Collections.Proxies;
 
@@ -34,7 +31,7 @@ public class GroupedCollectionProxy<TGroup, TOriginal, TNew> :
 
     /// <inheritdoc/>
     public virtual event EventHandler<ObjectEventArgs<TNew, int>> ItemRemoved;
-   
+
     /// <summary>
     /// Invokes the ItemAdded event.
     /// </summary>

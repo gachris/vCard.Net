@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using vCard.Net.DataTypes;
+﻿using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
 
@@ -47,7 +45,7 @@ public class ClientPidMapSerializer : StringSerializer
             return null;
         }
 
-        if (!(CreateAndAssociate() is ClientPidMap clientPidMap))
+        if (CreateAndAssociate() is not ClientPidMap clientPidMap)
         {
             return null;
         }

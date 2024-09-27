@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using vCard.Net.DataTypes;
+﻿using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using vCard.Net.CardComponents;
+﻿using vCard.Net.CardComponents;
 using vCard.Net.Collections;
 
 namespace vCard.Net.Proxies;

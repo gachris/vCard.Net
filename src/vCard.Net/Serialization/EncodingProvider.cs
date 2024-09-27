@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace vCard.Net.Serialization;
 
@@ -58,17 +57,13 @@ internal class EncodingProvider : IEncodingProvider
             return null;
         }
 
-        switch (encoding.ToUpper())
+        return encoding.ToUpper() switch
         {
-            case "7BIT":
-                return Decode7Bit;
-            case "8BIT":
-                return Decode8Bit;
-            case "BASE64":
-                return DecodeBase64;
-            default:
-                return null;
-        }
+            "7BIT" => Decode7Bit,
+            "8BIT" => Decode8Bit,
+            "BASE64" => DecodeBase64,
+            _ => null,
+        };
     }
 
     protected string Encode7Bit(byte[] data)
@@ -116,17 +111,13 @@ internal class EncodingProvider : IEncodingProvider
             return null;
         }
 
-        switch (encoding.ToUpper())
+        return encoding.ToUpper() switch
         {
-            case "7BIT":
-                return Encode7Bit;
-            case "8BIT":
-                return Encode8Bit;
-            case "BASE64":
-                return EncodeBase64;
-            default:
-                return null;
-        }
+            "7BIT" => Encode7Bit,
+            "8BIT" => Encode8Bit,
+            "BASE64" => EncodeBase64,
+            _ => null,
+        };
     }
 
     public string Encode(string encoding, byte[] data)

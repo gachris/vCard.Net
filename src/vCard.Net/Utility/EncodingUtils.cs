@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace vCard.Net.Utility;
 
@@ -182,7 +181,7 @@ public static class EncodingUtils
         int num = 0;
         for (; i < encode.Length; i++)
         {
-            if (encode[i] == '\t' || (encode[i] > '\u001f' && encode[i] < '=') || (encode[i] > '=' && encode[i] < '\u007f') || encode[i] > 'ÿ')
+            if (encode[i] is '\t' or > '\u001f' and < '=' or > '=' and < '\u007f' or > 'ÿ')
             {
                 if (foldWidth > 0 && num + 1 > foldWidth)
                 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using vCard.Net.Serialization.DataTypes;
+﻿using vCard.Net.Serialization.DataTypes;
 
 namespace vCard.Net.DataTypes;
 
@@ -83,7 +81,7 @@ public class Source : EncodableDataType
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return !(obj is null) && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Source)obj));
+        return obj is not null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Source)obj));
     }
 
     /// <inheritdoc/>

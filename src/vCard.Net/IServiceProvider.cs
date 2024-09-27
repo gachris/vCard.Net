@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net;
+﻿namespace vCard.Net;
 
 /// <summary>
 /// Represents a service provider interface for accessing and managing services.

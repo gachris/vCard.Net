@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.Collections;
+﻿namespace vCard.Net.Collections;
 
 /// <summary>
 /// Provides data for an event that carries two objects.

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using vCard.Net.CardComponents;
+﻿using vCard.Net.CardComponents;
 
 namespace vCard.Net.Proxies;
 

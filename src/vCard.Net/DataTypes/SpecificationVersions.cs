@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.DataTypes;
+﻿namespace vCard.Net.DataTypes;
 
 /// <summary>
 /// This enumerated type defines the various specification versions that can be supported

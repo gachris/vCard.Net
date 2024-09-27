@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Serialization.DataTypes;

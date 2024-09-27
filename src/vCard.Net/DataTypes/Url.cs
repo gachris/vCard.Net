@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using vCard.Net.Serialization.DataTypes;
+﻿using vCard.Net.Serialization.DataTypes;
 using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
@@ -114,7 +111,7 @@ public class Url : EncodableDataType
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return !(obj is null) && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Url)obj));
+        return obj is not null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((Url)obj));
     }
 
     /// <inheritdoc/>

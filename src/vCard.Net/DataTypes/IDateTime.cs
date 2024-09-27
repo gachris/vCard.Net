@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.DataTypes;
+﻿namespace vCard.Net.DataTypes;
 
 /// <summary>
 /// Represents a date and time value with support for various operations and conversions.

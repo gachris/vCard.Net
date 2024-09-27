@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace vCard.Net;
+﻿namespace vCard.Net;
 
 /// <summary>
 /// Provides a simple implementation of a service provider that allows registration and retrieval of services by type or name.

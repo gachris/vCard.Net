@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
@@ -635,7 +633,7 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ (Expertise != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Expertise) : 0);
             hashCode = (hashCode * 397) ^ (Hobby != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Hobby) : 0);
             hashCode = (hashCode * 397) ^ (Interest != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Interest) : 0);
-           
+
             return hashCode;
         }
     }

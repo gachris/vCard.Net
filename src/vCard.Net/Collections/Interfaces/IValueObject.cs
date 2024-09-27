@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace vCard.Net.Collections.Interfaces;
+﻿namespace vCard.Net.Collections.Interfaces;
 
 /// <summary>
 /// Represents an object that holds one or more values of a specific type.

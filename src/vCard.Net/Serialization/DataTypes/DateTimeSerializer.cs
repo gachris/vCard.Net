@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using vCard.Net.DataTypes;
 
@@ -34,8 +32,7 @@ public class DateTimeSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        var dt = obj as IDateTime;
-        if (dt == null)
+        if (obj is not IDateTime dt)
         {
             return null;
         }
@@ -81,8 +78,7 @@ public class DateTimeSerializer : EncodableDataTypeSerializer
     {
         var value = tr.ReadToEnd();
 
-        var dt = CreateAndAssociate() as IDateTime;
-        if (dt == null)
+        if (CreateAndAssociate() is not IDateTime dt)
         {
             return null;
         }

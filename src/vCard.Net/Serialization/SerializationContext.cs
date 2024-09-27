@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace vCard.Net.Serialization;
+﻿namespace vCard.Net.Serialization;
 
 /// <summary>
 /// Provides a context for serialization operations, managing services and object references.
@@ -38,7 +35,7 @@ public class SerializationContext
 
     private readonly Stack<WeakReference> _mStack = new Stack<WeakReference>();
     private ServiceProvider _mServiceProvider = new ServiceProvider();
-  
+
     /// <summary>
     /// Initializes a new instance of the SerializationContext class with default services.
     /// </summary>

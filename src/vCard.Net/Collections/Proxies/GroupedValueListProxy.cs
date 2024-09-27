@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using vCard.Net.Collections.Interfaces;
 
 namespace vCard.Net.Collections.Proxies;
@@ -21,7 +18,7 @@ public class GroupedValueListProxy<TGroup, TInterface, TItem, TOriginalValue, TN
     private readonly GroupedValueList<TGroup, TInterface, TItem, TOriginalValue> _realObject;
     private readonly TGroup _group;
     private TInterface _container;
-  
+
     /// <summary>
     /// Initializes a new instance of the <see cref="GroupedValueListProxy{TGroup, TInterface, TItem, TOriginalValue, TNewValue}"/> class.
     /// </summary>
@@ -49,7 +46,7 @@ public class GroupedValueListProxy<TGroup, TInterface, TItem, TOriginalValue, TN
             return _container;
         }
         var container = new TItem();
-        if (!(container is TInterface))
+        if (container is not TInterface)
         {
             throw new Exception("Could not create a container for the value - the container is not of type " + typeof(TInterface).Name);
         }
@@ -123,7 +120,7 @@ public class GroupedValueListProxy<TGroup, TInterface, TItem, TOriginalValue, TN
     /// <inheritdoc/>
     public virtual bool Remove(TNewValue item)
     {
-        if (!(item is TOriginalValue))
+        if (item is not TOriginalValue)
         {
             return false;
         }
@@ -151,7 +148,7 @@ public class GroupedValueListProxy<TGroup, TInterface, TItem, TOriginalValue, TN
     {
         var index = -1;
 
-        if (!(item is TOriginalValue))
+        if (item is not TOriginalValue)
         {
             return index;
         }

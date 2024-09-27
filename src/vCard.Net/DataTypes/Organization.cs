@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Specialized;
 using vCard.Net.Serialization.DataTypes;
 
 namespace vCard.Net.DataTypes;
@@ -111,7 +108,7 @@ public class Organization : EncodableDataType
         var serializer = new OrganizationSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
     }
-   
+
     /// <summary>
     /// Determines whether the current <see cref="Organization"/> object is equal to another <see cref="Organization"/> object.
     /// </summary>

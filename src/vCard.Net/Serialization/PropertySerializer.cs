@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 
@@ -75,8 +72,7 @@ public class PropertySerializer : SerializerBase
             if (parameterList.Any())
             {
                 // Get a serializer for parameters
-                var parameterSerializer = sf.Build(typeof(vCardParameter), SerializationContext) as IStringSerializer;
-                if (parameterSerializer != null)
+                if (sf.Build(typeof(vCardParameter), SerializationContext) is IStringSerializer parameterSerializer)
                 {
                     // Serialize each parameter
                     // Separate parameters with semicolons

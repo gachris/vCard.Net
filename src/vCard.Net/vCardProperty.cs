@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace vCard.Net;
 
@@ -68,7 +66,7 @@ public class vCardProperty : vCardObject, IvCardProperty
     {
         base.CopyFrom(obj);
 
-        if (!(obj is IvCardProperty p))
+        if (obj is not IvCardProperty p)
         {
             return;
         }

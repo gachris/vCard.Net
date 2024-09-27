@@ -15,16 +15,11 @@ public class vCardComponentFactory
     public virtual IvCardComponent Build(string objectName)
     {
         var name = objectName.ToUpper();
-        IvCardComponent c;
-        switch (name)
+        IvCardComponent c = name switch
         {
-            case Components.VCARD:
-                c = new CardComponents.vCard();
-                break;
-            default:
-                c = new vCardComponent();
-                break;
-        }
+            Components.VCARD => new CardComponents.vCard(),
+            _ => new vCardComponent(),
+        };
         c.Name = name;
         return c;
     }

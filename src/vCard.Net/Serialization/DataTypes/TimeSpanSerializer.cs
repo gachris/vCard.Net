@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace vCard.Net.Serialization.DataTypes;
@@ -35,7 +33,7 @@ public class TimeSpanSerializer : SerializerBase
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (!(obj is TimeSpan))
+        if (obj is not TimeSpan)
         {
             return null;
         }

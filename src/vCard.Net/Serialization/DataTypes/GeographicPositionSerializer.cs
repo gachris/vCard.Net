@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
+﻿using System.Globalization;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 
@@ -50,7 +48,7 @@ public class GeographicPositionSerializer : StringSerializer
             text = "geo:";
         }
 
-        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, (version == vCardVersion.vCard3_0 || version == vCardVersion.vCard4_0) ? ";" : ",", geographicPosition.Longitude);
+        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, (version is vCardVersion.vCard3_0 or vCardVersion.vCard4_0) ? ";" : ",", geographicPosition.Longitude);
 
         return Encode(geographicPosition, value);
     }

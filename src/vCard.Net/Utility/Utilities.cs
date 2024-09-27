@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace vCard.Net.Utility;
+﻿namespace vCard.Net.Utility;
 
 internal static class Utilities
 {
