@@ -12,17 +12,27 @@ namespace vCard.Net.DataTypes;
 public class Photo : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>  
-    /// <value>
-    /// Supports all specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets the value of the photo.
     /// </summary>
     public virtual string Value { get; set; }
+
+    /// <summary>
+    /// Gets or sets the type of the photo.
+    /// </summary>
+    public virtual string Type
+    {
+        get => Parameters.Get("TYPE");
+        set => Parameters.Set("TYPE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the media type of the photo.
+    /// </summary>
+    public virtual string MediaType
+    {
+        get => Parameters.Get("MEDIATYPE");
+        set => Parameters.Set("MEDIATYPE", value);
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Photo"/> class.

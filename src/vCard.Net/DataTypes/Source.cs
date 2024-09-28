@@ -14,14 +14,6 @@ namespace vCard.Net.DataTypes;
 public class Source : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Supports all vCard specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets a string containing the context of the property value such as a protocol for a URI.
     /// </summary>
     /// <value>

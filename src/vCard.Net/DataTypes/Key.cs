@@ -14,14 +14,6 @@ namespace vCard.Net.DataTypes;
 public class Key : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Supports all vCard specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets the public key type.
     /// </summary>
     /// <value>

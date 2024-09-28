@@ -44,6 +44,10 @@ public class DataTypeSerializerFactory : ISerializerFactory
             {
                 s = new GenderSerializer(ctx);
             }
+            else if (typeof(ClientPidMap).IsAssignableFrom(objectType))
+            {
+                s = new ClientPidMapSerializer(ctx);
+            }
             else if (typeof(GeographicPosition).IsAssignableFrom(objectType))
             {
                 s = new GeographicPositionSerializer(ctx);

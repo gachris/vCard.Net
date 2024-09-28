@@ -28,7 +28,7 @@ public class LogoSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not Logo logo ? null : Encode(logo, logo.Value);
+        return obj is not Logo logo ? null : logo.Value;
     }
 
     /// <summary>

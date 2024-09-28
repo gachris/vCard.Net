@@ -17,14 +17,6 @@ namespace vCard.Net.DataTypes;
 public class Related : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
-
-    /// <summary>
     /// Gets or sets the types associated with the related object.
     /// </summary>
     public virtual IList<string> Types

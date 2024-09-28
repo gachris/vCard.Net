@@ -88,7 +88,8 @@ internal class DataTypeMapper
         #endregion
 
         #region Explanatory Properties
-
+        
+        AddPropertyMapping("CLIENTPIDMAP", typeof(ClientPidMap), true);
         AddPropertyMapping("CATEGORIES", typeof(Categories), false);
         AddPropertyMapping("SOUND", typeof(Sound), false);
         AddPropertyMapping("REV", typeof(IDateTime), false);

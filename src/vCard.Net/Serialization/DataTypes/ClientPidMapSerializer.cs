@@ -28,9 +28,9 @@ public class ClientPidMapSerializer : StringSerializer
     {
         return obj is not ClientPidMap clientPidMap
             ? null
-            : clientPidMap.Id == 0 || string.IsNullOrWhiteSpace(clientPidMap.Uri)
+            : clientPidMap.Id == 0 || string.IsNullOrWhiteSpace(clientPidMap.Value)
             ? null
-            : Encode(clientPidMap, string.Join(";", clientPidMap.Id.ToString(), clientPidMap.Uri));
+            : Encode(clientPidMap, string.Join(";", clientPidMap.Id.ToString(), clientPidMap.Value));
     }
 
     /// <summary>
@@ -59,10 +59,10 @@ public class ClientPidMapSerializer : StringSerializer
         }
 
         clientPidMap.Id = 0;
-        clientPidMap.Uri = null;
+        clientPidMap.Value = null;
         if (!string.IsNullOrWhiteSpace(value))
         {
-            string[] array = value.Split(new char[1] { ';' });
+            string[] array = value.Split([';']);
             if (array[0].Length != 0 && int.TryParse(array[0], out var result) && result != 0)
             {
                 clientPidMap.Id = result;
@@ -70,7 +70,7 @@ public class ClientPidMapSerializer : StringSerializer
 
             if (array.Length > 1)
             {
-                clientPidMap.Uri = array[1];
+                clientPidMap.Value = array[1];
             }
         }
 

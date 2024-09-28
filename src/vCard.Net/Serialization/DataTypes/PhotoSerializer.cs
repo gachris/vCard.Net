@@ -28,7 +28,7 @@ public class PhotoSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not Photo photo ? null : Encode(photo, photo.Value);
+        return obj is not Photo photo ? null : photo.Value;
     }
 
     /// <summary>

@@ -54,6 +54,7 @@ public class ComponentSerializer : SerializerBase
         { "DEATHPLACE", SpecificationVersions.vCard4_0 }, // Deathplace
         { "DEATHDATE", SpecificationVersions.vCard4_0 }, // Deathdate
         { "BDAY", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Birthday
+        { "SORT-STRING", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // SortString
     };
 
     /// <summary>

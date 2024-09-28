@@ -1,17 +1,18 @@
 using System.Text;
 using vCard.Net.DataTypes;
 using vCard.Net.Serialization;
+using Xunit;
 
 namespace vCard.Net.Tests;
 
 public class vCard_v30SerializerTests
 {
     [Theory]
-    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard3_0)]
-    public void SerializeToString(string vCardData, vCardVersion vCardVersion)
+    [InlineDataEx("Data/vCard_v30.vcf")]
+    public void SerializeToString(string vCardData)
     {
         var serializer = new ComponentSerializer();
-        var vCard = CreateCard(vCardVersion);
+        var vCard = CreateCard();
         var vCardAsString = serializer.SerializeToString(vCard).Trim();
 
         // Assert
@@ -19,10 +20,10 @@ public class vCard_v30SerializerTests
     }
 
     [Theory]
-    [InlineDataEx("Data/vCard_v30.vcf", vCardVersion.vCard3_0)]
-    public void Deserialize(string vCardData, vCardVersion vCardVersion)
+    [InlineDataEx("Data/vCard_v30.vcf")]
+    public void Deserialize(string vCardData)
     {
-        var vCard = CreateCard(vCardVersion);
+        var vCard = CreateCard();
         var bytes = Encoding.UTF8.GetBytes(vCardData);
         using var stream = new MemoryStream(bytes);
         var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(new StreamReader(stream, Encoding.UTF8)).First();
@@ -31,94 +32,131 @@ public class vCard_v30SerializerTests
         Assert.True(vCard.Equals(vCardFromData));
     }
 
-    private static CardComponents.vCard CreateCard(vCardVersion vCardVersion)
+    private static CardComponents.vCard CreateCard()
     {
         var vCard = new CardComponents.vCard
         {
-            Version = vCardVersion,
-            Uid = "b6d294b1-6187-4abb-b2ca-abe7842e6103",
-            Source = new Source() { Value = new Uri("https://www.example.com/source") },
-            Kind = new Kind { CardKind = KindType.Individual },
-            N = new StructuredName { FamilyName = "Smith", GivenName = "John" },
-            FormattedName = "John Smith",
-            Nickname = "Johnny",
-            Birthdate = new vCardDateTime(1980, 1, 1) { HasTime = false },
-            Photo = new Photo() { Value = "https://www.example.com/photo.jpg", ValueType = "URI" },
-            Gender = new Gender() { Sex = 'M' },
-            Addresses = new List<Address>
+            Version = vCardVersion.vCard3_0,
+            Uid = "12345678-9abc-def0-1234-56789abcdef0",
+            Anniversary = new vCardDateTime(2010, 06, 15)
             {
+                HasTime = false
+            },
+            Key = new Key
+            {
+                KeyType = "X509",
+                Encoding = "BASE64",
+                Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
+            },
+            N = new StructuredName { FamilyName = "Doe", GivenName = "John", NamePrefix = "Mr", NameSuffix = "PhD" },
+            FormattedName = "John Doe",
+            Nickname = "Johnny",
+            Photo = new Photo()
+            {
+                Encoding = "BASE64",
+                Type = "JPEG",
+                Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
+            },
+            Birthdate = new vCardDateTime(1980, 1, 1)
+            {
+                HasTime = false
+            },
+            Addresses =
+            [
                 new Address
                 {
-                    Types = new List<string>(){ "work" },
-                    StreetAddress = "123 Main Street",
-                    Locality = "Anytown",
-                    Region = "NY",
+                    Types = ["WORK"],
+                    StreetAddress = "1234 Company St",
+                    Locality = "City",
+                    Region = "State",
                     PostalCode = "12345",
                     Country = "USA"
                 }
-            },
-            Telephones = new List<Telephone>
-            {
+            ],
+            Labels =
+            [
+                new Label
+                {
+                    Value = "1234 Company St\nCity, State 12345\nUSA",
+                    Types = ["WORK"]
+                }
+            ],
+            Telephones =
+            [
                 new Telephone
                 {
-                    Value = "+123456789",
-                    Types = new List<string>(){ "work", "voice" }
+                    Value = "+1-234-567-8900",
+                    Types = ["WORK", "VOICE"]
                 },
                 new Telephone
                 {
-                    Value = "+123456790",
-                    Types = new List<string>(){ "cell" }
+                    Value = "+1-234-567-8901",
+                    Types = ["HOME", "VOICE"]
                 }
-            },
-            Emails = new List<Email>
-            {
+            ],
+            Emails =
+            [
                 new Email
                 {
-                    Value = "john.smith@example.com",
-                    Types = new List<string>(){ "work" }
+                    PreferredOrder = 1,
+                    Value = "johndoe@example.com",
+                    Types = ["INTERNET"]
                 }
-            },
-            InstantMessagingProtocols = new List<IMPP>
+            ],
+            Organization = new Organization
             {
-                new IMPP
+                Name = "Company Inc.",
+                UnitsString = "Software Division"
+            },
+            Title = "Software Engineer",
+            Role = "Lead Developer",
+            Logo = new Logo
+            {
+                Encoding = "BASE64",
+                Type = "JPEG",
+                Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
+            },
+            Note = "This is a detailed example of vCard 3.0.",
+            Urls =
+            [
+                new Url
                 {
-                    Types =new List<string> { "home" },
-                    Value = "skype:john.smith"
+                    Value = "http://www.johndoe.com"
                 }
-            },
-            Urls = new List<Url>
+            ],
+            RevisionDate = new vCardDateTime(2023, 09, 01, 12, 0, 0)
             {
-                new Url { Value = "https://www.example.com/john_smith" }
+                TzId = TimeZoneInfo.Utc.Id
             },
-            Languages = new List<Language>
+            Mailer = "Mozilla Thunderbird",
+            Categories = new Categories
             {
-                new Language { Value = "en" }
+                CategoriesString = "Friends,Colleagues"
             },
-            TimeZone = "-0500",
-            GeographicPosition = new GeographicPosition
+            GeographicPosition = new GeographicPosition()
             {
-                Latitude = 37.386013,
-                Longitude = -122.082932,
+                Latitude = 37.7749,
+                Longitude = -122.4194,
                 IncludeGeoUriPrefix = false
             },
-            Title = "CEO",
-            Role = "Manager",
-            Logo = new Logo { Value = "https://www.example.com/logo.png", ValueType = "URI" },
-            Organization = new Organization { Name = "Example Company", UnitsString = "Marketing Department" },
-            RelatedObjects = new List<Related>
+            Source = new Source()
             {
-                new Related
-                {
-                    Types = new List<string>(){ "friend" },
-                    Value = "john.doe@example.com"
-                }
+                Value = new Uri("http://example.com/johndoe.vcf")
             },
-            Categories = new Categories { CategoriesString = "Family, Friends" },
-            Note = "This is a note about John Smith.",
-            ProductId = "MyVCardGenerator",
-            RevisionDate = new vCardDateTime(2024, 4, 20, 12, 0, 0) { TzId = TimeZoneInfo.Utc.Id },
-            Sound = new Sound { Value = "https://www.example.com/sound.mp3", ValueType = "URI" },
-            Key = new Key { KeyType = "PGP", Value = "http://example.com/key.pgp" }
+            SortString = "Doe",
+            TimeZone = "+05:00",
+            Agent = new CardComponents.vCard()
+            {
+                Version = vCardVersion.vCard3_0,
+                Uid =   null,
+                FormattedName = "Jane Doe",
+                Telephones =
+                [
+                    new Telephone(){
+                        Value = "+1 987 654 3210",
+                    }
+                ]
+            }
         };
 
         return vCard;

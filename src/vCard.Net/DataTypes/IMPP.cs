@@ -9,20 +9,21 @@ namespace vCard.Net.DataTypes;
 public class IMPP : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 3.0 and vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0;
-
-    /// <summary>
     /// Gets or sets the list of social profile types associated with this IMPP property.
     /// </summary>
     public virtual IList<string> Types
     {
         get => Parameters.GetMany("TYPE");
         set => Parameters.Set("TYPE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the service type associated with this IMPP property.
+    /// </summary>
+    public virtual string ServiceType
+    {
+        get => Parameters.Get("X-SERVICE-TYPE");
+        set => Parameters.Set("X-SERVICE-TYPE", value);
     }
 
     /// <summary>

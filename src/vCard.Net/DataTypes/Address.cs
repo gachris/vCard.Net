@@ -13,14 +13,6 @@ namespace vCard.Net.DataTypes;
 public class Address : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>  
-    /// <value>
-    /// Supports all specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets the list of types associated with the address.
     /// </summary>
     public virtual IList<string> Types

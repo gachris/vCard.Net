@@ -13,9 +13,4 @@ public class EncodableDataType : vCardDataType, IEncodableDataType
         get => Parameters.Get("ENCODING");
         set => Parameters.Set("ENCODING", value);
     }
-
-    /// <summary>
-    /// Gets the versions of the vCard specification supported by this data type.
-    /// </summary>
-    public virtual SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
 }

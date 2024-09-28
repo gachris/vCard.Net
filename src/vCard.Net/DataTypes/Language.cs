@@ -9,14 +9,6 @@ namespace vCard.Net.DataTypes;
 public class Language : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
-
-    /// <summary>
     /// Gets or sets the list of types associated with this language.
     /// </summary>
     public virtual IList<string> Types

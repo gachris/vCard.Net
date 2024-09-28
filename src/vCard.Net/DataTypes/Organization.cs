@@ -17,14 +17,6 @@ public class Organization : EncodableDataType
     private readonly StringCollection _units;
 
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>  
-    /// <value>
-    /// Supports all specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets the organization name.
     /// </summary>
     public string Name { get; set; }

@@ -11,14 +11,6 @@ public class Kind : EncodableDataType
     private string _otherKind;
 
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
-
-    /// <summary>
     /// Gets or sets the vCard kind value.
     /// </summary>
     /// <remarks>

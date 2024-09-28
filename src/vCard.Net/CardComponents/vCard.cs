@@ -144,9 +144,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string DeathDate
+    public virtual IDateTime DeathDate
     {
-        get => Properties.Get<string>("DEATHDATE");
+        get => Properties.Get<IDateTime>("DEATHDATE");
         set => Properties.Set("DEATHDATE", value);
     }
 
@@ -268,6 +268,18 @@ public class vCard : UniqueComponent, IvCard
     {
         get => Properties.Get<string>("ROLE");
         set => Properties.Set("ROLE", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the sort string of the vCard.
+    /// </summary>
+    /// <remarks>
+    /// Supported in: vCard 3.0, 4.0
+    /// </remarks>
+    public virtual string SortString
+    {
+        get => Properties.Get<string>("SORT-STRING");
+        set => Properties.Set("SORT-STRING", value);
     }
 
     /// <summary>
@@ -554,7 +566,7 @@ public class vCard : UniqueComponent, IvCard
                  && Equals(Gender, other.Gender)
                  && string.Equals(BirthPlace, other.BirthPlace, StringComparison.OrdinalIgnoreCase)
                  && string.Equals(DeathPlace, other.DeathPlace, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(DeathDate, other.DeathDate, StringComparison.OrdinalIgnoreCase)
+                 && Equals(DeathDate, other.DeathDate)
                  && CollectionHelpers.Equals(Addresses, other.Addresses)
                  && Equals(Labels, other.Labels)
                  && CollectionHelpers.Equals(Telephones, other.Telephones)
@@ -580,7 +592,8 @@ public class vCard : UniqueComponent, IvCard
                  && string.Equals(Mailer, other.Mailer, StringComparison.OrdinalIgnoreCase)
                  && string.Equals(Expertise, other.Expertise, StringComparison.OrdinalIgnoreCase)
                  && string.Equals(Hobby, other.Hobby, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(Interest, other.Interest, StringComparison.OrdinalIgnoreCase);
+                 && string.Equals(Interest, other.Interest, StringComparison.OrdinalIgnoreCase)
+                 && string.Equals(SortString, other.SortString, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <inheritdoc/>
@@ -633,6 +646,7 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ (Expertise != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Expertise) : 0);
             hashCode = (hashCode * 397) ^ (Hobby != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Hobby) : 0);
             hashCode = (hashCode * 397) ^ (Interest != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Interest) : 0);
+            hashCode = (hashCode * 397) ^ (SortString != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(SortString) : 0);
 
             return hashCode;
         }

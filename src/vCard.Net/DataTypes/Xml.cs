@@ -12,14 +12,6 @@ namespace vCard.Net.DataTypes;
 public class Xml : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
-
-    /// <summary>
     /// Gets or sets the value of the xml.
     /// </summary>
     public virtual string Value { get; set; }

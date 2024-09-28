@@ -9,11 +9,6 @@ namespace vCard.Net.DataTypes;
 public class Label : EncodableDataType
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets or sets the list of types associated with this label.
     /// </summary>
     public virtual IList<string> Types

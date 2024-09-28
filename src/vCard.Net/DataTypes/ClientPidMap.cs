@@ -6,7 +6,7 @@ namespace vCard.Net.DataTypes;
 /// Represents the Client PID map (CLIENTPIDMAP) property of a vCard object.
 /// </summary>
 /// <remarks>
-/// This property class parses the <see cref="Uri"/> property to allow access to its individual property ID and URI parts.
+/// This property class parses the <see cref="Value"/> property to allow access to its individual property ID and URI parts.
 /// This property is only valid for use with the vCard 4.0 specification.
 /// </remarks>
 public class ClientPidMap : EncodableDataType
@@ -17,17 +17,9 @@ public class ClientPidMap : EncodableDataType
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the URI.
+    /// Gets or sets the value.
     /// </summary>
-    public string Uri { get; set; }
-
-    /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Only supported by the vCard 4.0 specification.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCard4_0;
+    public string Value { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ClientPidMap"/> class.
@@ -58,7 +50,7 @@ public class ClientPidMap : EncodableDataType
     /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
     protected bool Equals(ClientPidMap other)
     {
-        return Id == other.Id && string.Equals(Uri, other.Uri, StringComparison.OrdinalIgnoreCase);
+        return Id == other.Id && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <inheritdoc/>
@@ -74,7 +66,7 @@ public class ClientPidMap : EncodableDataType
         {
             var hashCode = 17;
             hashCode = hashCode * 23 + Id.GetHashCode();
-            hashCode = hashCode * 23 + (Uri != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Uri) : 0);
+            hashCode = hashCode * 23 + (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
             return hashCode;
         }
     }

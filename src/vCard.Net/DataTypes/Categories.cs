@@ -17,14 +17,6 @@ public class Categories : EncodableDataType
     private readonly StringCollection _categories;
 
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Supports all specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Gets the collection of categories.
     /// </summary>
     /// <value>

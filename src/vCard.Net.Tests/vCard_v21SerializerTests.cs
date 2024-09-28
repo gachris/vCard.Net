@@ -1,6 +1,7 @@
 using System.Text;
 using vCard.Net.DataTypes;
 using vCard.Net.Serialization;
+using Xunit;
 
 namespace vCard.Net.Tests;
 
@@ -96,7 +97,7 @@ public class vCard_v21SerializerTests
             ],
             Organization = new Organization
             {
-                Name = "Company Inc",
+                Name = "Company Inc.",
                 UnitsString = "Software Division"
             },
             Title = "Software Engineer",

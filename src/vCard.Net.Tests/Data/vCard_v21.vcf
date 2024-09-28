@@ -11,7 +11,7 @@ MAILER:Mozilla Thunderbird
 N:Doe;John;;Mr;PhD
 NICKNAME:Johnny
 NOTE:This is a detailed example of vCard 2.1.
-ORG:Company Inc;Software Division
+ORG:Company Inc.;Software Division
 PHOTO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
 REV:20230901T120000Z
 ROLE:Lead Developer

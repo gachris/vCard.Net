@@ -28,7 +28,7 @@ public class KeySerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not Key key ? null : Encode(key, key.Value);
+        return obj is not Key key ? null : key.Value;
     }
 
     /// <summary>

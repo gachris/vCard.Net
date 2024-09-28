@@ -12,14 +12,6 @@ namespace vCard.Net.DataTypes;
 public class Logo : Photo
 {
     /// <summary>
-    /// Gets the versions of the vCard specification supported by this property.
-    /// </summary>
-    /// <value>
-    /// Supports all vCard specifications.
-    /// </value>
-    public override SpecificationVersions VersionsSupported => SpecificationVersions.vCardAll;
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="Logo"/> class.
     /// </summary>
     public Logo()
