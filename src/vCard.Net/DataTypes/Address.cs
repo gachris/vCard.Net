@@ -153,11 +153,7 @@ public class Address : EncodableDataType
     /// <summary>
     /// Gets or sets the label.
     /// </summary>
-    public string Label
-    {
-        get => Parameters.Get("LABEL").Unescape();
-        set => Parameters.Set("LABEL", value.RestrictedEscape());
-    }
+    public Label Label { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Address"/> class.
@@ -194,7 +190,8 @@ public class Address : EncodableDataType
                && string.Equals(Locality, other.Locality, StringComparison.OrdinalIgnoreCase)
                && string.Equals(Region, other.Region, StringComparison.OrdinalIgnoreCase)
                && string.Equals(PostalCode, other.PostalCode, StringComparison.OrdinalIgnoreCase)
-               && string.Equals(Country, other.Country, StringComparison.OrdinalIgnoreCase);
+               && string.Equals(Country, other.Country, StringComparison.OrdinalIgnoreCase)
+               && Equals(Label, other.Label);
     }
 
     /// <inheritdoc/>
@@ -216,6 +213,7 @@ public class Address : EncodableDataType
             hashCode = hashCode * 23 + (Region != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Region) : 0);
             hashCode = hashCode * 23 + (PostalCode != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(PostalCode) : 0);
             hashCode = hashCode * 23 + (Country != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Country) : 0);
+            hashCode = hashCode * 23 + (Label != null ? Label.GetHashCode() : 0);
             return hashCode;
         }
     }

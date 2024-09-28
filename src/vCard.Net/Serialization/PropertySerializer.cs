@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
 
@@ -84,6 +85,26 @@ public class PropertySerializer : SerializerBase
             sb.Append(value);
 
             result.Append(TextUtil.FoldLines(sb.ToString()));
+
+            var property = SerializationContext.Peek() as IVCardProperty;
+            var vCardVersion = property.Parent is IVCardComponent component ? component.Version : VCardVersion.vCard2_1;
+
+            if (v is Address address && vCardVersion is not VCardVersion.vCard4_0)
+            {
+                var labelSerializer = sf.Build(typeof(Label), SerializationContext) as IStringSerializer;
+              
+                result.Append("LABEL");
+                
+                if (sf.Build(typeof(VCardParameter), SerializationContext) is IStringSerializer parameterSerializer)
+                {
+                    result.Append(";");
+                    result.Append(string.Join(";", parameterList.Select(parameterSerializer.SerializeToString)));
+                }
+
+                result.Append(":");
+
+                result.AppendLine(labelSerializer.SerializeToString(address.Label));
+            }
         }
 
         // Pop the object off the serialization context.

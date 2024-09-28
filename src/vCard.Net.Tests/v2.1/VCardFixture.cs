@@ -20,6 +20,7 @@ public class VCardFixture
     {
         var vCard = new VCard
         {
+            Uid = "12345678-9abc-def0-1234-56789abcdef0",
             Version = VCardVersion.vCard2_1,
             N = new StructuredName { FamilyName = "Doe", GivenName = "John", NamePrefix = "Mr", NameSuffix = "PhD" },
             FormattedName = "John Doe",
@@ -40,15 +41,12 @@ public class VCardFixture
                     Locality = "City",
                     Region = "State",
                     PostalCode = "12345",
-                    Country = "USA"
-                }
-            ],
-            Labels =
-            [
-                new Label
-                {
-                    Value = "1234 Company St\nCity, State 12345\nUSA",
-                    Types = ["WORK"]
+                    Country = "USA",
+                    Label = new Label
+                    {
+                        Value = "1234 Company St\nCity, State 12345\nUSA",
+                        Types = ["WORK"]
+                    }
                 }
             ],
             Telephones =
@@ -107,6 +105,7 @@ public class VCardFixture
         var agent = new Agent()
         {
             Version = VCardVersion.vCard2_1,
+            Uid = "12345678-9abc-def0-1234-56789abcdef0",
             FormattedName = "Jane Doe",
             Telephones =
             [

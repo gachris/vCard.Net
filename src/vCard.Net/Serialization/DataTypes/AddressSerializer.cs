@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Utility;
@@ -98,6 +99,11 @@ public class AddressSerializer : EncodableDataTypeSerializer
             }
         }
 
+        if (vCardVersion is VCardVersion.vCard4_0 && address.Label is not null)
+        {
+            address.Parameters.Set("LABEL", address.Label.Value.RestrictedEscape());
+        }
+
         return num == 0 ? null : Encode(address, string.Join(";", array));
     }
 
@@ -164,6 +170,16 @@ public class AddressSerializer : EncodableDataTypeSerializer
             {
                 address.Country = array[6].Unescape();
             }
+        }
+
+        var label = address.Parameters.GetMany("LABEL");
+
+        if (label.Any())
+        {
+            address.Label = new Label
+            {
+                Value = string.Join(",", label).Unescape()
+            };
         }
 
         return address;

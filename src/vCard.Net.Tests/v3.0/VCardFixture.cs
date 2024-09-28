@@ -51,15 +51,12 @@ public class VCardFixture
                     Locality = "City",
                     Region = "State",
                     PostalCode = "12345",
-                    Country = "USA"
-                }
-            ],
-            Labels =
-            [
-                new Label
-                {
-                    Value = "1234 Company St\nCity, State 12345\nUSA",
-                    Types = ["WORK"]
+                    Country = "USA",
+                    Label = new Label
+                    {
+                        Value = "1234 Company St\nCity, State 12345\nUSA",
+                        Types = ["WORK"]
+                    }
                 }
             ],
             Telephones =

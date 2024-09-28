@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using vCard.Net.CardComponents;
+using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization;
 
@@ -62,6 +63,7 @@ public class SimpleDeserializer
         // param-name    = iana-token / x-name
         var paramName = $"(?<{_paramNameGroup}>{identifier})";
         var param = $"{paramName}={paramValue}(,{paramValue})*";
+        //var param = $"{paramName}(=)?{paramValue}(,{paramValue})*";
 
         // contentline   = name *(";" param ) ":" value CRLF
         var name = $"(?<{_nameGroup}>{identifier})";
@@ -122,7 +124,18 @@ public class SimpleDeserializer
                 }
                 else
                 {
-                    current.Properties.Add(contentLine);
+                    if (string.Equals(contentLine.Name, "LABEL", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var address = current.Properties.GetMany<Address>("ADR").LastOrDefault();
+                        if (address is not null)
+                        {
+                            address.Label = (Label)contentLine.Value;
+                        }
+                    }
+                    else
+                    {
+                        current.Properties.Add(contentLine);
+                    }
                 }
             }
         }
@@ -134,6 +147,16 @@ public class SimpleDeserializer
 
     private VCardProperty ParseContentLine(SerializationContext context, string input)
     {
+        var pattern = "(?<name>[-A-Za-z0-9_.]+)(?<type>(;[A-Z]+)+):";
+
+        var types = default(string);
+        var typeMatch = Regex.Match(input, pattern);
+        if (typeMatch.Success)
+        {
+            types = typeMatch.Groups["type"].Value;
+            input = input.Replace(types, $";TYPE={types.Trim(';').Replace(";", ",")}");
+        }
+
         var match = _contentLineRegex.Match(input);
         if (!match.Success)
         {

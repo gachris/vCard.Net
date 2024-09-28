@@ -79,15 +79,18 @@ public class VCardFixture
             Addresses =
             [
                 new Address
-                  {
-                      Types = ["work"],
-                      StreetAddress = "1234 Company St",
-                      Locality = "City",
-                      Region = "State",
-                      PostalCode = "12345",
-                      Country = "USA",
-                      Label = "1234 Company St\nCity, State 12345\nUSA"
-                  }
+                {
+                    Types = ["work"],
+                    StreetAddress = "1234 Company St",
+                    Locality = "City",
+                    Region = "State",
+                    PostalCode = "12345",
+                    Country = "USA",
+                    Label = new Label()
+                    {
+                        Value = "1234 Company St\nCity, State 12345\nUSA"
+                    }
+                }
             ],
             Telephones =
             [

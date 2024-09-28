@@ -12,7 +12,7 @@ public class ComponentSerializer : SerializerBase
 {
     private static readonly Dictionary<string, SpecificationVersions> _specificationVersions = new()
     {
-        { "UID", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Address
+        { "UID", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Address
         { "VERSION", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Address
         { "ADR", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Address
         { "AGENT", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Agent

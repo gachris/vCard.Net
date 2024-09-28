@@ -163,18 +163,6 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
     }
 
     /// <summary>
-    /// Gets or sets the label of the vCard.
-    /// </summary>
-    /// <remarks>
-    /// Supported in: vCard 3.0, 4.0
-    /// </remarks>
-    public virtual IList<Label> Labels
-    {
-        get => Properties.GetMany<Label>("LABEL");
-        set => Properties.Set("LABEL", value);
-    }
-
-    /// <summary>
     /// Gets or sets a collection of <see cref="Telephone" /> objects for the vCard.
     /// </summary>
     /// <remarks>
@@ -564,7 +552,6 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
                  && Equals(DeathPlace, other.DeathPlace)
                  && Equals(DeathDate, other.DeathDate)
                  && CollectionHelpers.Equals(Addresses, other.Addresses)
-                 && CollectionHelpers.Equals(Labels, other.Labels)
                  && CollectionHelpers.Equals(Telephones, other.Telephones)
                  && CollectionHelpers.Equals(Emails, other.Emails)
                  && CollectionHelpers.Equals(InstantMessagingProtocols, other.InstantMessagingProtocols)
@@ -622,7 +609,6 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
             hashCode = (hashCode * 397) ^ (DeathPlace != null ? DeathPlace.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (DeathDate != null ? DeathDate.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Addresses);
-            hashCode = (hashCode * 397) ^ (Labels != null ? Labels.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Telephones);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Emails);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(InstantMessagingProtocols);
