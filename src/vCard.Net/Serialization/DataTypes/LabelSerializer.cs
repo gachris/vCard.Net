@@ -35,13 +35,22 @@ public class LabelSerializer : EncodableDataTypeSerializer
             return null;
         }
 
-        var version = VCardVersion.vCard2_1;
-        if (SerializationContext.Peek() is IVCardProperty property && property.Parent is IVCardComponent component)
-        {
-            version = component.Version;
-        }
+        var property = SerializationContext.Peek() as IVCardProperty;
+        var vCardVersion = property.Parent is IVCardComponent component ? component.Version : VCardVersion.vCard2_1;
 
-        var value = version is VCardVersion.vCard2_1 or VCardVersion.vCard3_0 ? label.Value.RestrictedEscape() : label.Value.Escape();
+        var value = vCardVersion is VCardVersion.vCard2_1 or VCardVersion.vCard3_0 ? label.Value.RestrictedEscape() : label.Value.Escape();
+
+        if (vCardVersion is VCardVersion.vCard2_1)
+        {
+            var types = label.Types.ToList();
+
+            label.Parameters.Remove("TYPE");
+
+            if (types.Any())
+            {
+                label.Parameters.Add("", string.Join(";", types));
+            }
+        }
 
         return Encode(label, value);
     }

@@ -84,9 +84,9 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
     /// <remarks>
     /// Supported in: vCard 2.1, 3.0, 4.0
     /// </remarks>
-    public virtual IDateTime Birthdate
+    public virtual string Birthdate
     {
-        get => Properties.Get<IDateTime>("BDAY");
+        get => Properties.Get<string>("BDAY");
         set => Properties.Set("BDAY", value);
     }
 
@@ -556,7 +556,7 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
                  && Equals(N, other.N)
                  && string.Equals(FormattedName, other.FormattedName, StringComparison.OrdinalIgnoreCase)
                  && string.Equals(Nickname, other.Nickname, StringComparison.OrdinalIgnoreCase)
-                 && Equals(Birthdate, other.Birthdate)
+                 && string.Equals(Birthdate, other.Birthdate, StringComparison.OrdinalIgnoreCase)
                  && Equals(Photo, other.Photo)
                  && Equals(Anniversary, other.Anniversary)
                  && Equals(Gender, other.Gender)
@@ -614,7 +614,7 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
             hashCode = (hashCode * 397) ^ (N != null ? N.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (FormattedName != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(FormattedName) : 0);
             hashCode = (hashCode * 397) ^ (Nickname != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Nickname) : 0);
-            hashCode = (hashCode * 397) ^ (Birthdate != null ? Birthdate.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Birthdate != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Birthdate) : 0);
             hashCode = (hashCode * 397) ^ (Photo != null ? Photo.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Anniversary != null ? Anniversary.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Gender != null ? Gender.GetHashCode() : 0);

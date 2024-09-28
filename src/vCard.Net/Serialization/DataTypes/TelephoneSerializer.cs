@@ -1,4 +1,5 @@
-﻿using vCard.Net.DataTypes;
+﻿using vCard.Net.CardComponents;
+using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
 
@@ -28,7 +29,27 @@ public class TelephoneSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not Telephone telephone ? null : Encode(telephone, telephone.Value);
+        if (obj is not Telephone telephone)
+        {
+            return null;
+        }
+
+        var property = SerializationContext.Peek() as IVCardProperty;
+        var vCardVersion = property.Parent is IVCardComponent component ? component.Version : VCardVersion.vCard2_1;
+
+        if (vCardVersion is VCardVersion.vCard2_1)
+        {
+            var types = telephone.Types.ToList();
+
+            telephone.Parameters.Remove("TYPE");
+
+            if (types.Any())
+            {
+                telephone.Parameters.Add("", string.Join(";", types));
+            }
+        }
+
+        return Encode(telephone, telephone.Value);
     }
 
     /// <summary>

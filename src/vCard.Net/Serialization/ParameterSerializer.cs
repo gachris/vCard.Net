@@ -39,7 +39,11 @@ public class ParameterSerializer : SerializerBase
         }
 
         var builder = new StringBuilder();
-        builder.Append(parameter.Name + "=");
+
+        if (!string.IsNullOrEmpty(parameter.Name))
+        {
+            builder.Append(parameter.Name + "=");
+        }
 
         var separator = version is VCardVersion.vCard2_1 ? ";" : ",";
 

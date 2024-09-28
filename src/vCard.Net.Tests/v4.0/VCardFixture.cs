@@ -75,10 +75,7 @@ public class VCardFixture
                 MediaType = "image/jpeg",
                 Value = "http://www.johndoe.com/photo.jpg"
             },
-            Birthdate = new VCardDateTime(1980, 1, 1)
-            {
-                HasTime = false
-            },
+            Birthdate = "1980-01-01",
             Addresses =
             [
                 new Address

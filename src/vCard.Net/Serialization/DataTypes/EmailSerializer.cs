@@ -1,4 +1,5 @@
-﻿using vCard.Net.DataTypes;
+﻿using vCard.Net.CardComponents;
+using vCard.Net.DataTypes;
 
 namespace vCard.Net.Serialization.DataTypes;
 
@@ -26,7 +27,27 @@ public class EmailSerializer : EncodableDataTypeSerializer
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        return obj is not Email email ? null : Encode(email, email.Value);
+        if (obj is not Email email)
+        {
+            return null;
+        }
+
+        var property = SerializationContext.Peek() as IVCardProperty;
+        var vCardVersion = property.Parent is IVCardComponent component ? component.Version : VCardVersion.vCard2_1;
+
+        if (vCardVersion is VCardVersion.vCard2_1)
+        {
+            var types = email.Types.ToList();
+
+            email.Parameters.Remove("TYPE");
+
+            if (types.Any())
+            {
+                email.Parameters.Add("", string.Join(";", types));
+            }
+        }
+
+        return Encode(email, email.Value);
     }
 
     /// <inheritdoc/>

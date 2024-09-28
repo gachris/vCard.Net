@@ -30,10 +30,7 @@ public class VCardFixture
                 Type = "JPEG",
                 Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
             },
-            Birthdate = new VCardDateTime(1980, 1, 1)
-            {
-                HasTime = false
-            },
+            Birthdate = "19800101",
             Addresses =
             [
                 new Address
@@ -107,7 +104,7 @@ public class VCardFixture
             }
         };
 
-        var agent = new VCard()
+        var agent = new Agent()
         {
             Version = VCardVersion.vCard2_1,
             FormattedName = "Jane Doe",

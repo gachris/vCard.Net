@@ -39,75 +39,35 @@ internal class DataTypeMapper
     /// </summary>
     public DataTypeMapper()
     {
-        #region General Properties
-
-        AddPropertyMapping("SOURCE", typeof(Source), false);
-        AddPropertyMapping("KIND", typeof(Kind), false);
-
-        #endregion
-
-        #region Identification Properties
-
-        AddPropertyMapping("N", typeof(StructuredName), false);
-        AddPropertyMapping("PHOTO", typeof(Photo), false);
-        AddPropertyMapping("BDAY", typeof(IDateTime), false);
-        AddPropertyMapping("ANNIVERSARY", typeof(IDateTime), false);
-        AddPropertyMapping("GENDER", typeof(Gender), false);
-
-        #endregion
-
-        #region Delivery Addressing Properties
-
         AddPropertyMapping("ADR", typeof(Address), true);
-        AddPropertyMapping("LABEL", typeof(Label), true);
-
-        #endregion
-
-        #region Communications Properties
-
-        AddPropertyMapping("TEL", typeof(Telephone), true);
+        AddPropertyMapping("ANNIVERSARY", typeof(IDateTime), false);
+        AddPropertyMapping("BIRTHPLACE", typeof(BirthPlace), false);
+        AddPropertyMapping("CATEGORIES", typeof(Categories), false);
+        AddPropertyMapping("CLIENTPIDMAP", typeof(ClientPidMap), true);
+        AddPropertyMapping("DEATHDATE", typeof(IDateTime), false);
+        AddPropertyMapping("DEATHPLACE", typeof(DeathPlace), false);
         AddPropertyMapping("EMAIL", typeof(Email), true);
-        AddPropertyMapping("IMPP", typeof(IMPP), true);
-        AddPropertyMapping("URL", typeof(Url), true);
-        AddPropertyMapping("LANG", typeof(Language), true);
-
-        #endregion
-
-        #region Geographical Properties
-
+        AddPropertyMapping("EXPERTISE", typeof(Expertise), false);
+        AddPropertyMapping("GENDER", typeof(Gender), false);
         AddPropertyMapping("GEO", typeof(GeographicPosition), false);
-
-        #endregion
-
-        #region Organizational Properties
-
+        AddPropertyMapping("HOBBY", typeof(Hobby), false);
+        AddPropertyMapping("IMPP", typeof(IMPP), true);
+        AddPropertyMapping("INTEREST", typeof(Interest), false);
+        AddPropertyMapping("KEY", typeof(Key), false);
+        AddPropertyMapping("KIND", typeof(Kind), false);
+        AddPropertyMapping("N", typeof(StructuredName), false);
+        AddPropertyMapping("LABEL", typeof(Label), true);
+        AddPropertyMapping("LANG", typeof(Language), true);
         AddPropertyMapping("LOGO", typeof(Logo), false);
         AddPropertyMapping("ORG", typeof(Organization), false);
+        AddPropertyMapping("PHOTO", typeof(Photo), false);
         AddPropertyMapping("RELATED", typeof(Related), true);
-
-        #endregion
-
-        #region Explanatory Properties
-        
-        AddPropertyMapping("CLIENTPIDMAP", typeof(ClientPidMap), true);
-        AddPropertyMapping("CATEGORIES", typeof(Categories), false);
-        AddPropertyMapping("SOUND", typeof(Sound), false);
         AddPropertyMapping("REV", typeof(IDateTime), false);
-        AddPropertyMapping("DEATHDATE", typeof(IDateTime), false);
-        AddPropertyMapping("BIRTHPLACE", typeof(BirthPlace), false);
-        AddPropertyMapping("DEATHPLACE", typeof(DeathPlace), false);
-        AddPropertyMapping("HOBBY", typeof(Hobby), false);
-        AddPropertyMapping("INTEREST", typeof(Interest), false);
-        AddPropertyMapping("EXPERTISE", typeof(Expertise), false);
-
-        #endregion
-
-        #region Security Properties
-
-        AddPropertyMapping("KEY", typeof(Key), false);
+        AddPropertyMapping("SOUND", typeof(Sound), false);
+        AddPropertyMapping("SOURCE", typeof(Source), false);
+        AddPropertyMapping("TEL", typeof(Telephone), true);
+        AddPropertyMapping("URL", typeof(Url), true);
         AddPropertyMapping("XML", typeof(Xml), false);
-
-        #endregion
     }
 
     /// <summary>

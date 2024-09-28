@@ -41,10 +41,7 @@ public class VCardFixture
                 Type = "JPEG",
                 Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
             },
-            Birthdate = new VCardDateTime(1980, 1, 1)
-            {
-                HasTime = false
-            },
+            Birthdate = "1980-01-01",
             Addresses =
             [
                 new Address
