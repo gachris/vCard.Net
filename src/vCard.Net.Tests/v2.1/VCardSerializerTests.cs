@@ -1,175 +1,61 @@
 using System.Text;
 using vCard.Net.CardComponents;
-using vCard.Net.DataTypes;
 using vCard.Net.Serialization;
 using Xunit;
 
 namespace vCard.Net.Tests.v2_1;
 
-public class VCardSerializerTests
+public class VCardSerializerTests : IClassFixture<VCardFixture>
 {
     #region Fields/Consts
 
     private readonly string _dataFilePath;
+    private readonly VCardFixture _fixture;
 
     #endregion
 
-    public VCardSerializerTests()
+    public VCardSerializerTests(VCardFixture fixture)
     {
-        // Use AppContext.BaseDirectory to get the test directory
+        _fixture = fixture;
         _dataFilePath = Path.Combine(AppContext.BaseDirectory, "v2.1/Data/John Doe.vcf");
     }
 
     [Fact]
-    public void SerializeToString()
+    public void SerializeToString_Success()
     {
-        // Ensure the file exists
         Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
 
-        // Read the content of the file (you named it jsonData, but it's probably vCard data)
+        // Read vCard from file
         var vCardData = File.ReadAllText(_dataFilePath);
 
-        // Create a vCard object (assuming you have the CreateCard method implemented)
-        var vCard = CreateCard();
-
-        // Serialize vCard to string
+        // Serialize vCard object
         var serializer = new ComponentSerializer();
-        var vCardAsString = serializer.SerializeToString(vCard);
+        var vCardAsString = serializer.SerializeToString(_fixture.TestVCard);
 
-        // Assert that the serialized string matches the data from the file
+        // Check if serialized string matches expected file content
         Assert.Equal(vCardData, vCardAsString);
     }
 
     [Fact]
-    public void Deserialize()
+    public void Deserialize_Success()
     {
-        // Ensure the file exists
         Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
 
-        // Read the content of the file (you named it jsonData, but it's probably vCard data)
+        // Read the vCard data from file
         var vCardData = File.ReadAllText(_dataFilePath);
 
-        // Create a vCard object
-        var vCard = CreateCard();
-
-        // Deserialize the vCardData string
+        // Deserialize vCard data
         using var stream = new MemoryStream(Encoding.UTF8.GetBytes(vCardData));
-        using var streamReader = new StreamReader(stream, Encoding.UTF8);
+        using var reader = new StreamReader(stream, Encoding.UTF8);
+        var deserializedCard = (VCard)SimpleDeserializer.Default.Deserialize(reader).First();
 
-        // Use the deserializer to convert the string back into a vCard object
-        var vCardFromData = (VCard)SimpleDeserializer.Default.Deserialize(streamReader).First();
+        // Check individual properties
+        Assert.Equal(_fixture.TestVCard.Uid, deserializedCard.Uid);
+        Assert.Equal(_fixture.TestVCard.FormattedName, deserializedCard.FormattedName);
+        Assert.Equal(_fixture.TestVCard.N.GivenName, deserializedCard.N.GivenName);
+        Assert.Equal(_fixture.TestVCard.N.FamilyName, deserializedCard.N.FamilyName);
 
-        // Assert
-        var areEquals = vCard.Equals(vCardFromData);
-        Assert.True(areEquals);
-    }
-
-    private static CardComponents.VCard CreateCard()
-    {
-        var vCard = new CardComponents.VCard
-        {
-            Version = VCardVersion.vCard2_1,
-            N = new StructuredName { FamilyName = "Doe", GivenName = "John", NamePrefix = "Mr", NameSuffix = "PhD" },
-            FormattedName = "John Doe",
-            Nickname = "Johnny",
-            Photo = new Photo()
-            {
-                Encoding = "BASE64",
-                Type = "JPEG",
-                Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
-            },
-            Birthdate = new VCardDateTime(1980, 1, 1)
-            {
-                HasTime = false
-            },
-            Addresses =
-            [
-                new Address
-                {
-                    Types = ["WORK"],
-                    StreetAddress = "1234 Company St",
-                    Locality = "City",
-                    Region = "State",
-                    PostalCode = "12345",
-                    Country = "USA"
-                }
-            ],
-            Labels =
-            [
-                new Label
-                {
-                    Value = "1234 Company St\nCity, State 12345\nUSA",
-                    Types = ["WORK"]
-                }
-            ],
-            Telephones =
-            [
-                new Telephone
-                {
-                    Value = "+1 234 567 8900",
-                    Types = ["WORK", "VOICE"]
-                },
-                new Telephone
-                {
-                    Value = "+1 234 567 8901",
-                    Types = ["HOME", "VOICE"]
-                }
-            ],
-            Emails =
-            [
-                new Email
-                {
-                    Value = "johndoe@example.com",
-                    Types = ["PREF", "INTERNET"]
-                }
-            ],
-            Organization = new Organization
-            {
-                Name = "Company Inc.",
-                UnitsString = "Software Division"
-            },
-            Title = "Software Engineer",
-            Role = "Lead Developer",
-            Logo = new Logo
-            {
-                Encoding = "BASE64",
-                Type = "JPEG",
-                Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
-            },
-            Note = "This is a detailed example of vCard 2.1.",
-            Urls =
-            [
-                new Url
-                {
-                    Value = "http://www.johndoe.com"
-                }
-            ],
-            RevisionDate = new VCardDateTime(2023, 09, 01, 12, 0, 0)
-            {
-                TzId = TimeZoneInfo.Utc.Id
-            },
-            Mailer = "Mozilla Thunderbird",
-            Categories = new Categories
-            {
-                CategoriesString = "Friends,Colleagues"
-            },
-            Agents =
-            [
-                new CardComponents.VCard()
-                {
-                    Version = VCardVersion.vCard2_1,
-                    Uid = null,
-                    FormattedName = "Jane Doe",
-                    Telephones =
-                    [
-                        new Telephone(){
-                            Value = "+1 987 654 3210",
-                        }
-                    ]
-                }
-            ]
-        };
-
-        return vCard;
+        // Assert full object equality last (after checking important fields)
+        Assert.Equal(_fixture.TestVCard, deserializedCard);
     }
 }

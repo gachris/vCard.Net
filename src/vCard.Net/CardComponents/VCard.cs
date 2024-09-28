@@ -14,7 +14,7 @@ namespace vCard.Net.CardComponents;
 /// identification properties, delivery addressing properties, communications properties, geographical properties,
 /// organizational properties, explanatory properties, security properties, and calendar properties.
 /// </remarks>
-public class VCard : UniqueComponent, IVCard
+public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
 {
     /// <summary>
     /// Gets or sets the kind of the vCard.
@@ -594,6 +594,11 @@ public class VCard : UniqueComponent, IVCard
                  && Equals(Hobby, other.Hobby)
                  && Equals(Interest, other.Interest)
                  && string.Equals(SortString, other.SortString, StringComparison.OrdinalIgnoreCase);
+    }
+
+    bool IEquatable<VCard>.Equals(VCard other)
+    {
+        return other is not null && Equals(other);
     }
 
     /// <inheritdoc/>
