@@ -104,23 +104,22 @@ public class VCardFixture
             Categories = new Categories
             {
                 CategoriesString = "Friends,Colleagues"
-            },
-            Agents =
+            }
+        };
+
+        var agent = new VCard()
+        {
+            Version = VCardVersion.vCard2_1,
+            FormattedName = "Jane Doe",
+            Telephones =
             [
-                new VCard()
-                {
-                    Version = VCardVersion.vCard2_1,
-                    Uid = null,
-                    FormattedName = "Jane Doe",
-                    Telephones =
-                    [
-                        new Telephone(){
-                            Value = "+1 987 654 3210",
-                        }
-                    ]
+                new Telephone(){
+                    Value = "+1 987 654 3210",
                 }
             ]
         };
+
+        vCard.Agents.Add(agent);
 
         return vCard;
     }

@@ -48,9 +48,6 @@ public class PhotoSerializer : EncodableDataTypeSerializer
             return null;
         }
 
-        // Decode the value, if necessary!
-        value = Decode(photo, value);
-
         if (value is null)
         {
             return null;

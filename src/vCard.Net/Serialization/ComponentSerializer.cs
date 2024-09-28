@@ -115,11 +115,19 @@ public class ComponentSerializer : SerializerBase
         {
             // Get a serializer for each child object.
             var serializer = sf.Build(child.GetType(), SerializationContext) as IStringSerializer;
-            sb.Append(serializer.SerializeToString(child));
+
+            if (child is Agent)
+            {
+                sb.Append(string.Concat("AGENT:", serializer.SerializeToString(child)));
+            }
+            else
+            {
+                sb.Append(serializer.SerializeToString(child));
+            }
         }
 
         sb.Append(TextUtil.FoldLines($"END:{upperName}"));
-        return sb.ToString().Trim();
+        return sb.ToString();
     }
 
     /// <inheritdoc/>

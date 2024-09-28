@@ -90,6 +90,12 @@ public class SimpleDeserializer
                 current = _componentFactory.Build((string)contentLine.Value);
                 SerializationUtil.OnDeserializing(current);
             }
+            else if (string.Equals(contentLine.Name, "AGENT", StringComparison.OrdinalIgnoreCase))
+            {
+                stack.Push(current);
+                current = _componentFactory.Build("AGENT");
+                SerializationUtil.OnDeserializing(current);
+            }
             else
             {
                 if (current == null)

@@ -128,22 +128,22 @@ public class VCardFixture
             },
             SortString = "Doe",
             TimeZone = "+05:00",
-            Agents =
+        };
+
+        var agent = new Agent()
+        {
+            Version = VCardVersion.vCard3_0,
+            Uid = "12345678-9abc-def0-1234-56789abcdef0",
+            FormattedName = "Jane Doe",
+            Telephones =
             [
-                new VCard()
-                {
-                    Version = VCardVersion.vCard3_0,
-                    Uid = null,
-                    FormattedName = "Jane Doe",
-                    Telephones =
-                    [
-                        new Telephone(){
-                            Value = "+1 987 654 3210",
-                        }
-                    ]
+                new Telephone(){
+                    Value = "+1 987 654 3210",
                 }
             ]
         };
+
+        vCard.Agents.Add(agent);
 
         return vCard;
     }

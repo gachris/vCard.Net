@@ -63,9 +63,6 @@ public class LabelSerializer : EncodableDataTypeSerializer
             return null;
         }
 
-        // Decode the value, if necessary!
-        value = Decode(label, value);
-
         if (value is null)
         {
             return null;

@@ -5,7 +5,7 @@ namespace vCard.Net.Serialization.DataTypes;
 /// <summary>
 /// Serializer for <see cref="Key"/> values, providing methods to serialize and deserialize key data types.
 /// </summary>
-public class KeySerializer : EncodableDataTypeSerializer
+public class KeySerializer : StringSerializer
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="KeySerializer"/> class.
@@ -47,9 +47,6 @@ public class KeySerializer : EncodableDataTypeSerializer
         {
             return null;
         }
-
-        // Decode the value, if necessary!
-        value = Decode(key, value);
 
         if (value is null)
         {

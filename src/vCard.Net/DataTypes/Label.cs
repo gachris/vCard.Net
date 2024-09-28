@@ -51,8 +51,28 @@ public class Label : EncodableDataType
     /// <returns>True if the current object is equal to the other object; otherwise, false.</returns>
     protected bool Equals(Label other)
     {
-        return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase)
+        // Normalize line endings to \n for both Value properties before comparison
+        string normalizedValue = NormalizeLineEndings(Value);
+        string normalizedOtherValue = NormalizeLineEndings(other.Value);
+
+        return string.Equals(normalizedValue, normalizedOtherValue, StringComparison.InvariantCultureIgnoreCase)
                && CollectionHelpers.Equals(Types, other.Types);
+    }
+
+    /// <summary>
+    /// Normalizes line endings to Unix style (\n).
+    /// </summary>
+    /// <param name="input">The string to normalize.</param>
+    /// <returns>A string with normalized line endings.</returns>
+    private string NormalizeLineEndings(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return input;
+        }
+
+        // Replace Windows line endings (\r\n) with Unix line endings (\n)
+        return input.Replace("\r\n", "\n");
     }
 
     /// <inheritdoc/>

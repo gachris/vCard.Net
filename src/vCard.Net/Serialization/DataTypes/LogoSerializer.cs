@@ -48,9 +48,6 @@ public class LogoSerializer : EncodableDataTypeSerializer
             return null;
         }
 
-        // Decode the value, if necessary!
-        value = Decode(logo, value);
-
         if (value is null)
         {
             return null;

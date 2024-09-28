@@ -37,7 +37,7 @@ public class VCardSerializerTests : IClassFixture<VCardFixture>
         var vCardAsString = serializer.SerializeToString(_fixture.TestVCard);
 
         // Check if serialized string matches expected file content
-        Assert.Equal(vCardData, vCardAsString);
+        Assert.Equal(vCardData.Trim(), vCardAsString.Trim());
     }
 
     [Fact]

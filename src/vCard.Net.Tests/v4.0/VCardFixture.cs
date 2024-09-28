@@ -96,15 +96,15 @@ public class VCardFixture
             [
                 new Telephone
                   {
-                      Value = "+1-234-567-8900",
+                      Value = "tel:+1-234-567-8900",
                       Types = ["work", "voice"],
-                      ValueType = "uri:tel"
+                      ValueType = "uri"
                   },
                   new Telephone
                   {
-                      Value = "+1-234-567-8901",
+                      Value = "tel:+1-234-567-8901",
                       Types = ["home", "voice"],
-                      ValueType = "uri:tel"
+                      ValueType = "uri"
                   }
             ],
             Emails =
@@ -195,23 +195,24 @@ public class VCardFixture
             Xml = new Xml()
             {
                 Value = "<extended-info><social-profile>http://twitter.com/johndoe</social-profile></extended-info>"
-            },
-            Agents =
+            }
+        };
+
+        var agent = new Agent()
+        {
+            Version = VCardVersion.vCard4_0,
+            Uid = "12345678-9abc-def0-1234-56789abcdef0",
+            FormattedName = "Jane Doe",
+            Telephones =
             [
-                new VCard()
-                  {
-                      Version = VCardVersion.vCard4_0,
-                      Uid = null,
-                      FormattedName = "Jane Doe",
-                      Telephones =
-                      [
-                          new Telephone(){
-                              Value = "+1-987-654-3210",
-                          }
-                      ]
-                  }
+                new Telephone()
+                {
+                    Value = "+1-987-654-3210",
+                }
             ]
         };
+
+        vCard.Agents.Add(agent);
 
         return vCard;
     }

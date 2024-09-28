@@ -17,10 +17,19 @@ public class VCardComponentFactory
         var name = objectName.ToUpper();
         IVCardComponent c = name switch
         {
-            Components.VCARD => new VCard(),
-            _ => new VCardComponent(),
+            Components.VCARD => new VCard()
+            {
+                Name = name
+            },
+            "AGENT" => new Agent()
+            {
+                Name = Components.VCARD
+            },
+            _ => new VCardComponent()
+            {
+                Name = name
+            }
         };
-        c.Name = name;
         return c;
     }
 }
