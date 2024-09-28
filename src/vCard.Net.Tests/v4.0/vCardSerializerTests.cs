@@ -9,7 +9,6 @@ public class VCardSerializerTests : IClassFixture<VCardFixture>
 {
     #region Fields/Consts
 
-    private readonly string _dataFilePath;
     private readonly VCardFixture _fixture;
 
     #endregion
@@ -17,16 +16,21 @@ public class VCardSerializerTests : IClassFixture<VCardFixture>
     public VCardSerializerTests(VCardFixture fixture)
     {
         _fixture = fixture;
-        _dataFilePath = Path.Combine(AppContext.BaseDirectory, "v4.0/Data/John Doe.vcf");
     }
 
     [Fact]
     public void SerializeToString_Success()
     {
-        Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
+        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "v4.0/Data/John Doe.vcf");
 
-        // Read vCard from file
-        var vCardData = File.ReadAllText(_dataFilePath);
+        // Assert that the vCard file exists
+        Assert.True(File.Exists(dataFilePath), $"File not found: {dataFilePath}");
+
+        // Read the vCard data from file
+        var vCardData = File.ReadAllText(dataFilePath);
+
+        // Ensure that the vCard data is not empty or null
+        Assert.False(string.IsNullOrWhiteSpace(vCardData), "The vCard data is empty.");
 
         // Serialize vCard object
         var serializer = new ComponentSerializer();
@@ -39,10 +43,17 @@ public class VCardSerializerTests : IClassFixture<VCardFixture>
     [Fact]
     public void Deserialize_Success()
     {
-        Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
+        // Prepare the path to the vCard file
+        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "v4.0/Data/John Doe.vcf");
+
+        // Assert that the vCard file exists
+        Assert.True(File.Exists(dataFilePath), $"File not found: {dataFilePath}");
 
         // Read the vCard data from file
-        var vCardData = File.ReadAllText(_dataFilePath);
+        var vCardData = File.ReadAllText(dataFilePath);
+
+        // Ensure that the vCard data is not empty or null
+        Assert.False(string.IsNullOrWhiteSpace(vCardData), "The vCard data is empty.");
 
         // Deserialize vCard data
         using var stream = new MemoryStream(Encoding.UTF8.GetBytes(vCardData));
@@ -57,5 +68,32 @@ public class VCardSerializerTests : IClassFixture<VCardFixture>
 
         // Assert full object equality last (after checking important fields)
         Assert.Equal(_fixture.TestVCard, deserializedCard);
+    }
+
+    [Fact]
+    public void Deserialize_Contacts_Success()
+    {
+        // Prepare the path to the vCard file
+        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "v4.0/Data/Contacts.vcf");
+
+        // Assert that the vCard file exists
+        Assert.True(File.Exists(dataFilePath), $"File not found: {dataFilePath}");
+
+        // Read the vCard data from file
+        var vCardData = File.ReadAllText(dataFilePath);
+
+        // Ensure that the vCard data is not empty or null
+        Assert.False(string.IsNullOrWhiteSpace(vCardData), "The vCard data is empty.");
+
+        // Deserialize vCard data
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(vCardData));
+        using var reader = new StreamReader(stream, Encoding.UTF8);
+        var deserializedCards = SimpleDeserializer.Default.Deserialize(reader);
+
+        // Assert that deserialization returned a collection
+        Assert.NotNull(deserializedCards);
+
+        // Assert that two vCards were deserialized
+        Assert.Equal(2, deserializedCards.Count());
     }
 }

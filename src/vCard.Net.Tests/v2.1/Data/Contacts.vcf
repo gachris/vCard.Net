@@ -1,0 +1,54 @@
+BEGIN:VCARD
+VERSION:2.1
+ADR;WORK:;;1234 Company St;City;State;12345;USA
+LABEL;WORK:1234 Company St\nCity, State 12345\nUSA
+BDAY:19800101
+CATEGORIES:Friends,Colleagues
+EMAIL;PREF;INTERNET:johndoe@example.com
+FN:John Doe
+LOGO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
+MAILER:Mozilla Thunderbird
+N:Doe;John;;Mr;PhD
+NICKNAME:Johnny
+NOTE:This is a detailed example of vCard 2.1.
+ORG:Company Inc.;Software Division
+PHOTO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
+REV:2023-09-01T12:00:00Z
+ROLE:Lead Developer
+TEL;WORK;VOICE:+1 234 567 8900
+TEL;HOME;VOICE:+1 234 567 8901
+TITLE:Software Engineer
+URL:http://www.johndoe.com
+AGENT:BEGIN:VCARD
+VERSION:2.1
+FN:Jane Doe
+TEL:+1 987 654 3210
+END:VCARD
+END:VCARD
+BEGIN:VCARD
+VERSION:2.1
+ADR;WORK:;;4321 Business Blvd;AnotherCity;AnotherState;54321;USA
+LABEL;WORK:4321 Business Blvd\nAnotherCity, AnotherState 54321\nUSA
+BDAY:19900515
+CATEGORIES:Colleagues,Acquaintances
+EMAIL;PREF;INTERNET:janedoe@example.com
+FN:Jane Doe
+LOGO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
+MAILER:Microsoft Outlook
+N:Doe;Jane;;Ms;MSc
+NICKNAME:Janie
+NOTE:This is another example of vCard 2.1 with different details.
+ORG:Business Corp.;Marketing Division
+PHOTO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
+REV:2023-09-01T12:30:00Z
+ROLE:Marketing Manager
+TEL;WORK;VOICE:+1 345 678 9012
+TEL;HOME;VOICE:+1 345 678 9013
+TITLE:Marketing Specialist
+URL:http://www.janedoe.com
+AGENT:BEGIN:VCARD
+VERSION:2.1
+FN:John Smith
+TEL:+1 456 789 0123
+END:VCARD
+END:VCARD

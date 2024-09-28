@@ -8,20 +8,33 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="v3.0\Data\John Doe.vcf" />
-	  <None Remove="v4.0\Data\John Doe.vcf" />
+		<None Remove="v2.1\Data\Contacts.vcf" />
+		<None Remove="v2.1\Data\John Doe.vcf" />
+		<None Remove="v3.0\Data\Contacts.vcf" />
+		<None Remove="v3.0\Data\John Doe.vcf" />
+		<None Remove="v4.0\Data\Contacts.vcf" />
+		<None Remove="v4.0\Data\John Doe.vcf" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="v2.1\Data\John Doe.vcf">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="v3.0\Data\John Doe.vcf">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="v4.0\Data\John Doe.vcf">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
+		<Content Include="v2.1\Data\Contacts.vcf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="v2.1\Data\John Doe.vcf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="v3.0\Data\Contacts.vcf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="v3.0\Data\John Doe.vcf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="v4.0\Data\Contacts.vcf">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="v4.0\Data\John Doe.vcf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
