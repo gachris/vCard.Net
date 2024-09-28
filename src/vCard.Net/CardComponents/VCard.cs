@@ -501,16 +501,12 @@ public class VCard : UniqueComponent, IVCard, IEquatable<VCard>
     }
 
     /// <summary>
-    /// Gets or sets a collection of <see cref="VCard" /> objects for the vCard.
+    /// Gets the agent collection of <see cref="IVCardObject" /> objects for the vCard.
     /// </summary>
     /// <remarks>
     /// Supported in: vCard 2.1, 3.0, 4.0
     /// </remarks>
-    public virtual IList<VCard> Agents
-    {
-        get => Properties.GetMany<VCard>("AGENT");
-        set => Properties.Set("AGENT", value);
-    }
+    public virtual IVCardObjectList<IVCardObject> Agents => Children;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="VCard"/> class.

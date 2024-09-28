@@ -107,7 +107,7 @@ public class VCardFixture
             },
             Agents =
             [
-                new CardComponents.VCard()
+                new VCard()
                 {
                     Version = VCardVersion.vCard2_1,
                     Uid = null,

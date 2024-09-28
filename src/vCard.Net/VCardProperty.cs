@@ -1,9 +1,10 @@
 using System.Diagnostics;
+using vCard.Net.CardComponents;
 
 namespace vCard.Net;
 
 /// <summary>
-/// Represents a property of the <see cref="CardComponents.VCard"/> itself or one of its components. 
+/// Represents a property of the <see cref="VCard"/> itself or one of its components. 
 /// It can also represent non-standard (X-) properties of a vCard component, as seen with many applications.
 /// </summary>
 /// <remarks>
@@ -12,7 +13,7 @@ namespace vCard.Net;
 [DebuggerDisplay("{Name}:{Value}")]
 public class VCardProperty : VCardObject, IVCardProperty
 {
-    private List<object> _values = new List<object>();
+    private List<object> _values = [];
 
     /// <summary>
     /// Returns a collection of parameters that are associated with the vCard property.
@@ -146,7 +147,7 @@ public class VCardProperty : VCardObject, IVCardProperty
     {
         // Remove all previous values
         _values.Clear();
-        var toAdd = values ?? Enumerable.Empty<object>();
+        var toAdd = values ?? [];
         _values.AddRange(toAdd);
     }
 

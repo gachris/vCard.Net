@@ -17,7 +17,7 @@ public class VCardComponentFactory
         var name = objectName.ToUpper();
         IVCardComponent c = name switch
         {
-            Components.VCARD => new CardComponents.VCard(),
+            Components.VCARD => new VCard(),
             _ => new VCardComponent(),
         };
         c.Name = name;

@@ -130,7 +130,7 @@ public class VCardFixture
             TimeZone = "+05:00",
             Agents =
             [
-                new CardComponents.VCard()
+                new VCard()
                 {
                     Version = VCardVersion.vCard3_0,
                     Uid = null,

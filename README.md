@@ -48,7 +48,7 @@ using var memoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(vCa
 using var reader = new StreamReader(memoryStream);
 
 // Deserialize the vCard
-var vCard = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(reader).First();
+var vCard = (CardComponents.VCard)SimpleDeserializer.Default.Deserialize(reader).First();
 
 // Access some properties
 Console.WriteLine(vCard.FormattedName);
@@ -65,9 +65,9 @@ using vCard.Net.DataTypes;
 using vCard.Net.Serialization;
 
 // Create a vCard
-var vCard = new CardComponents.vCard
+var vCard = new CardComponents.VCard
 {
-    Version = vCardVersion.vCard2_1,
+    Version = VCardVersion.vCard2_1,
     FormattedName = "John Doe",
     N = new StructuredName { GivenName = "John", FamilyName = "Doe" },
     Emails = new List<Email> 

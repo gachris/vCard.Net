@@ -99,7 +99,6 @@ internal class DataTypeMapper
         AddPropertyMapping("HOBBY", typeof(Hobby), false);
         AddPropertyMapping("INTEREST", typeof(Interest), false);
         AddPropertyMapping("EXPERTISE", typeof(Expertise), false);
-        AddPropertyMapping("AGENT", typeof(CardComponents.VCard), true);
 
         #endregion
 
