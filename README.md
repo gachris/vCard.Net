@@ -29,7 +29,7 @@ dotnet build
 
 ## Usage
 
-Here’s a basic example to get you started with using `vCard.Net`:
+Hereâ€™s a basic example to get you started with using `vCard.Net`:
 
 ### Parsing a vCard file
 
@@ -111,4 +111,4 @@ Contributions are welcome! Please follow these steps if you wish to contribute:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for more details.
