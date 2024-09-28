@@ -1,45 +1,74 @@
 using System.Text;
+using vCard.Net.CardComponents;
 using vCard.Net.DataTypes;
 using vCard.Net.Serialization;
 using Xunit;
 
-namespace vCard.Net.Tests;
+namespace vCard.Net.Tests.v2_1;
 
-public class vCard_v21SerializerTests
+public class VCardSerializerTests
 {
-    [Theory]
-    [InlineDataEx("Data/vCard_v21.vcf")]
-    public void SerializeToString(string vCardData)
-    {
-        var serializer = new ComponentSerializer();
-        var vCard = CreateCard();
-        var vCardAsString = serializer.SerializeToString(vCard).Trim();
+    #region Fields/Consts
 
-        // Assert
-        Assert.Equal(vCardData.Trim(), vCardAsString);
+    private readonly string _dataFilePath;
+
+    #endregion
+
+    public VCardSerializerTests()
+    {
+        // Use AppContext.BaseDirectory to get the test directory
+        _dataFilePath = Path.Combine(AppContext.BaseDirectory, "v2.1/Data/John Doe.vcf");
     }
 
-    [Theory]
-    [InlineDataEx("Data/vCard_v21.vcf")]
-    public void Deserialize(string vCardData)
+    [Fact]
+    public void SerializeToString()
     {
-        var vCard = CreateCard();
-        var bytes = Encoding.UTF8.GetBytes(vCardData);
+        // Ensure the file exists
+        Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
 
-        using var stream = new MemoryStream(bytes);
+        // Read the content of the file (you named it jsonData, but it's probably vCard data)
+        var vCardData = File.ReadAllText(_dataFilePath);
+
+        // Create a vCard object (assuming you have the CreateCard method implemented)
+        var vCard = CreateCard();
+
+        // Serialize vCard to string
+        var serializer = new ComponentSerializer();
+        var vCardAsString = serializer.SerializeToString(vCard);
+
+        // Assert that the serialized string matches the data from the file
+        Assert.Equal(vCardData, vCardAsString);
+    }
+
+    [Fact]
+    public void Deserialize()
+    {
+        // Ensure the file exists
+        Assert.True(File.Exists(_dataFilePath), $"File not found: {_dataFilePath}");
+
+        // Read the content of the file (you named it jsonData, but it's probably vCard data)
+        var vCardData = File.ReadAllText(_dataFilePath);
+
+        // Create a vCard object
+        var vCard = CreateCard();
+
+        // Deserialize the vCardData string
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(vCardData));
         using var streamReader = new StreamReader(stream, Encoding.UTF8);
 
-        var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(streamReader).First();
+        // Use the deserializer to convert the string back into a vCard object
+        var vCardFromData = (VCard)SimpleDeserializer.Default.Deserialize(streamReader).First();
 
         // Assert
-        Assert.True(vCard.Equals(vCardFromData));
+        var areEquals = vCard.Equals(vCardFromData);
+        Assert.True(areEquals);
     }
 
-    private static CardComponents.vCard CreateCard()
+    private static CardComponents.VCard CreateCard()
     {
-        var vCard = new CardComponents.vCard
+        var vCard = new CardComponents.VCard
         {
-            Version = vCardVersion.vCard2_1,
+            Version = VCardVersion.vCard2_1,
             N = new StructuredName { FamilyName = "Doe", GivenName = "John", NamePrefix = "Mr", NameSuffix = "PhD" },
             FormattedName = "John Doe",
             Nickname = "Johnny",
@@ -49,7 +78,7 @@ public class vCard_v21SerializerTests
                 Type = "JPEG",
                 Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
             },
-            Birthdate = new vCardDateTime(1980, 1, 1)
+            Birthdate = new VCardDateTime(1980, 1, 1)
             {
                 HasTime = false
             },
@@ -115,7 +144,7 @@ public class vCard_v21SerializerTests
                     Value = "http://www.johndoe.com"
                 }
             ],
-            RevisionDate = new vCardDateTime(2023, 09, 01, 12, 0, 0)
+            RevisionDate = new VCardDateTime(2023, 09, 01, 12, 0, 0)
             {
                 TzId = TimeZoneInfo.Utc.Id
             },
@@ -126,9 +155,9 @@ public class vCard_v21SerializerTests
             },
             Agents =
             [
-                new CardComponents.vCard()
+                new CardComponents.VCard()
                 {
-                    Version = vCardVersion.vCard2_1,
+                    Version = VCardVersion.vCard2_1,
                     Uid = null,
                     FormattedName = "Jane Doe",
                     Telephones =

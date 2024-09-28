@@ -22,15 +22,15 @@ public abstract class DataTypeSerializer : SerializerBase
     /// Creates a new instance of the target data type and associates it with the current serialization context.
     /// </summary>
     /// <returns>The newly created data type object.</returns>
-    protected virtual IvCardDataType CreateAndAssociate()
+    protected virtual IVCardDataType CreateAndAssociate()
     {
         // Create an instance of the object
-        if (Activator.CreateInstance(TargetType) is not IvCardDataType dt)
+        if (Activator.CreateInstance(TargetType) is not IVCardDataType dt)
         {
             return null;
         }
 
-        if (SerializationContext.Peek() is IvCardObject associatedObject)
+        if (SerializationContext.Peek() is IVCardObject associatedObject)
         {
             dt.AssociatedObject = associatedObject;
         }

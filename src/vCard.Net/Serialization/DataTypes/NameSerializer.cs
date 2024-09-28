@@ -38,8 +38,8 @@ public class NameSerializer : StringSerializer
             return null;
         }
 
-        var version = vCardVersion.vCard2_1;
-        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        var version = VCardVersion.vCard2_1;
+        if (SerializationContext.Peek() is IVCardProperty property && property.Parent is IVCardComponent component)
         {
             version = component.Version;
         }
@@ -48,29 +48,29 @@ public class NameSerializer : StringSerializer
 
         if (name.FamilyName != null && name.FamilyName.Length > 0)
         {
-            array[0] = version == vCardVersion.vCard2_1 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
+            array[0] = version == VCardVersion.vCard2_1 ? name.FamilyName.RestrictedEscape() : name.FamilyName.Escape();
         }
 
         if (name.GivenName != null && name.GivenName.Length > 0)
         {
-            array[1] = version == vCardVersion.vCard2_1 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
+            array[1] = version == VCardVersion.vCard2_1 ? name.GivenName.RestrictedEscape() : name.GivenName.Escape();
         }
 
         if (name.AdditionalNames != null && name.AdditionalNames.Length > 0)
         {
-            array[2] = version == vCardVersion.vCard2_1
+            array[2] = version == VCardVersion.vCard2_1
                 ? name.AdditionalNames.RestrictedEscape()
                 : name.AdditionalNames.Escape();
         }
 
         if (name.NamePrefix != null && name.NamePrefix.Length > 0)
         {
-            array[3] = version == vCardVersion.vCard2_1 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
+            array[3] = version == VCardVersion.vCard2_1 ? name.NamePrefix.RestrictedEscape() : name.NamePrefix.Escape();
         }
 
         if (name.NameSuffix != null && name.NameSuffix.Length > 0)
         {
-            array[4] = version == vCardVersion.vCard2_1 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
+            array[4] = version == VCardVersion.vCard2_1 ? name.NameSuffix.RestrictedEscape() : name.NameSuffix.Escape();
         }
 
         return Encode(name, string.Join(";", array));

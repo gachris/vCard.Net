@@ -3,14 +3,14 @@ using System.Diagnostics;
 namespace vCard.Net;
 
 /// <summary>
-/// Represents a property of the <see cref="CardComponents.vCard"/> itself or one of its components. 
+/// Represents a property of the <see cref="CardComponents.VCard"/> itself or one of its components. 
 /// It can also represent non-standard (X-) properties of a vCard component, as seen with many applications.
 /// </summary>
 /// <remarks>
 /// There may be other custom X-properties applied to the vCard, and X-properties may be applied to vCard components.
 /// </remarks>
 [DebuggerDisplay("{Name}:{Value}")]
-public class vCardProperty : vCardObject, IvCardProperty
+public class VCardProperty : VCardObject, IVCardProperty
 {
     private List<object> _values = new List<object>();
 
@@ -20,29 +20,29 @@ public class vCardProperty : vCardObject, IvCardProperty
     public virtual IParameterCollection Parameters { get; protected set; } = new ParameterList();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardProperty"/> class.
+    /// Initializes a new instance of the <see cref="VCardProperty"/> class.
     /// </summary>
-    public vCardProperty() { }
+    public VCardProperty() { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardProperty"/> class with the specified name.
+    /// Initializes a new instance of the <see cref="VCardProperty"/> class with the specified name.
     /// </summary>
     /// <param name="name">The name of the property.</param>
-    public vCardProperty(string name) : base(name) { }
+    public VCardProperty(string name) : base(name) { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardProperty"/> class with the specified name and value.
+    /// Initializes a new instance of the <see cref="VCardProperty"/> class with the specified name and value.
     /// </summary>
     /// <param name="name">The name of the property.</param>
     /// <param name="value">The value of the property.</param>
-    public vCardProperty(string name, object value) : base(name) => _values.Add(value);
+    public VCardProperty(string name, object value) : base(name) => _values.Add(value);
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardProperty"/> class with the specified line and column numbers.
+    /// Initializes a new instance of the <see cref="VCardProperty"/> class with the specified line and column numbers.
     /// </summary>
     /// <param name="line">The line number where the property was found during parsing.</param>
     /// <param name="col">The column number where the property was found during parsing.</param>
-    public vCardProperty(int line, int col) : base(line, col) { }
+    public VCardProperty(int line, int col) : base(line, col) { }
 
     /// <summary>
     /// Adds a parameter to the vCard property.
@@ -51,7 +51,7 @@ public class vCardProperty : vCardObject, IvCardProperty
     /// <param name="value">The value of the parameter.</param>
     public virtual void AddParameter(string name, string value)
     {
-        var p = new vCardParameter(name, value);
+        var p = new VCardParameter(name, value);
         Parameters.Add(p);
     }
 
@@ -59,14 +59,14 @@ public class vCardProperty : vCardObject, IvCardProperty
     /// Adds a parameter to the vCard property.
     /// </summary>
     /// <param name="p">The parameter to add.</param>
-    public virtual void AddParameter(vCardParameter p) => Parameters.Add(p);
+    public virtual void AddParameter(VCardParameter p) => Parameters.Add(p);
 
     /// <inheritdoc/>
     public override void CopyFrom(ICopyable obj)
     {
         base.CopyFrom(obj);
 
-        if (obj is not IvCardProperty p)
+        if (obj is not IVCardProperty p)
         {
             return;
         }

@@ -6,25 +6,25 @@ namespace vCard.Net;
 /// <summary>
 /// The base class for all vCard objects and components.
 /// </summary>
-public class vCardObject : vCardObjectBase, IvCardObject
+public class VCardObject : VCardObjectBase, IVCardObject
 {
-    private IvCardObjectList<IvCardObject> _children;
+    private IVCardObjectList<IVCardObject> _children;
     private ServiceProvider _serviceProvider;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardObject"/> class.
+    /// Initializes a new instance of the <see cref="VCardObject"/> class.
     /// </summary>
-    internal vCardObject() => Initialize();
+    internal VCardObject() => Initialize();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardObject"/> class with the specified name.
+    /// Initializes a new instance of the <see cref="VCardObject"/> class with the specified name.
     /// </summary>
-    public vCardObject(string name) : this() => Name = name;
+    public VCardObject(string name) : this() => Name = name;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardObject"/> class with the specified line and column numbers.
+    /// Initializes a new instance of the <see cref="VCardObject"/> class with the specified line and column numbers.
     /// </summary>
-    public vCardObject(int line, int col) : this()
+    public VCardObject(int line, int col) : this()
     {
         Line = line;
         Column = col;
@@ -35,7 +35,7 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// </summary>
     private void Initialize()
     {
-        _children = new vCardObjectList(this);
+        _children = new VCardObjectList(this);
         _serviceProvider = new ServiceProvider();
 
         _children.ItemAdded += Children_ItemAdded;
@@ -66,17 +66,17 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// <summary>
     /// Event handler for when an item is added to the children collection.
     /// </summary>
-    private void Children_ItemAdded(object sender, ObjectEventArgs<IvCardObject, int> e) => e.First.Parent = this;
+    private void Children_ItemAdded(object sender, ObjectEventArgs<IVCardObject, int> e) => e.First.Parent = this;
 
     /// <summary>
     /// Determines whether the current vCard object is equal to another vCard object.
     /// </summary>
-    protected bool Equals(vCardObject other) => string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+    protected bool Equals(VCardObject other) => string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase);
 
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return ReferenceEquals(null, obj) ? false : ReferenceEquals(this, obj) ? true : obj.GetType() == GetType() && Equals((vCardObject)obj);
+        return ReferenceEquals(null, obj) ? false : ReferenceEquals(this, obj) ? true : obj.GetType() == GetType() && Equals((VCardObject)obj);
     }
 
     /// <inheritdoc/>
@@ -85,7 +85,7 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// <inheritdoc/>
     public override void CopyFrom(ICopyable c)
     {
-        if (c is not IvCardObject obj)
+        if (c is not IVCardObject obj)
         {
             return;
         }
@@ -107,12 +107,12 @@ public class vCardObject : vCardObjectBase, IvCardObject
     /// <summary>
     /// Gets or sets the parent vCard object that owns this one.
     /// </summary>
-    public virtual IvCardObject Parent { get; set; }
+    public virtual IVCardObject Parent { get; set; }
 
     /// <summary>
     /// Gets a collection of vCard objects that are children of the current object.
     /// </summary>
-    public virtual IvCardObjectList<IvCardObject> Children => _children;
+    public virtual IVCardObjectList<IVCardObject> Children => _children;
 
     /// <summary>
     /// Gets or sets the name of the vCard object.

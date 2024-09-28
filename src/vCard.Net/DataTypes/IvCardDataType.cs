@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a vCard data type.
 /// </summary>
-public interface IvCardDataType : IvCardParameterCollectionContainer, ICopyable, IServiceProvider
+public interface IVCardDataType : IVCardParameterCollectionContainer, ICopyable, IServiceProvider
 {
     /// <summary>
     /// Gets or sets the value type of the vCard data type.
@@ -25,7 +25,7 @@ public interface IvCardDataType : IvCardParameterCollectionContainer, ICopyable,
     /// <summary>
     /// Gets or sets the vCard object associated with this data type.
     /// </summary>
-    IvCardObject AssociatedObject { get; set; }
+    IVCardObject AssociatedObject { get; set; }
 
     /// <summary>
     /// Gets or sets the language of the data type.

@@ -21,12 +21,12 @@ public class PropertySerializer : SerializerBase
     public PropertySerializer(SerializationContext ctx) : base(ctx) { }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(vCardProperty);
+    public override Type TargetType => typeof(VCardProperty);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        var prop = obj as IvCardProperty;
+        var prop = obj as IVCardProperty;
         if (prop?.Values == null || !prop.Values.Any())
         {
             return null;
@@ -62,9 +62,9 @@ public class PropertySerializer : SerializerBase
 
             // Get the list of parameters we'll be serializing
             var parameterList = prop.Parameters;
-            if (v is IvCardDataType)
+            if (v is IVCardDataType)
             {
-                parameterList = (v as IvCardDataType).Parameters;
+                parameterList = (v as IVCardDataType).Parameters;
             }
 
             var sb = new StringBuilder();
@@ -72,7 +72,7 @@ public class PropertySerializer : SerializerBase
             if (parameterList.Any())
             {
                 // Get a serializer for parameters
-                if (sf.Build(typeof(vCardParameter), SerializationContext) is IStringSerializer parameterSerializer)
+                if (sf.Build(typeof(VCardParameter), SerializationContext) is IStringSerializer parameterSerializer)
                 {
                     // Serialize each parameter
                     // Separate parameters with semicolons

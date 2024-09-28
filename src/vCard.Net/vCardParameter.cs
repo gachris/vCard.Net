@@ -8,38 +8,38 @@ namespace vCard.Net;
 /// Represents a parameter within a vCard object.
 /// </summary>
 [DebuggerDisplay("{Name}={string.Join(\",\", Values)}")]
-public class vCardParameter : vCardObject, IValueObject<string>
+public class VCardParameter : VCardObject, IValueObject<string>
 {
     private HashSet<string> _values;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardParameter"/> class.
+    /// Initializes a new instance of the <see cref="VCardParameter"/> class.
     /// </summary>
-    public vCardParameter() => Initialize();
+    public VCardParameter() => Initialize();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardParameter"/> class with the specified name.
+    /// Initializes a new instance of the <see cref="VCardParameter"/> class with the specified name.
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
-    public vCardParameter(string name) : base(name) => Initialize();
+    public VCardParameter(string name) : base(name) => Initialize();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardParameter"/> class with the specified name and value.
+    /// Initializes a new instance of the <see cref="VCardParameter"/> class with the specified name and value.
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
     /// <param name="value">The value of the parameter.</param>
-    public vCardParameter(string name, string value) : base(name)
+    public VCardParameter(string name, string value) : base(name)
     {
         Initialize();
         AddValue(value);
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardParameter"/> class with the specified name and values.
+    /// Initializes a new instance of the <see cref="VCardParameter"/> class with the specified name and values.
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
     /// <param name="values">The values of the parameter.</param>
-    public vCardParameter(string name, IEnumerable<string> values) : base(name)
+    public VCardParameter(string name, IEnumerable<string> values) : base(name)
     {
         Initialize();
         foreach (var v in values)
@@ -63,7 +63,7 @@ public class vCardParameter : vCardObject, IValueObject<string>
     {
         base.CopyFrom(c);
 
-        var p = c as vCardParameter;
+        var p = c as VCardParameter;
         if (p?.Values == null)
         {
             return;

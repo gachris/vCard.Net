@@ -7,14 +7,14 @@ namespace vCard.Net.Proxies;
 /// Represents a proxy class for a list of vCard objects.
 /// </summary>
 /// <typeparam name="TType">The type of vCard objects.</typeparam>
-public class vCardObjectListProxy<TType> : GroupedCollectionProxy<string, IvCardObject, TType>, IvCardObjectList<TType>
-    where TType : class, IvCardObject
+public class VCardObjectListProxy<TType> : GroupedCollectionProxy<string, IVCardObject, TType>, IVCardObjectList<TType>
+    where TType : class, IVCardObject
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardObjectListProxy{TType}"/> class.
+    /// Initializes a new instance of the <see cref="VCardObjectListProxy{TType}"/> class.
     /// </summary>
     /// <param name="list">The underlying grouped collection of vCard objects.</param>
-    public vCardObjectListProxy(IGroupedCollection<string, IvCardObject> list) : base(list) { }
+    public VCardObjectListProxy(IGroupedCollection<string, IVCardObject> list) : base(list) { }
 
     /// <inheritdoc/>
     public virtual TType this[int index] => this.Skip(index).FirstOrDefault();

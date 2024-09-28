@@ -60,7 +60,7 @@ public class ComponentSerializer : SerializerBase
     /// <summary>
     /// Gets or sets the property sorter used for sorting vCard properties alphabetically.
     /// </summary>
-    protected virtual IComparer<IvCardProperty> PropertySorter => new PropertyAlphabetizer();
+    protected virtual IComparer<IVCardProperty> PropertySorter => new PropertyAlphabetizer();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ComponentSerializer"/> class.
@@ -74,12 +74,12 @@ public class ComponentSerializer : SerializerBase
     public ComponentSerializer(SerializationContext ctx) : base(ctx) { }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(vCardComponent);
+    public override Type TargetType => typeof(VCardComponent);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (obj is not IvCardComponent c)
+        if (obj is not IVCardComponent c)
         {
             return null;
         }
@@ -129,10 +129,10 @@ public class ComponentSerializer : SerializerBase
     /// A comparer implementation for sorting vCard properties alphabetically,
     /// ensuring "LABEL" is always placed after "ADR" and "AGENT" is always at the bottom.
     /// </summary>
-    public class PropertyAlphabetizer : IComparer<IvCardProperty>
+    public class PropertyAlphabetizer : IComparer<IVCardProperty>
     {
         /// <inheritdoc/>
-        public int Compare(IvCardProperty x, IvCardProperty y)
+        public int Compare(IVCardProperty x, IVCardProperty y)
         {
             // Handle null cases first
             if (x == y) return 0;
@@ -163,9 +163,9 @@ public class ComponentSerializer : SerializerBase
             }
 
             if (string.Equals(x.Name, labelPropertyName, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(y.Name, addressPropertyName, StringComparison.OrdinalIgnoreCase))
+                !string.Equals(y.Name, addressPropertyName, StringComparison.OrdinalIgnoreCase))
             {
-                return 1; // "LABEL" should come after "ADR"
+                return -1; // "LABEL" should come after "ADR"
             }
 
             // Keep "AGENT" at the bottom

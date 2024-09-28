@@ -49,8 +49,8 @@ internal static class DateUtil
         }
 
         return dt1.IsUtc
-        ? new vCardDateTime(copy.AsUtc)
-        : new vCardDateTime(copy.AsSystemLocal);
+        ? new VCardDateTime(copy.AsUtc)
+        : new VCardDateTime(copy.AsSystemLocal);
     }
 
     public static DateTime AddWeeks(DateTime dt, int interval, DayOfWeek firstDayOfWeek)

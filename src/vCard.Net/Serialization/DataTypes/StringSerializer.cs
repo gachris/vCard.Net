@@ -95,7 +95,7 @@ public class StringSerializer : EncodableDataTypeSerializer
             values.AddRange(from object child in (IEnumerable)obj select child.ToString());
         }
 
-        if (SerializationContext.Peek() is IvCardObject co)
+        if (SerializationContext.Peek() is IVCardObject co)
         {
             // Encode the string as needed.
             var dt = new EncodableDataType
@@ -137,8 +137,8 @@ public class StringSerializer : EncodableDataTypeSerializer
 
         // Determine if we can serialize this property
         // with multiple values per line.
-        var co = SerializationContext.Peek() as IvCardObject;
-        if (co is IvCardProperty)
+        var co = SerializationContext.Peek() as IVCardObject;
+        if (co is IVCardProperty)
         {
             serializeAsList = GetService<DataTypeMapper>().GetPropertyAllowsMultipleValues(co);
         }
@@ -157,7 +157,7 @@ public class StringSerializer : EncodableDataTypeSerializer
         var escapedValues = encodedValues.Select(v => Decode(dt, v)).ToList();
         var values = escapedValues.Select(Unescape).ToList();
 
-        if (co is IvCardProperty)
+        if (co is IVCardProperty)
         {
             // Is this necessary?
             co.SetService("EscapedValue", escapedValues.Count == 1 ? escapedValues[0] : (object)escapedValues);

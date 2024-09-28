@@ -7,7 +7,7 @@ namespace vCard.Net.Proxies;
 /// </summary>
 /// <typeparam name="TComponentType">The type of unique components in the list.</typeparam>
 public interface IUniqueComponentList<TComponentType> :
-    IvCardObjectList<TComponentType> where TComponentType : class, IUniqueComponent
+    IVCardObjectList<TComponentType> where TComponentType : class, IUniqueComponent
 {
     /// <summary>
     /// Gets or sets the unique component with the specified UID.

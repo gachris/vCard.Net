@@ -38,8 +38,8 @@ public class AddressSerializer : EncodableDataTypeSerializer
             return null;
         }
 
-        var version = vCardVersion.vCard2_1;
-        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        var version = VCardVersion.vCard2_1;
+        if (SerializationContext.Peek() is IVCardProperty property && property.Parent is IVCardComponent component)
         {
             version = component.Version;
         }
@@ -50,43 +50,43 @@ public class AddressSerializer : EncodableDataTypeSerializer
         if (address.POBox != null && address.POBox.Length > 0)
         {
             num = 1;
-            array[0] = version == vCardVersion.vCard2_1 ? address.POBox.RestrictedEscape() : address.POBox.Escape();
+            array[0] = version == VCardVersion.vCard2_1 ? address.POBox.RestrictedEscape() : address.POBox.Escape();
         }
 
         if (address.ExtendedAddress != null && address.ExtendedAddress.Length > 0)
         {
             num = 2;
-            array[1] = version == vCardVersion.vCard2_1 ? address.ExtendedAddress.RestrictedEscape() : address.ExtendedAddress.Escape();
+            array[1] = version == VCardVersion.vCard2_1 ? address.ExtendedAddress.RestrictedEscape() : address.ExtendedAddress.Escape();
         }
 
         if (address.StreetAddress != null && address.StreetAddress.Length > 0)
         {
             num = 3;
-            array[2] = version == vCardVersion.vCard2_1 ? address.StreetAddress.RestrictedEscape() : address.StreetAddress.Escape();
+            array[2] = version == VCardVersion.vCard2_1 ? address.StreetAddress.RestrictedEscape() : address.StreetAddress.Escape();
         }
 
         if (address.Locality != null && address.Locality.Length > 0)
         {
             num = 4;
-            array[3] = version == vCardVersion.vCard2_1 ? address.Locality.RestrictedEscape() : address.Locality.Escape();
+            array[3] = version == VCardVersion.vCard2_1 ? address.Locality.RestrictedEscape() : address.Locality.Escape();
         }
 
         if (address.Region != null && address.Region.Length > 0)
         {
             num = 5;
-            array[4] = version == vCardVersion.vCard2_1 ? address.Region.RestrictedEscape() : address.Region.Escape();
+            array[4] = version == VCardVersion.vCard2_1 ? address.Region.RestrictedEscape() : address.Region.Escape();
         }
 
         if (address.PostalCode != null && address.PostalCode.Length > 0)
         {
             num = 6;
-            array[5] = version == vCardVersion.vCard2_1 ? address.PostalCode.RestrictedEscape() : address.PostalCode.Escape();
+            array[5] = version == VCardVersion.vCard2_1 ? address.PostalCode.RestrictedEscape() : address.PostalCode.Escape();
         }
 
         if (address.Country != null && address.Country.Length > 0)
         {
             num = 7;
-            array[6] = version == vCardVersion.vCard2_1 ? address.Country.RestrictedEscape() : address.Country.Escape();
+            array[6] = version == VCardVersion.vCard2_1 ? address.Country.RestrictedEscape() : address.Country.Escape();
         }
 
         return num == 0 ? null : Encode(address, string.Join(";", array));

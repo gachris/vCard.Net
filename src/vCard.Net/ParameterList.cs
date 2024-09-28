@@ -5,10 +5,10 @@ namespace vCard.Net;
 /// <summary>
 /// Represents a list of vCard parameters associated with a vCard component.
 /// </summary>
-public class ParameterList : GroupedValueList<string, vCardParameter, vCardParameter, string>, IParameterCollection
+public class ParameterList : GroupedValueList<string, VCardParameter, VCardParameter, string>, IParameterCollection
 {
     /// <inheritdoc/>
-    public virtual void SetParent(IvCardObject parent)
+    public virtual void SetParent(IVCardObject parent)
     {
         foreach (var parameter in this)
         {
@@ -17,7 +17,7 @@ public class ParameterList : GroupedValueList<string, vCardParameter, vCardParam
     }
 
     /// <inheritdoc/>
-    public virtual void Add(string name, string value) => Add(new vCardParameter(name, value));
+    public virtual void Add(string name, string value) => Add(new VCardParameter(name, value));
 
     /// <inheritdoc/>
     public virtual string Get(string name) => Get<string>(name);

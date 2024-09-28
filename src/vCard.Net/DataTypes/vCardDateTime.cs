@@ -10,61 +10,61 @@ namespace vCard.Net.DataTypes;
 /// <remarks>
 /// <para>
 /// This class serves as the vCard equivalent of the .NET <see cref="DateTime"/> class. In addition to the features
-/// of the <see cref="DateTime"/> class, the <see cref="vCardDateTime"/> class handles time zone differences and integrates
+/// of the <see cref="DateTime"/> class, the <see cref="VCardDateTime"/> class handles time zone differences and integrates
 /// seamlessly into the vCard framework.
 /// </para>
 /// </remarks>
-public sealed class vCardDateTime : EncodableDataType, IDateTime
+public sealed class VCardDateTime : EncodableDataType, IDateTime
 {
     /// <summary>
-    /// Gets the current system date and time as a <see cref="vCardDateTime"/> object.
+    /// Gets the current system date and time as a <see cref="VCardDateTime"/> object.
     /// </summary>
-    public static vCardDateTime Now => new(DateTime.Now);
+    public static VCardDateTime Now => new(DateTime.Now);
 
     /// <summary>
-    /// Gets the current date as a <see cref="vCardDateTime"/> object.
+    /// Gets the current date as a <see cref="VCardDateTime"/> object.
     /// </summary>
-    public static vCardDateTime Today => new(DateTime.Today);
+    public static VCardDateTime Today => new(DateTime.Today);
 
     private bool _hasDate;
     private bool _hasTime;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class.
     /// </summary>
-    public vCardDateTime()
+    public VCardDateTime()
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified <see cref="IDateTime"/> value.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified <see cref="IDateTime"/> value.
     /// </summary>
     /// <param name="value">The <see cref="IDateTime"/> value.</param>
-    public vCardDateTime(IDateTime value)
+    public VCardDateTime(IDateTime value)
     {
         Initialize(value.Value, value.TzId);
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified <see cref="DateTime"/> value.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified <see cref="DateTime"/> value.
     /// </summary>
     /// <param name="value">The <see cref="DateTime"/> value.</param>
-    public vCardDateTime(DateTime value) : this(value, null)
+    public VCardDateTime(DateTime value) : this(value, null)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified <see cref="DateTime"/> value and time zone ID.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified <see cref="DateTime"/> value and time zone ID.
     /// </summary>
     /// <param name="value">The <see cref="DateTime"/> value.</param>
     /// <param name="tzId">The time zone ID.</param>
-    public vCardDateTime(DateTime value, string tzId)
+    public VCardDateTime(DateTime value, string tzId)
     {
         Initialize(value, tzId);
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified year, month, day, hour, minute, and second values.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified year, month, day, hour, minute, and second values.
     /// </summary>
     /// <param name="year">The year.</param>
     /// <param name="month">The month (1 through 12).</param>
@@ -72,14 +72,14 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     /// <param name="hour">The hour (0 through 23).</param>
     /// <param name="minute">The minute (0 through 59).</param>
     /// <param name="second">The second (0 through 59).</param>
-    public vCardDateTime(int year, int month, int day, int hour, int minute, int second)
+    public VCardDateTime(int year, int month, int day, int hour, int minute, int second)
     {
         Initialize(year, month, day, hour, minute, second, null);
         HasTime = true;
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified year, month, day, hour, minute, second, and time zone ID values.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified year, month, day, hour, minute, second, and time zone ID values.
     /// </summary>
     /// <param name="year">The year.</param>
     /// <param name="month">The month (1 through 12).</param>
@@ -88,38 +88,38 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     /// <param name="minute">The minute (0 through 59).</param>
     /// <param name="second">The second (0 through 59).</param>
     /// <param name="tzId">The time zone ID.</param>
-    public vCardDateTime(int year, int month, int day, int hour, int minute, int second, string tzId)
+    public VCardDateTime(int year, int month, int day, int hour, int minute, int second, string tzId)
     {
         Initialize(year, month, day, hour, minute, second, tzId);
         HasTime = true;
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified year, month, and day values.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified year, month, and day values.
     /// </summary>
     /// <param name="year">The year.</param>
     /// <param name="month">The month (1 through 12).</param>
     /// <param name="day">The day (1 through the number of days in <paramref name="month"/>).</param>
-    public vCardDateTime(int year, int month, int day) : this(year, month, day, 0, 0, 0)
+    public VCardDateTime(int year, int month, int day) : this(year, month, day, 0, 0, 0)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified year, month, day, and time zone ID values.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified year, month, day, and time zone ID values.
     /// </summary>
     /// <param name="year">The year.</param>
     /// <param name="month">The month (1 through 12).</param>
     /// <param name="day">The day (1 through the number of days in <paramref name="month"/>).</param>
     /// <param name="tzId">The time zone ID.</param>
-    public vCardDateTime(int year, int month, int day, string tzId) : this(year, month, day, 0, 0, 0, tzId)
+    public VCardDateTime(int year, int month, int day, string tzId) : this(year, month, day, 0, 0, 0, tzId)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDateTime"/> class with the specified string representation of a date and time.
+    /// Initializes a new instance of the <see cref="VCardDateTime"/> class with the specified string representation of a date and time.
     /// </summary>
     /// <param name="value">A string representation of a date and time.</param>
-    public vCardDateTime(string value)
+    public VCardDateTime(string value)
     {
         var serializer = new DateTimeSerializer();
         CopyFrom(serializer.Deserialize(new StringReader(value)) as ICopyable);
@@ -176,7 +176,7 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <inheritdoc/>
-    public override IvCardObject AssociatedObject
+    public override IVCardObject AssociatedObject
     {
         get => base.AssociatedObject;
         set
@@ -206,14 +206,14 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <summary>
-    /// Determines whether the current <see cref="vCardDateTime"/> object is equal to another <see cref="vCardDateTime"/> object.
+    /// Determines whether the current <see cref="VCardDateTime"/> object is equal to another <see cref="VCardDateTime"/> object.
     /// </summary>
-    /// <param name="other">The <see cref="vCardDateTime"/> object to compare with the current object.</param>
+    /// <param name="other">The <see cref="VCardDateTime"/> object to compare with the current object.</param>
     /// <returns><see langword="true"/> if the current object is equal to the <paramref name="other"/> parameter; otherwise, <see langword="false"/>.</returns>
-    public bool Equals(vCardDateTime other) => this == other;
+    public bool Equals(VCardDateTime other) => this == other;
 
     /// <inheritdoc/>
-    public override bool Equals(object other) => other is IDateTime && (vCardDateTime)other == this;
+    public override bool Equals(object other) => other is IDateTime && (VCardDateTime)other == this;
 
     /// <inheritdoc/>
     public override int GetHashCode()
@@ -229,59 +229,59 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <summary>
-    /// Determines whether one <see cref="vCardDateTime"/> object is less than another <see cref="IDateTime"/> object.
+    /// Determines whether one <see cref="VCardDateTime"/> object is less than another <see cref="IDateTime"/> object.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> is less than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-    public static bool operator <(vCardDateTime left, IDateTime right)
+    public static bool operator <(VCardDateTime left, IDateTime right)
     {
         return left != null && right != null && left.AsUtc < right.AsUtc;
     }
 
     /// <summary>
-    /// Determines whether one <see cref="vCardDateTime"/> object is greater than another <see cref="IDateTime"/> object.
+    /// Determines whether one <see cref="VCardDateTime"/> object is greater than another <see cref="IDateTime"/> object.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> is greater than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-    public static bool operator >(vCardDateTime left, IDateTime right)
+    public static bool operator >(VCardDateTime left, IDateTime right)
     {
         return left != null && right != null && left.AsUtc > right.AsUtc;
     }
 
     /// <summary>
-    /// Determines whether one <see cref="vCardDateTime"/> object is less than or equal to another <see cref="IDateTime"/> object.
+    /// Determines whether one <see cref="VCardDateTime"/> object is less than or equal to another <see cref="IDateTime"/> object.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> is less than or equal to <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-    public static bool operator <=(vCardDateTime left, IDateTime right)
+    public static bool operator <=(VCardDateTime left, IDateTime right)
     {
         return left != null && right != null && left.AsUtc <= right.AsUtc;
     }
 
     /// <summary>
-    /// Determines whether one <see cref="vCardDateTime"/> object is greater than or equal to another <see cref="IDateTime"/> object.
+    /// Determines whether one <see cref="VCardDateTime"/> object is greater than or equal to another <see cref="IDateTime"/> object.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> is greater than or equal to <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-    public static bool operator >=(vCardDateTime left, IDateTime right)
+    public static bool operator >=(VCardDateTime left, IDateTime right)
     {
         return left != null && right != null && left.AsUtc >= right.AsUtc;
     }
 
     /// <summary>
-    /// Determines whether two specified <see cref="vCardDateTime"/> objects are equal.
+    /// Determines whether two specified <see cref="VCardDateTime"/> objects are equal.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> are equal; otherwise, <see langword="false"/>.</returns>
-    public static bool operator ==(vCardDateTime left, IDateTime right)
+    public static bool operator ==(VCardDateTime left, IDateTime right)
     {
         return left is null || right is null ? ReferenceEquals(left, right)
-              : right is vCardDateTime
+              : right is VCardDateTime
               && left.Value.Equals(right.Value)
               && left.HasDate == right.HasDate
               && left.AsUtc.Equals(right.AsUtc)
@@ -289,35 +289,35 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <summary>
-    /// Determines whether two specified <see cref="vCardDateTime"/> objects are not equal.
+    /// Determines whether two specified <see cref="VCardDateTime"/> objects are not equal.
     /// </summary>
-    /// <param name="left">The first <see cref="vCardDateTime"/> object to compare.</param>
+    /// <param name="left">The first <see cref="VCardDateTime"/> object to compare.</param>
     /// <param name="right">The second <see cref="IDateTime"/> object to compare.</param>
     /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> are not equal; otherwise, <see langword="false"/>.</returns>
-    public static bool operator !=(vCardDateTime left, IDateTime right)
+    public static bool operator !=(VCardDateTime left, IDateTime right)
     {
         return !(left == right);
     }
 
     /// <summary>
-    /// Subtracts a specified <see cref="IDateTime"/> from a <see cref="vCardDateTime"/>.
+    /// Subtracts a specified <see cref="IDateTime"/> from a <see cref="VCardDateTime"/>.
     /// </summary>
-    /// <param name="left">The <see cref="vCardDateTime"/> object to subtract from.</param>
+    /// <param name="left">The <see cref="VCardDateTime"/> object to subtract from.</param>
     /// <param name="right">The <see cref="IDateTime"/> object to subtract.</param>
     /// <returns>The time interval between <paramref name="left"/> and <paramref name="right"/>.</returns>
-    public static TimeSpan operator -(vCardDateTime left, IDateTime right)
+    public static TimeSpan operator -(VCardDateTime left, IDateTime right)
     {
         left.AssociateWith(right);
         return left.AsUtc - right.AsUtc;
     }
 
     /// <summary>
-    /// Subtracts a specified <see cref="TimeSpan"/> from a <see cref="vCardDateTime"/>.
+    /// Subtracts a specified <see cref="TimeSpan"/> from a <see cref="VCardDateTime"/>.
     /// </summary>
-    /// <param name="left">The <see cref="vCardDateTime"/> object to subtract from.</param>
+    /// <param name="left">The <see cref="VCardDateTime"/> object to subtract from.</param>
     /// <param name="right">The <see cref="TimeSpan"/> to subtract.</param>
-    /// <returns>A new <see cref="vCardDateTime"/> object that represents the value of <paramref name="left"/> minus <paramref name="right"/>.</returns>
-    public static IDateTime operator -(vCardDateTime left, TimeSpan right)
+    /// <returns>A new <see cref="VCardDateTime"/> object that represents the value of <paramref name="left"/> minus <paramref name="right"/>.</returns>
+    public static IDateTime operator -(VCardDateTime left, TimeSpan right)
     {
         var copy = left.Copy<IDateTime>();
         copy.Value -= right;
@@ -325,12 +325,12 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <summary>
-    /// Adds a specified <see cref="TimeSpan"/> to a <see cref="vCardDateTime"/>.
+    /// Adds a specified <see cref="TimeSpan"/> to a <see cref="VCardDateTime"/>.
     /// </summary>
-    /// <param name="left">The <see cref="vCardDateTime"/> object to add to.</param>
+    /// <param name="left">The <see cref="VCardDateTime"/> object to add to.</param>
     /// <param name="right">The <see cref="TimeSpan"/> to add.</param>
-    /// <returns>A new <see cref="vCardDateTime"/> object that represents the value of <paramref name="left"/> plus <paramref name="right"/>.</returns>
-    public static IDateTime operator +(vCardDateTime left, TimeSpan right)
+    /// <returns>A new <see cref="VCardDateTime"/> object that represents the value of <paramref name="left"/> plus <paramref name="right"/>.</returns>
+    public static IDateTime operator +(VCardDateTime left, TimeSpan right)
     {
         var copy = left.Copy<IDateTime>();
         copy.Value += right;
@@ -338,11 +338,11 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
     }
 
     /// <summary>
-    /// Implicitly converts a <see cref="DateTime"/> object to a <see cref="vCardDateTime"/>.
+    /// Implicitly converts a <see cref="DateTime"/> object to a <see cref="VCardDateTime"/>.
     /// </summary>
     /// <param name="left">The <see cref="DateTime"/> object to convert.</param>
-    /// <returns>A new <see cref="vCardDateTime"/> object representing the value of <paramref name="left"/>.</returns>
-    public static implicit operator vCardDateTime(DateTime left) => new(left);
+    /// <returns>A new <see cref="VCardDateTime"/> object representing the value of <paramref name="left"/>.</returns>
+    public static implicit operator VCardDateTime(DateTime left) => new(left);
 
     /// <summary>
     /// Converts the date/time to the date/time of the computer running the program. If the DateTimeKind is Unspecified, it's assumed that the underlying
@@ -532,8 +532,8 @@ public sealed class vCardDateTime : EncodableDataType, IDateTime
         var converted = zonedOriginal.WithZone(DateUtil.GetZone(tzId));
 
         return converted.Zone == DateTimeZone.Utc
-            ? new vCardDateTime(converted.ToDateTimeUtc(), tzId)
-            : new vCardDateTime(DateTime.SpecifyKind(converted.ToDateTimeUnspecified(), DateTimeKind.Local), tzId);
+            ? new VCardDateTime(converted.ToDateTimeUtc(), tzId)
+            : new VCardDateTime(DateTime.SpecifyKind(converted.ToDateTimeUnspecified(), DateTimeKind.Local), tzId);
     }
 
     /// <inheritdoc/>

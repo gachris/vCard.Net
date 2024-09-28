@@ -14,7 +14,7 @@ namespace vCard.Net.CardComponents;
 /// identification properties, delivery addressing properties, communications properties, geographical properties,
 /// organizational properties, explanatory properties, security properties, and calendar properties.
 /// </remarks>
-public class vCard : UniqueComponent, IvCard
+public class VCard : UniqueComponent, IVCard
 {
     /// <summary>
     /// Gets or sets the kind of the vCard.
@@ -501,21 +501,21 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets a collection of <see cref="vCard" /> objects for the vCard.
+    /// Gets or sets a collection of <see cref="VCard" /> objects for the vCard.
     /// </summary>
     /// <remarks>
     /// Supported in: vCard 2.1, 3.0, 4.0
     /// </remarks>
-    public virtual IList<vCard> Agents
+    public virtual IList<VCard> Agents
     {
-        get => Properties.GetMany<vCard>("AGENT");
+        get => Properties.GetMany<VCard>("AGENT");
         set => Properties.Set("AGENT", value);
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCard"/> class.
+    /// Initializes a new instance of the <see cref="VCard"/> class.
     /// </summary>
-    public vCard()
+    public VCard()
     {
         Name = Components.VCARD;
         Initialize();
@@ -552,7 +552,7 @@ public class vCard : UniqueComponent, IvCard
     /// </summary>
     /// <param name="other">The vCard to compare with the current vCard.</param>
     /// <returns><c>true</c> if the specified vCard is equal to the current vCard; otherwise, <c>false</c>.</returns>
-    protected bool Equals(vCard other)
+    protected bool Equals(VCard other)
     {
         return string.Equals(Uid, other.Uid, StringComparison.OrdinalIgnoreCase)
                  && Equals(Source, other.Source)
@@ -599,7 +599,7 @@ public class vCard : UniqueComponent, IvCard
     /// <inheritdoc/>
     public override bool Equals(object obj)
     {
-        return obj is not null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((vCard)obj));
+        return obj is not null && (ReferenceEquals(this, obj) || obj.GetType() == GetType() && Equals((VCard)obj));
     }
 
     /// <inheritdoc/>

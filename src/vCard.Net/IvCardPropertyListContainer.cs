@@ -3,10 +3,10 @@
 /// <summary>
 /// Represents an object that contains a list of vCard properties.
 /// </summary>
-public interface IvCardPropertyListContainer : IvCardObject
+public interface IVCardPropertyListContainer : IVCardObject
 {
     /// <summary>
     /// Gets the list of vCard properties associated with this container.
     /// </summary>
-    vCardPropertyList Properties { get; }
+    VCardPropertyList Properties { get; }
 }

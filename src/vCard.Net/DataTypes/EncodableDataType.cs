@@ -3,7 +3,7 @@
 /// <summary>
 /// An abstract class representing an encoding of vCard data types.
 /// </summary>
-public class EncodableDataType : vCardDataType, IEncodableDataType
+public class EncodableDataType : VCardDataType, IEncodableDataType
 {
     /// <summary>
     /// Gets or sets the encoding of the data type.

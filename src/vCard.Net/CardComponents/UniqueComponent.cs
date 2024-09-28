@@ -5,7 +5,7 @@ namespace vCard.Net.CardComponents;
 /// <summary>
 /// Represents a component within a vCard object that has a unique identifier (UID).
 /// </summary>
-public class UniqueComponent : vCardComponent, IUniqueComponent, IComparable<UniqueComponent>
+public class UniqueComponent : VCardComponent, IUniqueComponent, IComparable<UniqueComponent>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="UniqueComponent"/> class.

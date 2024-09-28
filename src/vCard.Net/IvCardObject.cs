@@ -5,7 +5,7 @@ namespace vCard.Net;
 /// <summary>
 /// Represents a vCard object interface that provides functionalities for managing vCard components.
 /// </summary>
-public interface IvCardObject : IGroupedObject<string>, ILoadable, ICopyable, IServiceProvider
+public interface IVCardObject : IGroupedObject<string>, ILoadable, ICopyable, IServiceProvider
 {
     /// <summary>
     /// Gets or sets the name of the vCard object.
@@ -15,12 +15,12 @@ public interface IvCardObject : IGroupedObject<string>, ILoadable, ICopyable, IS
     /// <summary>
     /// Gets or sets the parent of this vCard object.
     /// </summary>
-    IvCardObject Parent { get; set; }
+    IVCardObject Parent { get; set; }
 
     /// <summary>
     /// Gets a collection of children of this vCard object.
     /// </summary>
-    IvCardObjectList<IvCardObject> Children { get; }
+    IVCardObjectList<IVCardObject> Children { get; }
 
     /// <summary>
     /// Gets or sets the line number where this vCard object was found during parsing.

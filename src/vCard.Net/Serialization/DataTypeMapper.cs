@@ -99,7 +99,7 @@ internal class DataTypeMapper
         AddPropertyMapping("HOBBY", typeof(Hobby), false);
         AddPropertyMapping("INTEREST", typeof(Interest), false);
         AddPropertyMapping("EXPERTISE", typeof(Expertise), false);
-        AddPropertyMapping("AGENT", typeof(CardComponents.vCard), true);
+        AddPropertyMapping("AGENT", typeof(CardComponents.VCard), true);
 
         #endregion
 
@@ -174,7 +174,7 @@ internal class DataTypeMapper
     /// <returns><c>true</c> if the property allows multiple values; otherwise, <c>false</c>.</returns>
     public virtual bool GetPropertyAllowsMultipleValues(object obj)
     {
-        var p = obj as IvCardProperty;
+        var p = obj as IVCardProperty;
         return !string.IsNullOrWhiteSpace(p?.Name)
             && _propertyMap.TryGetValue(p.Name, out var m)
             && m.AllowsMultipleValuesPerProperty;
@@ -187,7 +187,7 @@ internal class DataTypeMapper
     /// <returns>The type mapping for the property.</returns>
     public virtual Type GetPropertyMapping(object obj)
     {
-        var p = obj as IvCardProperty;
+        var p = obj as IVCardProperty;
 
         if (p?.Name == null)
         {

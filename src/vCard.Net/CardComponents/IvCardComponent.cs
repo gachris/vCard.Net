@@ -5,10 +5,10 @@ namespace vCard.Net.CardComponents;
 /// <summary>
 /// Represents a component within a vCard object.
 /// </summary>
-public interface IvCardComponent : IvCardPropertyListContainer
+public interface IVCardComponent : IVCardPropertyListContainer
 {
     /// <summary>
     /// Gets or sets the version of the vCard.
     /// </summary>
-    vCardVersion Version { get; set; }
+    VCardVersion Version { get; set; }
 }

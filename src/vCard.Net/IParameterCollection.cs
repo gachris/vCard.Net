@@ -5,13 +5,13 @@ namespace vCard.Net;
 /// <summary>
 /// Represents a collection of parameters associated with a vCard component or property.
 /// </summary>
-public interface IParameterCollection : IGroupedList<string, vCardParameter>
+public interface IParameterCollection : IGroupedList<string, VCardParameter>
 {
     /// <summary>
     /// Sets the parent vCard object for the parameter collection.
     /// </summary>
     /// <param name="parent">The parent vCard object.</param>
-    void SetParent(IvCardObject parent);
+    void SetParent(IVCardObject parent);
 
     /// <summary>
     /// Adds a parameter with the specified name and value to the collection.

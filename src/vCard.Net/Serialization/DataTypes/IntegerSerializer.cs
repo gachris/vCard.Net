@@ -28,7 +28,7 @@ public class IntegerSerializer : EncodableDataTypeSerializer
         {
             var i = Convert.ToInt32(integer);
 
-            if (SerializationContext.Peek() is IvCardObject obj)
+            if (SerializationContext.Peek() is IVCardObject obj)
             {
                 // Encode the value as needed.
                 var dt = new EncodableDataType
@@ -52,7 +52,7 @@ public class IntegerSerializer : EncodableDataTypeSerializer
 
         try
         {
-            if (SerializationContext.Peek() is IvCardObject obj)
+            if (SerializationContext.Peek() is IVCardObject obj)
             {
                 // Decode the value, if necessary!
                 var dt = new EncodableDataType

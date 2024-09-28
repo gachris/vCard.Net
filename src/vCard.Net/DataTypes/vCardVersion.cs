@@ -3,7 +3,7 @@
 /// <summary>
 /// Enumeration representing different versions of card formats.
 /// </summary>
-public enum vCardVersion
+public enum VCardVersion
 {
     /// <summary>
     /// Version 2.1 of the card format.

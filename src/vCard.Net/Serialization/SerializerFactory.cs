@@ -31,15 +31,15 @@ public class SerializerFactory : ISerializerFactory
         }
         ISerializer s;
 
-        if (typeof(IvCardComponent).IsAssignableFrom(objectType))
+        if (typeof(IVCardComponent).IsAssignableFrom(objectType))
         {
             s = new ComponentSerializer(ctx);
         }
-        else if (typeof(IvCardProperty).IsAssignableFrom(objectType))
+        else if (typeof(IVCardProperty).IsAssignableFrom(objectType))
         {
             s = new PropertySerializer(ctx);
         }
-        else if (typeof(vCardParameter).IsAssignableFrom(objectType))
+        else if (typeof(VCardParameter).IsAssignableFrom(objectType))
         {
             s = new ParameterSerializer(ctx);
         }
@@ -63,7 +63,7 @@ public class SerializerFactory : ISerializerFactory
         {
             s = new UriSerializer(ctx);
         }
-        else if (typeof(IvCardDataType).IsAssignableFrom(objectType))
+        else if (typeof(IVCardDataType).IsAssignableFrom(objectType))
         {
             s = _mDataTypeSerializerFactory.Build(objectType, ctx);
         }

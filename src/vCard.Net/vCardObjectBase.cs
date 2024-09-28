@@ -3,14 +3,14 @@
 /// <summary>
 /// Base class for vCard objects providing copy and load functionality.
 /// </summary>
-public class vCardObjectBase : ICopyable, ILoadable
+public class VCardObjectBase : ICopyable, ILoadable
 {
     private bool _mIsLoaded;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardObjectBase"/> class.
+    /// Initializes a new instance of the <see cref="VCardObjectBase"/> class.
     /// </summary>
-    public vCardObjectBase() => _mIsLoaded = true;
+    public VCardObjectBase() => _mIsLoaded = true;
 
     /// <summary>
     /// Copies values from the target object to the current object.

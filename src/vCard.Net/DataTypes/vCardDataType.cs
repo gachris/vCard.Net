@@ -10,17 +10,17 @@ namespace vCard.Net.DataTypes;
 /// This abstract class serves as the foundation for all vCard data types. It provides functionality
 /// for managing parameters, version compatibility, and associated vCard objects.
 /// </remarks>
-public abstract class vCardDataType : IvCardDataType
+public abstract class VCardDataType : IVCardDataType
 {
     private IParameterCollection _parameters;
     private ParameterCollectionProxy _proxy;
     private ServiceProvider _serviceProvider;
-    private IvCardObject _associatedObject;
+    private IVCardObject _associatedObject;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardDataType"/> class.
+    /// Initializes a new instance of the <see cref="VCardDataType"/> class.
     /// </summary>
-    protected vCardDataType()
+    protected VCardDataType()
     {
         Initialize();
     }
@@ -85,7 +85,7 @@ public abstract class vCardDataType : IvCardDataType
     public virtual void SetValueType(string type) => _proxy?.Set("VALUE", type ?? type.ToUpper());
 
     /// <inheritdoc/>
-    public virtual IvCardObject AssociatedObject
+    public virtual IVCardObject AssociatedObject
     {
         get => _associatedObject;
         set
@@ -100,7 +100,7 @@ public abstract class vCardDataType : IvCardDataType
             if (_associatedObject != null)
             {
                 _proxy.SetParent(_associatedObject);
-                if (_associatedObject is IvCardParameterCollectionContainer container)
+                if (_associatedObject is IVCardParameterCollectionContainer container)
                 {
                     _proxy.SetProxiedObject(container.Parameters);
                 }
@@ -123,12 +123,12 @@ public abstract class vCardDataType : IvCardDataType
     /// <inheritdoc/>
     public virtual void CopyFrom(ICopyable obj)
     {
-        if (obj is not IvCardDataType)
+        if (obj is not IVCardDataType)
         {
             return;
         }
 
-        var dt = (IvCardDataType)obj;
+        var dt = (IVCardDataType)obj;
         _associatedObject = dt.AssociatedObject;
         _proxy.SetParent(_associatedObject);
         _proxy.SetProxiedObject(dt.Parameters);

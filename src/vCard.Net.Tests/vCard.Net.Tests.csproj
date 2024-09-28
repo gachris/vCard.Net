@@ -8,6 +8,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="v3.0\Data\John Doe.vcf" />
+	  <None Remove="v4.0\Data\John Doe.vcf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="v2.1\Data\John Doe.vcf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="v3.0\Data\John Doe.vcf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="v4.0\Data\John Doe.vcf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="xunit" />
 		<PackageReference Include="xunit.runner.visualstudio">
@@ -22,17 +39,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\vCard.Net\vCard.Net.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Remove="Data\vCard_v21.vcf" />
-		<None Remove="Data\vCard_v30.vcf" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Data\vCard_v21.vcf" />
-		<EmbeddedResource Include="Data\vCard_v30.vcf" />
-		<EmbeddedResource Include="Data\vCard_v40.vcf" />
 	</ItemGroup>
 
 </Project>

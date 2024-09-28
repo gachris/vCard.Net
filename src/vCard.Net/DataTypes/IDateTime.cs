@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a date and time value with support for various operations and conversions.
 /// </summary>
-public interface IDateTime : IEncodableDataType, IComparable<IDateTime>, IFormattable, IvCardDataType
+public interface IDateTime : IEncodableDataType, IComparable<IDateTime>, IFormattable, IVCardDataType
 {
     /// <summary>
     /// Converts the date/time to the local date/time of this computer's time zone.

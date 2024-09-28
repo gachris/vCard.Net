@@ -10,6 +10,6 @@
 /// identification properties, delivery addressing properties, communications properties, geographical properties,
 /// organizational properties, explanatory properties, security properties, and calendar properties.
 /// </remarks>
-public interface IvCard
+public interface IVCard
 {
 }

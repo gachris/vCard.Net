@@ -13,7 +13,7 @@ public class SimpleDeserializer
     internal SimpleDeserializer(
         DataTypeMapper dataTypeMapper,
         ISerializerFactory serializerFactory,
-        vCardComponentFactory componentFactory)
+        VCardComponentFactory componentFactory)
     {
         _dataTypeMapper = dataTypeMapper;
         _serializerFactory = serializerFactory;
@@ -26,7 +26,7 @@ public class SimpleDeserializer
     public static readonly SimpleDeserializer Default = new SimpleDeserializer(
         new DataTypeMapper(),
         new SerializerFactory(),
-        new vCardComponentFactory());
+        new VCardComponentFactory());
 
     private const string _nameGroup = "name";
     private const string _valueGroup = "value";
@@ -37,7 +37,7 @@ public class SimpleDeserializer
 
     private readonly DataTypeMapper _dataTypeMapper;
     private readonly ISerializerFactory _serializerFactory;
-    private readonly vCardComponentFactory _componentFactory;
+    private readonly VCardComponentFactory _componentFactory;
 
     private static string BuildContentLineRegex()
     {
@@ -76,11 +76,11 @@ public class SimpleDeserializer
     /// </summary>
     /// <param name="reader">The TextReader containing the vCard data.</param>
     /// <returns>An IEnumerable of IvCardComponent representing the deserialized vCard components.</returns>
-    public IEnumerable<IvCardComponent> Deserialize(TextReader reader)
+    public IEnumerable<IVCardComponent> Deserialize(TextReader reader)
     {
         var context = new SerializationContext();
-        var stack = new Stack<IvCardComponent>();
-        var current = default(IvCardComponent);
+        var stack = new Stack<IVCardComponent>();
+        var current = default(IVCardComponent);
         foreach (var contentLineString in GetContentLines(reader))
         {
             var contentLine = ParseContentLine(context, contentLineString);
@@ -126,7 +126,7 @@ public class SimpleDeserializer
         }
     }
 
-    private vCardProperty ParseContentLine(SerializationContext context, string input)
+    private VCardProperty ParseContentLine(SerializationContext context, string input)
     {
         var match = _contentLineRegex.Match(input);
         if (!match.Success)
@@ -138,7 +138,7 @@ public class SimpleDeserializer
         var paramNames = match.Groups[_paramNameGroup].Captures;
         var paramValues = match.Groups[_paramValueGroup].Captures;
 
-        var property = new vCardProperty(name.ToUpperInvariant());
+        var property = new VCardProperty(name.ToUpperInvariant());
         context.Push(property);
         SetPropertyParameters(property, paramNames, paramValues);
         SetPropertyValue(context, property, value);
@@ -146,13 +146,13 @@ public class SimpleDeserializer
         return property;
     }
 
-    private static void SetPropertyParameters(vCardProperty property, CaptureCollection paramNames, CaptureCollection paramValues)
+    private static void SetPropertyParameters(VCardProperty property, CaptureCollection paramNames, CaptureCollection paramValues)
     {
         var paramValueIndex = 0;
         for (var paramNameIndex = 0; paramNameIndex < paramNames.Count; paramNameIndex++)
         {
             var paramName = paramNames[paramNameIndex].Value;
-            var parameter = new vCardParameter(paramName);
+            var parameter = new VCardParameter(paramName);
             var nextParamIndex = paramNameIndex + 1 < paramNames.Count ? paramNames[paramNameIndex + 1].Index : int.MaxValue;
             while (paramValueIndex < paramValues.Count && paramValues[paramValueIndex].Index < nextParamIndex)
             {
@@ -164,7 +164,7 @@ public class SimpleDeserializer
         }
     }
 
-    private void SetPropertyValue(SerializationContext context, vCardProperty property, string value)
+    private void SetPropertyValue(SerializationContext context, VCardProperty property, string value)
     {
         var type = _dataTypeMapper.GetPropertyMapping(property) ?? typeof(string);
         var serializer = (SerializerBase)_serializerFactory.Build(type, context);

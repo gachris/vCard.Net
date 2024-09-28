@@ -15,8 +15,8 @@ public interface ICopyable
 
     /// <summary>
     /// Returns a deep copy of the current object. For the most part, this is only necessary when working with mutable reference types,
-    /// (i.e. <see cref="vCardDateTime"/>). For most other types, it's unnecessary overhead. The pattern that identifies whether it's necessary to copy
-    /// or not is whether arithmetic operations mutate fields or properties. <see cref="vCardDateTime"/> is a good example where + and - would otherwise
+    /// (i.e. <see cref="VCardDateTime"/>). For most other types, it's unnecessary overhead. The pattern that identifies whether it's necessary to copy
+    /// or not is whether arithmetic operations mutate fields or properties. <see cref="VCardDateTime"/> is a good example where + and - would otherwise
     /// change the Value of the underlying DateTime.
     /// </summary>
     T Copy<T>();

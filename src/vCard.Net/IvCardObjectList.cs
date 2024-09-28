@@ -6,7 +6,7 @@ namespace vCard.Net;
 /// Represents a collection of vCard objects of a specific type.
 /// </summary>
 /// <typeparam name="TType">The type of vCard objects in the collection.</typeparam>
-public interface IvCardObjectList<TType> : IGroupedCollection<string, TType> where TType : class, IvCardObject
+public interface IVCardObjectList<TType> : IGroupedCollection<string, TType> where TType : class, IVCardObject
 {
     /// <summary>
     /// Gets the vCard object at the specified index.

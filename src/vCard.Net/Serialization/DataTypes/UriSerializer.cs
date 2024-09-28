@@ -31,7 +31,7 @@ public class UriSerializer : EncodableDataTypeSerializer
 
         var uri = (Uri)obj;
 
-        if (SerializationContext.Peek() is IvCardObject co)
+        if (SerializationContext.Peek() is IVCardObject co)
         {
             var dt = new EncodableDataType
             {
@@ -52,7 +52,7 @@ public class UriSerializer : EncodableDataTypeSerializer
 
         var value = tr.ReadToEnd();
 
-        if (SerializationContext.Peek() is IvCardObject co)
+        if (SerializationContext.Peek() is IVCardObject co)
         {
             var dt = new EncodableDataType
             {

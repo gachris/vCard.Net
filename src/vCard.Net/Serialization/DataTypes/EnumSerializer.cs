@@ -30,7 +30,7 @@ public class EnumSerializer : EncodableDataTypeSerializer
     {
         try
         {
-            if (SerializationContext.Peek() is IvCardObject obj)
+            if (SerializationContext.Peek() is IVCardObject obj)
             {
                 // Encode the value as needed.
                 var dt = new EncodableDataType
@@ -54,7 +54,7 @@ public class EnumSerializer : EncodableDataTypeSerializer
 
         try
         {
-            if (SerializationContext.Peek() is IvCardObject obj)
+            if (SerializationContext.Peek() is IVCardObject obj)
             {
                 // Decode the value, if necessary!
                 var dt = new EncodableDataType

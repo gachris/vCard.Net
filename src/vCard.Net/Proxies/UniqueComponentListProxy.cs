@@ -8,7 +8,7 @@ namespace vCard.Net.Proxies;
 /// </summary>
 /// <typeparam name="TComponentType">The type of the component.</typeparam>
 public class UniqueComponentListProxy<TComponentType> :
-    vCardObjectListProxy<TComponentType>,
+    VCardObjectListProxy<TComponentType>,
     IUniqueComponentList<TComponentType>
     where TComponentType : class, IUniqueComponent
 {
@@ -18,7 +18,7 @@ public class UniqueComponentListProxy<TComponentType> :
     /// Initializes a new instance of the <see cref="UniqueComponentListProxy{TComponentType}"/> class.
     /// </summary>
     /// <param name="children">The underlying grouped collection of card objects.</param>
-    public UniqueComponentListProxy(IGroupedCollection<string, IvCardObject> children) : base(children) => _lookup = new Dictionary<string, TComponentType>();
+    public UniqueComponentListProxy(IGroupedCollection<string, IVCardObject> children) : base(children) => _lookup = new Dictionary<string, TComponentType>();
 
     private TComponentType Search(string uid)
     {

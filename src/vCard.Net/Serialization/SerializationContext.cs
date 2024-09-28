@@ -43,7 +43,7 @@ public class SerializationContext
     {
         // Add some services by default
         SetService(new SerializerFactory());
-        SetService(new vCardComponentFactory());
+        SetService(new VCardComponentFactory());
         SetService(new DataTypeMapper());
         SetService(new EncodingStack());
         SetService(new EncodingProvider(this));

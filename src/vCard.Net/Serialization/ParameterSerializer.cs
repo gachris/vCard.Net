@@ -21,19 +21,19 @@ public class ParameterSerializer : SerializerBase
     public ParameterSerializer(SerializationContext ctx) : base(ctx) { }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(vCardParameter);
+    public override Type TargetType => typeof(VCardParameter);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
     {
-        if (obj is not vCardParameter parameter)
+        if (obj is not VCardParameter parameter)
         {
             return null;
         }
 
-        var version = vCardVersion.vCard2_1;
+        var version = VCardVersion.vCard2_1;
 
-        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        if (SerializationContext.Peek() is IVCardProperty property && property.Parent is IVCardComponent component)
         {
             version = component.Version;
         }
@@ -41,7 +41,7 @@ public class ParameterSerializer : SerializerBase
         var builder = new StringBuilder();
         builder.Append(parameter.Name + "=");
 
-        var separator = version is vCardVersion.vCard2_1 ? ";" : ",";
+        var separator = version is VCardVersion.vCard2_1 ? ";" : ",";
 
         // "Section 3.2:  Property parameter values MUST NOT contain the DQUOTE character."
         // Therefore, let's strip any double quotes from the value.

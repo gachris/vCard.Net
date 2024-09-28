@@ -36,19 +36,19 @@ public class GeographicPositionSerializer : StringSerializer
             return null;
         }
 
-        var version = vCardVersion.vCard2_1;
-        if (SerializationContext.Peek() is IvCardProperty property && property.Parent is IvCardComponent component)
+        var version = VCardVersion.vCard2_1;
+        if (SerializationContext.Peek() is IVCardProperty property && property.Parent is IVCardComponent component)
         {
             version = component.Version;
         }
 
         string text = string.Empty;
-        if (version == vCardVersion.vCard4_0 && geographicPosition.IncludeGeoUriPrefix)
+        if (version == VCardVersion.vCard4_0 && geographicPosition.IncludeGeoUriPrefix)
         {
             text = "geo:";
         }
 
-        var separator = version is vCardVersion.vCard4_0 ? "," : ";";
+        var separator = version is VCardVersion.vCard4_0 ? "," : ";";
         var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, separator, geographicPosition.Longitude);
 
         return Encode(geographicPosition, value);

@@ -33,7 +33,7 @@ public class GenericListSerializer : SerializerBase
     /// <inheritdoc/>
     public override object Deserialize(TextReader tr)
     {
-        if (SerializationContext.Peek() is not IvCardProperty p)
+        if (SerializationContext.Peek() is not IVCardProperty p)
         {
             return null;
         }

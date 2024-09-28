@@ -10,37 +10,37 @@ namespace vCard.Net.CardComponents;
 /// Generally, you should not need to use this class directly.
 /// </summary>
 [DebuggerDisplay("Component: {Name}")]
-public class vCardComponent : vCardObject, IvCardComponent
+public class VCardComponent : VCardObject, IVCardComponent
 {
     /// <summary>
     /// Gets a list of properties that are associated with the vCard component.
     /// </summary>
-    public virtual vCardPropertyList Properties { get; protected set; }
+    public virtual VCardPropertyList Properties { get; protected set; }
 
     /// <summary>
     /// Gets or sets the vCard version associated with this object.
     /// </summary>
-    public virtual vCardVersion Version
+    public virtual VCardVersion Version
     {
         get => Properties.Get<string>("VERSION").FromVersionString();
         set => Properties.Set("VERSION", value.ToVersionString());
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardComponent"/> class.
+    /// Initializes a new instance of the <see cref="VCardComponent"/> class.
     /// </summary>
-    public vCardComponent() : base() => Initialize();
+    public VCardComponent() : base() => Initialize();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="vCardComponent"/> class with the specified name.
+    /// Initializes a new instance of the <see cref="VCardComponent"/> class with the specified name.
     /// </summary>
     /// <param name="name">The name of the component.</param>
-    public vCardComponent(string name) : base(name) => Initialize();
+    public VCardComponent(string name) : base(name) => Initialize();
 
     /// <summary>
     /// Initializes the component by creating a new property list.
     /// </summary>
-    private void Initialize() => Properties = new vCardPropertyList(this);
+    private void Initialize() => Properties = new VCardPropertyList(this);
 
     /// <inheritdoc/>
     protected override void OnDeserializing(StreamingContext context)
@@ -55,7 +55,7 @@ public class vCardComponent : vCardObject, IvCardComponent
     {
         base.CopyFrom(obj);
 
-        if (obj is not IvCardComponent c)
+        if (obj is not IVCardComponent c)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class vCardComponent : vCardObject, IvCardComponent
     /// <param name="value">The value of the property.</param>
     public virtual void AddProperty(string name, string value)
     {
-        var p = new vCardProperty(name, value);
+        var p = new VCardProperty(name, value);
         AddProperty(p);
     }
 
@@ -82,7 +82,7 @@ public class vCardComponent : vCardObject, IvCardComponent
     /// Adds a property to this component.
     /// </summary>
     /// <param name="p">The property to add.</param>
-    public virtual void AddProperty(IvCardProperty p)
+    public virtual void AddProperty(IVCardProperty p)
     {
         p.Parent = this;
         Properties.Set(p.Name, p.Value);

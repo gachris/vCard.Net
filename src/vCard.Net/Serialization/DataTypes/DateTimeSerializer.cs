@@ -27,7 +27,7 @@ public class DateTimeSerializer : EncodableDataTypeSerializer
     public DateTimeSerializer(SerializationContext ctx) : base(ctx) { }
 
     /// <inheritdoc/>
-    public override Type TargetType => typeof(vCardDateTime);
+    public override Type TargetType => typeof(VCardDateTime);
 
     /// <inheritdoc/>
     public override string SerializeToString(object obj)
