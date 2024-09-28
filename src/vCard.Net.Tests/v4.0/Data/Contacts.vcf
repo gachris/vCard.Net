@@ -1,0 +1,100 @@
+BEGIN:VCARD
+VERSION:4.0
+ADR;TYPE=work;LABEL=1234 Company St\nCity, State 12345\nUSA:;;1234 Company
+  St;City;State;12345;USA
+ANNIVERSARY:2010-06-15
+BDAY:1980-01-01
+BIRTHPLACE:City,Country
+CATEGORIES:Friends,Colleagues
+CLIENTPIDMAP:2;urn:uuid:12345678-9abc-def0-1234-56789abcdef0
+DEATHDATE:2070-05-31
+DEATHPLACE:City,Country
+EMAIL:johndoe@example.com
+EXPERTISE:Python Programming,AI Development
+FN:John Doe
+GENDER:M
+GEO:geo:37.774900,-122.419400
+HOBBY:Hiking,Photography
+IMPP;X-SERVICE-TYPE=Skype:skype:johndoe
+INTEREST:Art,Technology
+KEY;TYPE=pgp:http://www.johndoe.com/pgpkey.asc
+KIND:individual
+LANG;PREF=1:en
+LOGO;MEDIATYPE=image/jpeg:http://www.johndoe.com/logo.jpg
+MEMBER:urn:uuid:12345678-9abc-def0-1234-56789abcdef1
+N:Doe;John;;Mr;PhD
+NICKNAME:Johnny
+NOTE:This is a detailed example of vCard 4.0 with extended properties.
+ORG:Company Inc.;Software Division
+PHOTO;MEDIATYPE=image/jpeg:http://www.johndoe.com/photo.jpg
+PRODID:-//John Doe Corporation//vCard 4.0//EN
+RELATED;TYPE=sibling:urn:uuid:98765432-1abc-def0-1234-56789abcdef0
+REV:2023-09-01T12:00:00Z
+ROLE:Lead Developer
+SORT-STRING:Doe
+SOUND;MEDIATYPE=audio/wav:http://www.johndoe.com/name.wav
+SOURCE:http://example.com/johndoe.vcf
+TEL;TYPE=work,voice;VALUE=uri:tel:+1-234-567-8900
+TEL;TYPE=home,voice;VALUE=uri:tel:+1-234-567-8901
+TITLE:Software Engineer
+TZ:America/New_York
+UID:12345678-9abc-def0-1234-56789abcdef0
+URL:http://www.johndoe.com
+XML:<extended-info><social-profile>http://twitter.com/johndoe</social-prof
+ ile></extended-info>
+AGENT:BEGIN:VCARD
+VERSION:4.0
+FN:Jane Doe
+TEL:+1-987-654-3210
+END:VCARD
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+ADR;TYPE=work;LABEL=1234 Company St\nCity, State 12345\nUSA:;;1234 Company
+  St;City;State;12345;USA
+ANNIVERSARY:2010-06-15
+BDAY:1980-01-01
+BIRTHPLACE:City,Country
+CATEGORIES:Friends,Colleagues
+CLIENTPIDMAP:2;urn:uuid:12345678-9abc-def0-1234-56789abcdef0
+DEATHDATE:2070-05-31
+DEATHPLACE:City,Country
+EMAIL:johndoe@example.com
+EXPERTISE:Python Programming,AI Development
+FN:John Doe
+GENDER:M
+GEO:geo:37.774900,-122.419400
+HOBBY:Hiking,Photography
+IMPP;X-SERVICE-TYPE=Skype:skype:johndoe
+INTEREST:Art,Technology
+KEY;TYPE=pgp:http://www.johndoe.com/pgpkey.asc
+KIND:individual
+LANG;PREF=1:en
+LOGO;MEDIATYPE=image/jpeg:http://www.johndoe.com/logo.jpg
+MEMBER:urn:uuid:12345678-9abc-def0-1234-56789abcdef1
+N:Doe;John;;Mr;PhD
+NICKNAME:Johnny
+NOTE:This is a detailed example of vCard 4.0 with extended properties.
+ORG:Company Inc.;Software Division
+PHOTO;MEDIATYPE=image/jpeg:http://www.johndoe.com/photo.jpg
+PRODID:-//John Doe Corporation//vCard 4.0//EN
+RELATED;TYPE=sibling:urn:uuid:98765432-1abc-def0-1234-56789abcdef0
+REV:2023-09-01T12:00:00Z
+ROLE:Lead Developer
+SORT-STRING:Doe
+SOUND;MEDIATYPE=audio/wav:http://www.johndoe.com/name.wav
+SOURCE:http://example.com/johndoe.vcf
+TEL;TYPE=work,voice;VALUE=uri:tel:+1-234-567-8900
+TEL;TYPE=home,voice;VALUE=uri:tel:+1-234-567-8901
+TITLE:Software Engineer
+TZ:America/New_York
+UID:12345678-9abc-def0-1234-56789abcdef0
+URL:http://www.johndoe.com
+XML:<extended-info><social-profile>http://twitter.com/johndoe</social-prof
+ ile></extended-info>
+AGENT:BEGIN:VCARD
+VERSION:4.0
+FN:Jane Doe
+TEL:+1-987-654-3210
+END:VCARD
+END:VCARD
