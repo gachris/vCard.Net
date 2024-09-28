@@ -17,7 +17,7 @@ public class ComponentSerializer : SerializerBase
         { "ADR", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Address
         { "AGENT", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Agent
         { "ANNIVERSARY", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Anniversary
-        { "CATEGORIES", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Categories
+        { "CATEGORIES", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Categories
         { "CLIENTPIDMAP", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // ClientPidMap
         { "EMAIL", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Email
         { "EXPERTISE", SpecificationVersions.vCard4_0 }, // Expertise
@@ -29,20 +29,20 @@ public class ComponentSerializer : SerializerBase
         { "INTEREST", SpecificationVersions.vCard4_0 }, // Interest
         { "KEY", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Key
         { "KIND", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Kind
-        { "LABEL",SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Label
+        { "LABEL", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 }, // Label
         { "LANG", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Language
-        { "LOGO", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Logo
+        { "LOGO", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Logo
         { "MEMBER", SpecificationVersions.vCard4_0 }, // Members
         { "MAILER", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Mailer
         { "NOTE", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Note
-        { "NICKNAME", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Nickname
+        { "NICKNAME", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Nickname
         { "N", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Structured Name
         { "ORG", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Organization
         { "PHOTO", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Photo
         { "PRODID", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Product Id
         { "REV", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Revision
         { "RELATED", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Related
-        { "ROLE", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Role
+        { "ROLE", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Role
         { "SOUND", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Sound
         { "SOURCE", SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Source
         { "TEL", SpecificationVersions.vCard2_1 | SpecificationVersions.vCard3_0 | SpecificationVersions.vCard4_0 }, // Telephone
@@ -119,7 +119,7 @@ public class ComponentSerializer : SerializerBase
         }
 
         sb.Append(TextUtil.FoldLines($"END:{upperName}"));
-        return sb.ToString();
+        return sb.ToString().Trim();
     }
 
     /// <inheritdoc/>

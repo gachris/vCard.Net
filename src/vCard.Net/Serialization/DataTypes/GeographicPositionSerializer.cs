@@ -48,7 +48,8 @@ public class GeographicPositionSerializer : StringSerializer
             text = "geo:";
         }
 
-        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, (version is vCardVersion.vCard3_0 or vCardVersion.vCard4_0) ? ";" : ",", geographicPosition.Longitude);
+        var separator = version is vCardVersion.vCard4_0 ? "," : ";";
+        var value = string.Format(CultureInfo.InvariantCulture, "{0}{1:F6}{2}{3:F6}", text, geographicPosition.Latitude, separator, geographicPosition.Longitude);
 
         return Encode(geographicPosition, value);
     }

@@ -93,6 +93,13 @@ internal class DataTypeMapper
         AddPropertyMapping("CATEGORIES", typeof(Categories), false);
         AddPropertyMapping("SOUND", typeof(Sound), false);
         AddPropertyMapping("REV", typeof(IDateTime), false);
+        AddPropertyMapping("DEATHDATE", typeof(IDateTime), false);
+        AddPropertyMapping("BIRTHPLACE", typeof(BirthPlace), false);
+        AddPropertyMapping("DEATHPLACE", typeof(DeathPlace), false);
+        AddPropertyMapping("HOBBY", typeof(Hobby), false);
+        AddPropertyMapping("INTEREST", typeof(Interest), false);
+        AddPropertyMapping("EXPERTISE", typeof(Expertise), false);
+        AddPropertyMapping("AGENT", typeof(CardComponents.vCard), true);
 
         #endregion
 

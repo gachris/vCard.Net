@@ -36,6 +36,26 @@ public class DataTypeSerializerFactory : ISerializerFactory
             {
                 s = new CategoriesSerializer(ctx);
             }
+            else if (typeof(BirthPlace).IsAssignableFrom(objectType))
+            {
+                s = new BirthPlaceSerializer(ctx);
+            }
+            else if (typeof(DeathPlace).IsAssignableFrom(objectType))
+            {
+                s = new DeathPlaceSerializer(ctx);
+            }
+            else if (typeof(Expertise).IsAssignableFrom(objectType))
+            {
+                s = new ExpertiseSerializer(ctx);
+            }
+            else if (typeof(Hobby).IsAssignableFrom(objectType))
+            {
+                s = new HobbySerializer(ctx);
+            }
+            else if (typeof(Interest).IsAssignableFrom(objectType))
+            {
+                s = new InterestSerializer(ctx);
+            }
             else if (typeof(Email).IsAssignableFrom(objectType))
             {
                 s = new EmailSerializer(ctx);

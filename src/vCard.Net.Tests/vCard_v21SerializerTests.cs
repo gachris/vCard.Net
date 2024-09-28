@@ -46,7 +46,7 @@ public class vCard_v21SerializerTests
             Photo = new Photo()
             {
                 Encoding = "BASE64",
-                ValueType = "JPEG",
+                Type = "JPEG",
                 Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
             },
             Birthdate = new vCardDateTime(1980, 1, 1)
@@ -90,9 +90,8 @@ public class vCard_v21SerializerTests
             [
                 new Email
                 {
-                    PreferredOrder = 1,
                     Value = "johndoe@example.com",
-                    Types = ["INTERNET"]
+                    Types = ["PREF", "INTERNET"]
                 }
             ],
             Organization = new Organization
@@ -105,7 +104,7 @@ public class vCard_v21SerializerTests
             Logo = new Logo
             {
                 Encoding = "BASE64",
-                ValueType = "JPEG",
+                Type = "JPEG",
                 Value = "/9j/4AAQSkZJRgABAQEAAAAAAAD..."
             },
             Note = "This is a detailed example of vCard 2.1.",
@@ -125,17 +124,21 @@ public class vCard_v21SerializerTests
             {
                 CategoriesString = "Friends,Colleagues"
             },
-            Agent = new CardComponents.vCard()
-            {
-                Version = vCardVersion.vCard2_1,
-                FormattedName = "Jane Doe",
-                Telephones =
-                [
-                    new Telephone(){
-                        Value = "+1 987 654 3210",
-                    }
-                ]
-            }
+            Agents =
+            [
+                new CardComponents.vCard()
+                {
+                    Version = vCardVersion.vCard2_1,
+                    Uid = null,
+                    FormattedName = "Jane Doe",
+                    Telephones =
+                    [
+                        new Telephone(){
+                            Value = "+1 987 654 3210",
+                        }
+                    ]
+                }
+            ]
         };
 
         return vCard;

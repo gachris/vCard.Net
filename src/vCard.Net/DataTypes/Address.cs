@@ -1,4 +1,5 @@
 ﻿using vCard.Net.Serialization.DataTypes;
+using vCard.Net.Utility;
 
 namespace vCard.Net.DataTypes;
 
@@ -147,6 +148,15 @@ public class Address : EncodableDataType
 
             return num == 0 ? null : string.Join(";", array, 0, num);
         }
+    }
+
+    /// <summary>
+    /// Gets or sets the label.
+    /// </summary>
+    public string Label
+    {
+        get => Parameters.Get("LABEL").Unescape();
+        set => Parameters.Set("LABEL", value.RestrictedEscape());
     }
 
     /// <summary>

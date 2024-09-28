@@ -120,9 +120,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string BirthPlace
+    public virtual BirthPlace BirthPlace
     {
-        get => Properties.Get<string>("BIRTHPLACE");
+        get => Properties.Get<BirthPlace>("BIRTHPLACE");
         set => Properties.Set("BIRTHPLACE", value);
     }
 
@@ -132,9 +132,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string DeathPlace
+    public virtual DeathPlace DeathPlace
     {
-        get => Properties.Get<string>("DEATHPLACE");
+        get => Properties.Get<DeathPlace>("DEATHPLACE");
         set => Properties.Set("DEATHPLACE", value);
     }
 
@@ -398,9 +398,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string Expertise
+    public virtual Expertise Expertise
     {
-        get => Properties.Get<string>("EXPERTISE");
+        get => Properties.Get<Expertise>("EXPERTISE");
         set => Properties.Set("EXPERTISE", value);
     }
 
@@ -410,9 +410,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string Hobby
+    public virtual Hobby Hobby
     {
-        get => Properties.Get<string>("HOBBY");
+        get => Properties.Get<Hobby>("HOBBY");
         set => Properties.Set("HOBBY", value);
     }
 
@@ -422,9 +422,9 @@ public class vCard : UniqueComponent, IvCard
     /// <remarks>
     /// Supported in: vCard 4.0
     /// </remarks>
-    public virtual string Interest
+    public virtual Interest Interest
     {
-        get => Properties.Get<string>("INTEREST");
+        get => Properties.Get<Interest>("INTEREST");
         set => Properties.Set("INTEREST", value);
     }
 
@@ -501,14 +501,14 @@ public class vCard : UniqueComponent, IvCard
     }
 
     /// <summary>
-    /// Gets or sets the agent of the vCard.
+    /// Gets or sets a collection of <see cref="vCard" /> objects for the vCard.
     /// </summary>
     /// <remarks>
     /// Supported in: vCard 2.1, 3.0, 4.0
     /// </remarks>
-    public virtual vCard Agent
+    public virtual IList<vCard> Agents
     {
-        get => Properties.Get<vCard>("AGENT");
+        get => Properties.GetMany<vCard>("AGENT");
         set => Properties.Set("AGENT", value);
     }
 
@@ -564,11 +564,11 @@ public class vCard : UniqueComponent, IvCard
                  && Equals(Photo, other.Photo)
                  && Equals(Anniversary, other.Anniversary)
                  && Equals(Gender, other.Gender)
-                 && string.Equals(BirthPlace, other.BirthPlace, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(DeathPlace, other.DeathPlace, StringComparison.OrdinalIgnoreCase)
+                 && Equals(BirthPlace, other.BirthPlace)
+                 && Equals(DeathPlace, other.DeathPlace)
                  && Equals(DeathDate, other.DeathDate)
                  && CollectionHelpers.Equals(Addresses, other.Addresses)
-                 && Equals(Labels, other.Labels)
+                 && CollectionHelpers.Equals(Labels, other.Labels)
                  && CollectionHelpers.Equals(Telephones, other.Telephones)
                  && CollectionHelpers.Equals(Emails, other.Emails)
                  && CollectionHelpers.Equals(InstantMessagingProtocols, other.InstantMessagingProtocols)
@@ -588,11 +588,11 @@ public class vCard : UniqueComponent, IvCard
                  && Equals(Sound, other.Sound)
                  && Equals(Key, other.Key)
                  && Equals(Xml, other.Xml)
-                 && Equals(Agent, other.Agent)
+                 && CollectionHelpers.Equals(Agents, other.Agents)
                  && string.Equals(Mailer, other.Mailer, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(Expertise, other.Expertise, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(Hobby, other.Hobby, StringComparison.OrdinalIgnoreCase)
-                 && string.Equals(Interest, other.Interest, StringComparison.OrdinalIgnoreCase)
+                 && Equals(Expertise, other.Expertise)
+                 && Equals(Hobby, other.Hobby)
+                 && Equals(Interest, other.Interest)
                  && string.Equals(SortString, other.SortString, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -617,9 +617,9 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ (Photo != null ? Photo.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Anniversary != null ? Anniversary.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Gender != null ? Gender.GetHashCode() : 0);
-            hashCode = (hashCode * 397) ^ (BirthPlace != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(BirthPlace) : 0);
-            hashCode = (hashCode * 397) ^ (DeathPlace != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(DeathPlace) : 0);
-            hashCode = (hashCode * 397) ^ (DeathDate != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(DeathDate) : 0);
+            hashCode = (hashCode * 397) ^ (BirthPlace != null ? BirthPlace.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (DeathPlace != null ? DeathPlace.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (DeathDate != null ? DeathDate.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Addresses);
             hashCode = (hashCode * 397) ^ (Labels != null ? Labels.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ CollectionHelpers.GetHashCode(Telephones);
@@ -641,11 +641,11 @@ public class vCard : UniqueComponent, IvCard
             hashCode = (hashCode * 397) ^ (Sound != null ? Sound.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Key != null ? Key.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (Xml != null ? Xml.GetHashCode() : 0);
-            hashCode = (hashCode * 397) ^ (Agent != null ? Agent.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Agents != null ? CollectionHelpers.GetHashCode(Agents) : 0);
             hashCode = (hashCode * 397) ^ (Mailer != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Mailer) : 0);
-            hashCode = (hashCode * 397) ^ (Expertise != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Expertise) : 0);
-            hashCode = (hashCode * 397) ^ (Hobby != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Hobby) : 0);
-            hashCode = (hashCode * 397) ^ (Interest != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Interest) : 0);
+            hashCode = (hashCode * 397) ^ (Expertise != null ? Expertise.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Hobby != null ? Hobby.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Interest != null ? Interest.GetHashCode() : 0);
             hashCode = (hashCode * 397) ^ (SortString != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(SortString) : 0);
 
             return hashCode;

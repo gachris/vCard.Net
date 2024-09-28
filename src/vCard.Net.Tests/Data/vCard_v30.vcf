@@ -16,7 +16,7 @@ NICKNAME:Johnny
 NOTE:This is a detailed example of vCard 3.0.
 ORG:Company Inc.;Software Division
 PHOTO;ENCODING=BASE64;TYPE=JPEG:/9j/4AAQSkZJRgABAQEAAAAAAAD...
-REV:20230901T120000Z
+REV:2023-09-01T12:00:00Z
 ROLE:Lead Developer
 SORT-STRING:Doe
 SOURCE:http://example.com/johndoe.vcf

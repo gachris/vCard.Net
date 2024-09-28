@@ -98,9 +98,8 @@ public class vCard_v30SerializerTests
             [
                 new Email
                 {
-                    PreferredOrder = 1,
                     Value = "johndoe@example.com",
-                    Types = ["INTERNET"]
+                    Types = ["PREF", "INTERNET"]
                 }
             ],
             Organization = new Organization
@@ -145,18 +144,21 @@ public class vCard_v30SerializerTests
             },
             SortString = "Doe",
             TimeZone = "+05:00",
-            Agent = new CardComponents.vCard()
-            {
-                Version = vCardVersion.vCard3_0,
-                Uid =   null,
-                FormattedName = "Jane Doe",
-                Telephones =
-                [
-                    new Telephone(){
-                        Value = "+1 987 654 3210",
-                    }
-                ]
-            }
+            Agents =
+            [
+                new CardComponents.vCard()
+                {
+                    Version = vCardVersion.vCard3_0,
+                    Uid = null,
+                    FormattedName = "Jane Doe",
+                    Telephones =
+                    [
+                        new Telephone(){
+                            Value = "+1 987 654 3210",
+                        }
+                    ]
+                }
+            ]
         };
 
         return vCard;

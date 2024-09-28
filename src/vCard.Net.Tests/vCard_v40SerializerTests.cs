@@ -11,12 +11,13 @@ public class vCard_v40SerializerTests
     [InlineDataEx("Data/vCard_v40.vcf")]
     public void SerializeToString(string vCardData)
     {
-        var serializer = new ComponentSerializer();
         var vCard = CreateCard();
-        var vCardAsString = serializer.SerializeToString(vCard).Trim();
+
+        var serializer = new ComponentSerializer();
+        var vCardAsString = serializer.SerializeToString(vCard);
 
         // Assert
-        Assert.Equal(vCardData.Trim(), vCardAsString);
+        Assert.Equal(vCardData, vCardAsString);
     }
 
     [Theory]
@@ -24,12 +25,15 @@ public class vCard_v40SerializerTests
     public void Deserialize(string vCardData)
     {
         var vCard = CreateCard();
-        var bytes = Encoding.UTF8.GetBytes(vCardData);
-        using var stream = new MemoryStream(bytes);
-        var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(new StreamReader(stream, Encoding.UTF8)).First();
+      
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(vCardData));
+        using var streamReader = new StreamReader(stream, Encoding.UTF8);
+     
+        var vCardFromData = (CardComponents.vCard)SimpleDeserializer.Default.Deserialize(streamReader).First();
 
         // Assert
-        Assert.True(vCard.Equals(vCardFromData));
+        var areEquals = vCard.Equals(vCardFromData);
+        Assert.True(areEquals);
     }
 
     private static CardComponents.vCard CreateCard()
@@ -54,14 +58,26 @@ public class vCard_v40SerializerTests
                     Value = "en"
                 }
             ],
-            Hobby = "Hiking, Photography",
-            Interest = "Art, Technology",
+            Hobby = new Hobby()
+            {
+                Value = "Hiking,Photography"
+            },
+            Interest = new Interest()
+            {
+                Value = "Art,Technology"
+            },
             Kind = new Kind()
             {
                 CardKind = KindType.Individual
             },
-            DeathPlace = "City, Country",
-            Expertise = "Python Programming, AI Development",
+            DeathPlace = new DeathPlace()
+            {
+                Value = "City,Country"
+            },
+            Expertise = new Expertise()
+            {
+                Value = "Python Programming,AI Development"
+            },
             Gender = new Gender
             {
                 Sex = 'M'
@@ -93,11 +109,7 @@ public class vCard_v40SerializerTests
                     Region = "State",
                     PostalCode = "12345",
                     Country = "USA",
-                    //new Label
-                    //{
-                    //    Value = "1234 Company St\nCity, State 12345\nUSA",
-                    //    Types = ["WORK"]
-                    //}
+                    Label = "1234 Company St\nCity, State 12345\nUSA"
                 }
             ],
             Telephones =
@@ -105,12 +117,14 @@ public class vCard_v40SerializerTests
                 new Telephone
                 {
                     Value = "+1-234-567-8900",
-                    Types = ["work", "voice"]
+                    Types = ["work", "voice"],
+                    ValueType = "uri:tel"
                 },
                 new Telephone
                 {
                     Value = "+1-234-567-8901",
-                    Types = ["home", "voice"]
+                    Types = ["home", "voice"],
+                    ValueType = "uri:tel"
                 }
             ],
             Emails =
@@ -120,7 +134,10 @@ public class vCard_v40SerializerTests
                     Value = "johndoe@example.com"
                 }
             ],
-            BirthPlace = "City, Country",
+            BirthPlace = new BirthPlace()
+            {
+                Value = "City,Country"
+            },
             Organization = new Organization
             {
                 Name = "Company Inc.",
@@ -199,18 +216,21 @@ public class vCard_v40SerializerTests
             {
                 Value = "<extended-info><social-profile>http://twitter.com/johndoe</social-profile></extended-info>"
             },
-            Agent = new CardComponents.vCard()
-            {
-                Version = vCardVersion.vCard4_0,
-                Uid = null,
-                FormattedName = "Jane Doe",
-                Telephones =
-                [
-                    new Telephone(){
-                        Value = "+1 987 654 3210",
-                    }
-                ]
-            }
+            Agents =
+            [
+                new CardComponents.vCard()
+                {
+                    Version = vCardVersion.vCard4_0,
+                    Uid = null,
+                    FormattedName = "Jane Doe",
+                    Telephones =
+                    [
+                        new Telephone(){
+                            Value = "+1-987-654-3210",
+                        }
+                    ]
+                }
+            ]
         };
 
         return vCard;
