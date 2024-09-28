@@ -2,7 +2,7 @@ BEGIN:VCARD
 VERSION:2.1
 ADR;WORK:;;1234 Company St;City;State;12345;USA
 LABEL;WORK:1234 Company St\nCity, State 12345\nUSA
-BDAY:1980-01-01
+BDAY:19800101
 CATEGORIES:Friends,Colleagues
 EMAIL;PREF;INTERNET:johndoe@example.com
 FN:John Doe
