@@ -7,10 +7,13 @@
 	<PropertyGroup Label="Package Configuration" Condition="'$(Configuration)' == 'Release'">
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Title>vCard .net</Title>
 		<Description>Package for serializing and deserializing vCards</Description>
 		<PackageTags>vcard serializing deserializing</PackageTags>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Output">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
