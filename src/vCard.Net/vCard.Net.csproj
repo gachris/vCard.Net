@@ -2,12 +2,15 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Description>Package for serializing and deserializing vCards</Description>
 	</PropertyGroup>
 
-	<PropertyGroup Label="Package Configuration">
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PropertyGroup Label="Package Configuration" Condition="'$(Configuration)' == 'Release'">
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Title>vCard .net</Title>
+		<Description>Package for serializing and deserializing vCards</Description>
+		<PackageTags>vcard serializing deserializing</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>

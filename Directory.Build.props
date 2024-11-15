@@ -2,14 +2,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<PropertyGroup Label="Project Configuration">
-		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<AssemblyVersion>2.1.0.0</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
-	<PropertyGroup Label="Package Configuration">
+	<PropertyGroup Label="Package Configuration" Condition="'$(Configuration)' == 'Release'">
 		<Version>$(AssemblyVersion)</Version>
 		<Authors>gachris</Authors>
 		<RepositoryType>git</RepositoryType>
@@ -19,16 +19,12 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/gachris/vCard.Net</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/gachris/vCard.Net/tree/master/src/$(MSBuildProjectName)</PackageProjectUrl>
-		<PackageOutputPath>$(MSBuildThisFileDirectory).packages\$(Configuration)</PackageOutputPath>
+		<PackageOutputPath>$(MSBuildThisFileDirectory)nupkgs</PackageOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Sign Assembly">
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)SignAssemblyKey.snk</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
-
-	<PropertyGroup Label="Output">
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 </Project>
